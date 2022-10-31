@@ -65,4 +65,5 @@ public class Crop{
 	public int getPlantDay(){
 		return this.plantDay;
 	}
+	//hello?
 }
