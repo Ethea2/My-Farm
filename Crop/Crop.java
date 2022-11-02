@@ -1,8 +1,11 @@
 package Crop;
 
 public class Crop{
-	protected int harvestTime;
+	protected String cropName;
+	protected String cropType;
+
 	protected int plantDay;
+	protected int harvestTime;
 	
 	protected int waterNeeds;
 	protected int waterBonusLimit;
@@ -12,8 +15,8 @@ public class Crop{
 	protected int yield;
 	protected int yieldMin;
 	protected int yieldMax;
-	protected int seedCost;
 
+	protected int seedCost;
 	protected int basePrice;
 	protected double finalPrice;
 
@@ -24,6 +27,7 @@ public class Crop{
 	protected int waterCount = 0;	
 	protected int fertCount = 0;
 
+	//STATUS
 	protected boolean withered = false;
 	protected boolean harvestable = false;
 
@@ -31,8 +35,19 @@ public class Crop{
 		this.plantDay = plantDay;
 	}
 
-	public checkHarvestTime(int currentDay){
-		
+	public checkStatus(int currentDay){
+		if((currentDay - this.plantDay) == this.harvestTime){
+			if((this.waterCount >= this.waterNeeds) &&
+					this.fertCount >= this.fertNeeds)
+				this.harvestable = true;
+			else
+				this.withered = true;
+		}
+		else if((currentDay - this.plantDay) > this.harvestTime)
+			this.withered = true;
+
+		if(this.withered == true)
+			this.harvestable = false;
 	}
 
 	public int randomizeYield(){
@@ -65,5 +80,4 @@ public class Crop{
 	public int getPlantDay(){
 		return this.plantDay;
 	}
-	//hello?
 }
