@@ -30,7 +30,7 @@ public class Crop{
 	protected boolean withered = false;
 	protected boolean harvestable = false;
 
-	public Crop(String farmerType, int plantDay){ //replace farmerType with player?
+	public Crop(int plantDay){ //replace farmerType with player?
 		this.plantDay = plantDay;
 	}
 
@@ -77,7 +77,7 @@ public class Crop{
 	}
 
 	public double computeFinalPrice(){
-		return this.finalPrice = this.harvestTotal + computeWaterBonus() + computeFertBonus();
+		return this.finalPrice = computeHarvestTotal() + computeWaterBonus() + computeFertBonus();
 	}
 
 	//GETTERS
@@ -95,5 +95,34 @@ public class Crop{
 
 	public int getPlantDay(){
 		return this.plantDay;
+	}
+
+	public boolean getHarvestable(){
+		return this.harvestable;
+	}
+
+	public boolean getWithered(){
+		return this.withered;
+	}
+
+	public int getWaterCount(){
+		return this.waterCount;
+	}
+
+	public int getHarvestTotal(){
+		return this.harvestTotal;
+	}
+
+	public int getYield(){
+		return this.yield;
+	}
+
+	//SETTERS
+	public void addWater(){
+		this.waterCount = this.waterCount + 1;
+	}
+
+	public void addFert(){
+		this.fertCount = this.fertCount + 1;
 	}
 }
