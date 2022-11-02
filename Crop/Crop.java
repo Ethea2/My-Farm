@@ -67,12 +67,18 @@ public class Crop{
 	}
 
 	public double computeWaterBonus(){
-		double waterBonus = this.harvestTotal * 0.2 * (waterCount - 1);
+		if(this.waterCount > this.waterBonusLimit)
+			this.waterCount = this.waterBonusLimit;
+
+		double waterBonus = this.harvestTotal * 0.2 * (this.waterCount - 1);
 		return waterBonus;
 	}
 
 	public double computeFertBonus(){
-		double fertBonus = this.harvestTotal * 0.5 * fertCount;
+		if(this.fertCount > this.fertBonusLimit)
+			this.fertCount = this.fertBonusLimit;
+
+		double fertBonus = this.harvestTotal * 0.5 * this.fertCount;
 		return fertBonus;
 	}
 
@@ -107,6 +113,10 @@ public class Crop{
 
 	public int getWaterCount(){
 		return this.waterCount;
+	}
+
+	public int getFertCount(){
+		return this.fertCount;
 	}
 
 	public int getHarvestTotal(){
