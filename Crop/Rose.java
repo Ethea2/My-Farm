@@ -1,10 +1,10 @@
 package Crop;
 
-public class Turnip extends RootCrop{
-    public Turnip(String farmerType, int plantDay){
+public class Rose extends Flower{
+    public Rose(String farmerType, int plantDay){
         super(farmerType, plantDay);
-        this.cropName = "Turnip";
-        this.harvestTime = 2;
+        this.cropName = "Rose";
+        this.harvestTime = 1;
 
         this.waterNeeds = 1;
         this.waterBonusLimit = 2;
@@ -12,11 +12,11 @@ public class Turnip extends RootCrop{
         this.fertBonusLimit = 1;
 
         this.yieldMin = 1;
-        this.yieldMax = 2;
+        this.yieldMax = 1;
         
         this.seedCost = 5;
-        this.basePrice = 6;
+        this.basePrice = 5;
 
-        this.expYield = 5;
+        this.expYield = 2.5;
     }
 }

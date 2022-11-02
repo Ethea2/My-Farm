@@ -30,7 +30,7 @@ public class Crop{
 	protected boolean withered = false;
 	protected boolean harvestable = false;
 
-	public Crop(int plantDay){ //replace farmerType with player?
+	public Crop(String farmerType, int plantDay){ //replace farmerType with player?
 		this.plantDay = plantDay;
 	}
 
@@ -83,7 +83,8 @@ public class Crop{
 	}
 
 	public double computeFinalPrice(){
-		return this.finalPrice = computeHarvestTotal() + computeWaterBonus() + computeFertBonus();
+		this.finalPrice = computeHarvestTotal() + computeWaterBonus() + computeFertBonus();
+		return Math.round(this.finalPrice * 100.0) / 100.0;
 	}
 
 	//GETTERS
