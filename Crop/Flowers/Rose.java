@@ -1,4 +1,4 @@
-package Crop;
+package Crop.Flowers;
 
 public class Rose extends Flower{
     public Rose(String farmerType, int plantDay){

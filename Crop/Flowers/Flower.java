@@ -1,4 +1,6 @@
-package Crop;
+package Crop.Flowers;
+
+import Crop.Crop;
 
 public class Flower extends Crop{
     public Flower(String farmerType, int plantDay){

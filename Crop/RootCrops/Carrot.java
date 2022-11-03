@@ -1,4 +1,4 @@
-package Crop;
+package Crop.RootCrops;
 
 public class Carrot extends RootCrop{
     public Carrot(String farmerType, int plantDay){
