@@ -3,8 +3,8 @@ package Crop.Flowers;
 import Crop.Crop;
 
 public class Flower extends Crop{
-    public Flower(String farmerType, int plantDay){
-        super(farmerType, plantDay);
+    public Flower(int earningBonus, int plantDay){
+        super(earningBonus, plantDay);
         this.cropType = "Flower";
     }
 
