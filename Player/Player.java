@@ -5,12 +5,14 @@ import Player.FarmerType.DistinguishedFarmer;
 import Player.FarmerType.Farmer;
 import Player.FarmerType.LegendaryFarmer;
 import Player.FarmerType.RegisteredFarmer;
+import Player.Tools.Tools;
 
 public class Player{
 	private int objectCoin;
 	private double experience;
     private Farmer farmerType = new Farmer();
 	private int level;
+    private Tools tool;
 
 	public Player(){
 		
