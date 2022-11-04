@@ -19,13 +19,13 @@ public class Player{
 	}
 
 	public void buySeed(Tile tile, int plantDay){
-        Crop crop = new Crop(plantDay);
+        Crop crop = new Crop(this.farmerType.getBonusEarnings(), plantDay);
         tile.plantCrop(crop);
     }
 
 	public void harvestTile(Tile tile){
         Crop crop = tile.getCrop();
-        this.experience += crop.computeExperienceYield();
+        this.experience += crop.getExpYield();
 	}
 
 
