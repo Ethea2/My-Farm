@@ -8,6 +8,10 @@ public class Flower extends Crop{
         this.cropType = "Flower";
     }
 
+    public Flower() {
+        this.cropType = "Flower";
+    }
+
     @Override
     public double computeFinalPrice(){
         this.finalPrice = (computeHarvestTotal() + computeWaterBonus() + computeFertBonus()) * 1.1;

@@ -13,10 +13,15 @@ public class Turnip extends RootCrop{
 
         this.yieldMin = 1;
         this.yieldMax = 2;
+
+        this.expYield = 5;
         
         this.seedCost = 5;
         this.basePrice = 6;
 
         this.expYield = 5;
+    }
+    public Turnip() {
+        this.cropName = "Turnip";
     }
 }

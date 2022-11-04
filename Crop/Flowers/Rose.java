@@ -14,9 +14,14 @@ public class Rose extends Flower{
         this.yieldMin = 1;
         this.yieldMax = 1;
         
+        this.expYield = 2.5;
+        
         this.seedCost = 5;
         this.basePrice = 5;
 
         this.expYield = 2.5;
+    }
+    public Rose() {
+        this.cropName = "Rose";
     }
 }

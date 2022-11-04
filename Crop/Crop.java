@@ -34,6 +34,10 @@ public class Crop{
 		this.plantDay = plantDay;
 	}
 
+    public Crop() {
+        
+    }
+
 	//METHODS
 	public String checkStatus(int currentDay){
 		if((currentDay - this.plantDay) == this.harvestTime){
@@ -87,6 +91,10 @@ public class Crop{
 		this.finalPrice = computeHarvestTotal() + computeWaterBonus() + computeFertBonus();
 		return Math.round(this.finalPrice * 100.0) / 100.0;
 	}
+
+    public double getExpYield() {
+        return this.expYield;
+    }
 
 	//GETTERS
 	public String getCropName(){

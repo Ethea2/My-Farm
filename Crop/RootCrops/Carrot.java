@@ -14,9 +14,14 @@ public class Carrot extends RootCrop{
         this.yieldMin = 1;
         this.yieldMax = 2;
         
+        this.expYield = 7.5;
+        
         this.seedCost = 10;
         this.basePrice = 9;
 
         this.expYield = 7.5;
+    }
+    public Carrot() {
+        this.cropName = "Carrot";
     }
 }

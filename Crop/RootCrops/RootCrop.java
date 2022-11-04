@@ -7,4 +7,7 @@ public class RootCrop extends Crop{
         super(farmerType, plantDay);
         this.cropType = "RootCrop";
     }
+    public RootCrop() {
+        this.cropType = "RootCrop";
+    }
 }

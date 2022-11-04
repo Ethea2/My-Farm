@@ -1,5 +1,7 @@
 package Player;
 
+import java.util.ArrayList;
+
 import Crop.Crop;
 import Player.FarmerType.DistinguishedFarmer;
 import Player.FarmerType.Farmer;
@@ -15,27 +17,34 @@ public class Player{
     private Tools tool;
 
 	public Player(){
-		
+        this.objectCoin = 100;
+        this.experience = 0;
 	}
 
-	public void buySeed(Tile tile, int plantDay){
-        Crop crop = new Crop(plantDay);
-        tile.plantCrop(crop);
+	public void buySeed(Tile tile, int plantDay, Crop cropSeed){
+        tile.plantCrop(cropSeed);
     }
 
 	public void harvestTile(Tile tile){
         Crop crop = tile.getCrop();
-        this.experience += crop.computeExperienceYield();
+        this.objectCoin += crop.computeFinalPrice();
+        this.experience += crop.getExpYield();
 	}
 
 
 	public void register(){
-        if(objectCoin >= 200 && level >= 5)
+        if(this.objectCoin >= 200 && level >= 5) {
             this.farmerType = new RegisteredFarmer();
-        else if(objectCoin >= 300 && level >= 10)
+            this.objectCoin -= 200;
+        }
+        else if(this.objectCoin >= 300 && level >= 10) {
             this.farmerType = new DistinguishedFarmer();
-        else if(objectCoin >= 400 && level >= 15)
+            this.objectCoin -= 300;
+        }
+        else if(this.objectCoin >= 400 && level >= 15){
             this.farmerType = new LegendaryFarmer();
+            this.objectCoin -= 400;
+        }
         else
             System.out.println("You are ineligble for any farmer registration");
     }

@@ -1,13 +1,13 @@
 package Player.FarmerType;
 
 public class Farmer {
-    private int levelRequirement = 0;
-    private int bonusEarnings = 0;
-    private int seedCostReduction = 0;
-    private int waterBonusIncrease = 0;
-    private int fertilizerBonus = 0;
-    private int registrationFee = 0; 
-    private String farmerType = "Farmer";
+    protected int levelRequirement = 0;
+    protected int bonusEarnings = 0;
+    protected int seedCostReduction = 0;
+    protected int waterBonusIncrease = 0;
+    protected int fertilizerBonus = 0;
+    protected int registrationFee = 0; 
+    protected String farmerType = "Farmer";
 
     public int getLevelRequirement() {
         return this.levelRequirement;
