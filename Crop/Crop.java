@@ -22,8 +22,6 @@ public class Crop{
 
 	protected double expYield;
 
-	protected String cropType;
-
 	protected int waterCount = 0;	
 	protected int fertCount = 0;
 
