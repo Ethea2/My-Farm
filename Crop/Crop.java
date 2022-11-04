@@ -31,9 +31,9 @@ public class Crop{
 	protected boolean withered = false;
 	protected boolean harvestable = false;
 
-	public Crop(int earningBonus, int plantDay){
+	public Crop(int earningBonus, int plantDay){//change parameters
 		this.plantDay = plantDay;
-		this.earningBonus = earningBonus;
+		this.earningBonus = earningBonus;//fix here
 	}
 
 	//METHODS
@@ -64,10 +64,10 @@ public class Crop{
 	}
 
 	public double computeHarvestTotal(){
-		return this.harvestTotal = randomizeYield() * (this.basePrice + this.earningBonus);
+		return this.harvestTotal = randomizeYield() * (this.basePrice + this.earningBonus); //fix here
 	}
 
-	public double computeWaterBonus(){
+	public double computeWaterBonus(){//include bonus increase from farmerType
 		if(this.waterCount > this.waterBonusLimit)
 			this.waterCount = this.waterBonusLimit;
 
@@ -75,7 +75,7 @@ public class Crop{
 		return waterBonus;
 	}
 
-	public double computeFertBonus(){
+	public double computeFertBonus(){//include bonus increase from farmerType
 		if(this.fertCount > this.fertBonusLimit)
 			this.fertCount = this.fertBonusLimit;
 
@@ -95,6 +95,10 @@ public class Crop{
 
 	public String getCropType(){
 		return this.cropType;
+	}
+
+	public int getSeedCost(){
+		return this.seedCost; //include seed cost reduction form FarmerType
 	}
 
 	public double getFinalPrice(){

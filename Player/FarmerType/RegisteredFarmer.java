@@ -1,6 +1,6 @@
 package Player.FarmerType;
 
-public class RegisteredFarmer extends Farmer {
+public class RegisteredFarmer extends FarmerType{
     public RegisteredFarmer(){
         this.levelRequirement = 5;
         this.bonusEarnings = 1;

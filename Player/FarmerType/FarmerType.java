@@ -10,9 +10,9 @@ public class FarmerType {
     protected String farmerType;
 
     public FarmerType(){
-        
     }
 
+    //GETTERS
     public int getLevelRequirement() {
         return this.levelRequirement;
     }
@@ -25,7 +25,7 @@ public class FarmerType {
     public int getWaterBonusIncrease() {
         return this.waterBonusIncrease;
     }
-    public int getFertilizerBonus() {
+    public int getFertBonusIncrease() {
         return this.fertilizerBonus;
     }
     public int getRegistrationFee() {

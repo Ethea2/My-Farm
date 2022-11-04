@@ -5,6 +5,6 @@ import Crop.Crop;
 public class RootCrop extends Crop{
     public RootCrop(int earningBonus, int plantDay){
         super(earningBonus, plantDay);
-        this.cropType = "RootCrop";
+        this.cropType = "Root Crop";
     }
 }

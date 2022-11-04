@@ -1,16 +1,13 @@
 package Player;
 
 import Crop.Crop;
-import Player.FarmerType.DistinguishedFarmer;
-import Player.FarmerType.Farmer;
-import Player.FarmerType.LegendaryFarmer;
-import Player.FarmerType.RegisteredFarmer;
-import Player.Tools.Tools;
+import Player.FarmerType.*;
+import Player.Tools.*;
 
 public class Player{
-	private int objectCoin;
+	private double objectCoin;
 	private double experience;
-    private Farmer farmerType = new Farmer();
+    private FarmerType farmerType = new Farmer();
 	private int level;
     private Tools tool;
 
@@ -18,9 +15,11 @@ public class Player{
 		
 	}
 
+	//METHODS
 	public void buySeed(Tile tile, int plantDay){
-        Crop crop = new Crop(this.farmerType.getBonusEarnings(), plantDay);
+        Crop crop = new Crop(this.farmerType.getBonusEarnings(), plantDay);//change parameters
         tile.plantCrop(crop);
+		//subtract seedCost from Objectcoins and account for any seed cost reductions
     }
 
 	public void harvestTile(Tile tile){
@@ -28,7 +27,7 @@ public class Player{
         this.experience += crop.getExpYield();
 	}
 
-
+	//replace values with appropriate variables
 	public void register(){
         if(objectCoin >= 200 && level >= 5)
             this.farmerType = new RegisteredFarmer();
