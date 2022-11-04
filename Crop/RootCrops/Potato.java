@@ -1,8 +1,8 @@
 package Crop.RootCrops;
 
 public class Potato extends RootCrop{
-    public Potato(String farmerType, int plantDay){
-        super(farmerType, plantDay);
+    public Potato(int plantDay){
+        super(plantDay);
         this.cropName = "Potato";
         this.harvestTime = 5;
 

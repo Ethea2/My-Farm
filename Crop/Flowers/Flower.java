@@ -1,10 +1,11 @@
 package Crop.Flowers;
 
 import Crop.Crop;
+import Player.FarmerType.*;
 
 public class Flower extends Crop{
-    public Flower(String farmerType, int plantDay){
-        super(farmerType, plantDay);
+    public Flower(int plantDay){
+        super(plantDay);
         this.cropType = "Flower";
     }
 
@@ -13,8 +14,8 @@ public class Flower extends Crop{
     }
 
     @Override
-    public double computeFinalPrice(){
-        this.finalPrice = (computeHarvestTotal() + computeWaterBonus() + computeFertBonus()) * 1.1;
+    public double computeFinalPrice(Farmer farmer){
+        this.finalPrice = (computeHarvestTotal() + computeWaterBonus(farmer) + computeFertBonus(farmer)) * 1.1;
         return Math.round(this.finalPrice * 100.0) / 100.0;
 	}
 }

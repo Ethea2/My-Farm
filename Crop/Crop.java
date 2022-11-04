@@ -1,5 +1,7 @@
 package Crop;
 
+import Player.FarmerType.Farmer;
+
 public class Crop{
 	protected String cropName;
 	protected String cropType;
@@ -30,7 +32,7 @@ public class Crop{
 	protected boolean withered = false;
 	protected boolean harvestable = false;
 
-	public Crop(String farmerType, int plantDay){
+	public Crop(int plantDay){
 		this.plantDay = plantDay;
 	}
 
@@ -66,29 +68,31 @@ public class Crop{
 	}
 
 	public double computeHarvestTotal(){
-		return this.harvestTotal = randomizeYield() * (this.basePrice);
+		return this.harvestTotal = (randomizeYield() * (this.basePrice));
 		//return this.harvestTotal = randomizeYield() * (this.basePrice + earningBonus);
 			//change "earningBonus" with method for getting FarmerType multipliers
 	}
 
-	public double computeWaterBonus(){
-		if(this.waterCount > this.waterBonusLimit)
-			this.waterCount = this.waterBonusLimit;
+	public double computeWaterBonus(Farmer farmer){
+        int actualBonus = this.waterBonusLimit + farmer.getWaterBonusIncrease();
+		if(this.waterCount > actualBonus)
+			this.waterCount = actualBonus;
 
 		double waterBonus = this.harvestTotal * 0.2 * (this.waterCount - 1);
 		return waterBonus;
 	}
 
-	public double computeFertBonus(){
-		if(this.fertCount > this.fertBonusLimit)
-			this.fertCount = this.fertBonusLimit;
+	public double computeFertBonus(Farmer farmer){
+        int actualLimit = this.fertBonusLimit + farmer.getFertilizerBonus();
+		if(this.fertCount > actualLimit)
+			this.fertCount = actualLimit;
 
 		double fertBonus = this.harvestTotal * 0.5 * this.fertCount;
 		return fertBonus;
 	}
 
-	public double computeFinalPrice(){
-		this.finalPrice = computeHarvestTotal() + computeWaterBonus() + computeFertBonus();
+	public double computeFinalPrice(Farmer farmer){
+		this.finalPrice = computeHarvestTotal() + computeWaterBonus(farmer) + computeFertBonus(farmer) + farmer.getBonusEarnings();
 		return Math.round(this.finalPrice * 100.0) / 100.0;
 	}
 
@@ -137,12 +141,18 @@ public class Crop{
 		return this.yield;
 	}
 
+    public int getSeedCost() {
+        return this.seedCost;
+    }
+
 	//"SETTERS"
 	public void addWater(){
 		this.waterCount = this.waterCount + 1;
+        System.out.println("The crop was successfully watered!");
 	}
 
 	public void addFert(){
 		this.fertCount = this.fertCount + 1;
+        System.out.println("The crop was successfully fertilized!");
 	}
 }

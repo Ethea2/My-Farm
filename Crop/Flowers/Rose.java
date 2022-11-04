@@ -1,8 +1,8 @@
 package Crop.Flowers;
 
 public class Rose extends Flower{
-    public Rose(String farmerType, int plantDay){
-        super(farmerType, plantDay);
+    public Rose(int plantDay){
+        super(plantDay);
         this.cropName = "Rose";
         this.harvestTime = 1;
 
