@@ -55,7 +55,7 @@ public class Driver {
                     int seed;
                     Scanner seedChoice = new Scanner(System.in);
                     System.out.println("Seeds available:");
-                    System.out.println("1. Tulips");
+                    System.out.println("1. Turnip");
                     seed = seedChoice.nextInt();
                     do {
                         if (seed != 1) {

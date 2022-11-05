@@ -11,6 +11,10 @@ public class Tile {
     private boolean hasCrop = false;
     private boolean withered = false;
 
+    public Tile(){
+        
+    }
+
     public String getStatus(int currentDay) {
         String report = "";
         String status;
