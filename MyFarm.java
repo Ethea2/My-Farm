@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import Crop.Crop;
 import Crop.Flowers.*;
 import Crop.RootCrops.*;
+import Player.Player;
 import Player.Tile;
 
 public class MyFarm {
@@ -32,6 +33,29 @@ public class MyFarm {
         }
         return cropsAvailable;
     }
+
+    public boolean checkGameOver(Player player) {
+        if (player.getObjectcoins() < 5) {
+            return true;
+        } 
+        else if (!tile.checkPlanted()) {
+            return true;
+        }
+        return false;
+    }
+
+    public void gameReset() {
+        this.day = 1;
+        this.tile = new Tile();
+        this.crops = new ArrayList<Crop>();
+        this.crops.add(new Tulip());
+        this.crops.add(new Sunflower());
+        this.crops.add(new Rose());
+        this.crops.add(new Carrot());
+        this.crops.add(new Potato());
+        this.crops.add(new Turnip());
+    }
+
     public Tile getTile() {
         return this.tile;
     }

@@ -11,17 +11,28 @@ public class Tile {
     private boolean hasCrop = false;
     private boolean withered = false;
 
-    public String getStatus() {
+    public String getStatus(int currentDay) {
         String report = "";
+        String status;
+        if(this.crop != null) {
+            status = this.crop.checkStatus(currentDay);
+            if (status.equals("harvestable")) {
+                System.out.println("The crop is harvestable.");
+            } else if (status.equals("withered")) {
+                this.withered = true;
+            } else if (status.equals("growing")) {
+                System.out.println("This crop is still growing and is unharvestable.");
+            }
+        }
 
-        if(plowed && !hasCrop) {
+        if(withered) {
+            report += "The crop in this tile has withered.";
+        }
+        else if(plowed && !hasCrop) {
             report += "This tile is has been plowed and is plantable.";
         }
         else if(plowed && hasCrop) {
             report += String.format("This tile has been plowed and has a %s in it.", crop.getCropName());
-        }
-        else if(hasCrop && withered) {
-            report += "This tile's crop has withered.";
         }
         else if(!plowed) {
             report += "This tile has not been plowed and cannot be planted on.";
@@ -67,17 +78,35 @@ public class Tile {
             return false;
         }
     }
-    public void setPlowed() {
-        this.plowed = true;
-        System.out.println("The tile has successfully been plowed.");
+    public boolean setPlowed() {
+        if(hasCrop) {
+            System.out.println("The tile already has a crop.");
+            return false;
+        }
+        else if (plowed) {
+            System.out.println("The tile has already been plowed.");
+            return false;
+        }
+        else {
+            this.plowed = true;
+            System.out.println("The tile has successfully been plowed.");
+            return true;
+        }
     }
-    public void plantCrop(Crop crop) {
-        if(!plowed)
+    public boolean plantCrop(Crop crop) {
+        if(!plowed) {
             System.out.println("The tile has not been plowed.");
+            return false;
+        }
+        else if(hasCrop) {
+            System.out.println("The tile already has a crop.");
+            return false;
+        }
         else {
             this.crop = crop;
             this.hasCrop = true;
             System.out.println("The crop has been successfully planted!");
+            return true;
         }
     }
     public boolean removeWithered(int currentDay) {
@@ -94,6 +123,16 @@ public class Tile {
         else {
             System.out.println("The crop is not withered or there are no crops.");
             return false;
+        }
+    }
+    public void harvest(int currentDay) {
+        String status;
+        if(this.crop != null) {
+            status = this.crop.checkStatus(currentDay);
+            if (status.equals("harvestable")) {
+                this.crop = null;
+                this.hasCrop = false;
+            } 
         }
     }
     public void cropWithered() {
