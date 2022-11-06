@@ -9,11 +9,18 @@ public class Tile {
     private boolean hasCrop = false;
     private boolean withered = false;
 
+<<<<<<< HEAD
     /*
      * This function gets the status of the tile, checking if the crop is harvestable, growing, and withered.
      * 
      * @return report   a string that tells the user on what he or she can do with the tile/crop.
      */
+=======
+    public Tile(){
+        
+    }
+
+>>>>>>> f180c714a3b0ee40d3ce9223334f7e0e85d7b3e3
     public String getStatus(int currentDay) {
         String report = "";
         String status;
