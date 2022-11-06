@@ -1,6 +1,9 @@
 package Crop.RootCrops;
 
 public class Potato extends RootCrop{
+    /** 
+    * Potato class constructor.
+    */
     public Potato(int plantDay){
         super(plantDay);
         this.cropName = "Potato";

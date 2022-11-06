@@ -1,6 +1,9 @@
 package Crop.Flowers;
 
 public class Sunflower extends Flower{
+    /** 
+    * Sunflower class constructor.
+    */
     public Sunflower(int plantDay){
         super(plantDay);
         this.cropName = "Sunflower";
