@@ -1,8 +1,11 @@
 package Crop.RootCrops;
 
 public class Turnip extends RootCrop{
-    public Turnip(String farmerType, int plantDay){
-        super(farmerType, plantDay);
+    /** 
+    * Turnip class constructor.
+    */
+    public Turnip(int plantDay){
+        super(plantDay);
         this.cropName = "Turnip";
         this.harvestTime = 2;
 

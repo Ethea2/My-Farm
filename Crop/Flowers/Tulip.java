@@ -1,8 +1,11 @@
 package Crop.Flowers;
 
 public class Tulip extends Flower{
-    public Tulip(String farmerType, int plantDay){
-        super(farmerType, plantDay);
+    /** 
+    * Tulip class constructor.
+    */
+    public Tulip(int plantDay){
+        super(plantDay);
         this.cropName = "Tulip";
         this.harvestTime = 2;
 
