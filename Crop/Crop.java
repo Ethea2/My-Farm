@@ -69,8 +69,6 @@ public class Crop{
 
 	public double computeHarvestTotal(){
 		return this.harvestTotal = (randomizeYield() * (this.basePrice));
-		//return this.harvestTotal = randomizeYield() * (this.basePrice + earningBonus);
-			//change "earningBonus" with method for getting FarmerType multipliers
 	}
 
 	public double computeWaterBonus(Farmer farmer){
