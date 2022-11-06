@@ -9,18 +9,22 @@ public class Tile {
     private boolean hasCrop = false;
     private boolean withered = false;
 
-<<<<<<< HEAD
+    <<<<<<<HEAD
     /*
-     * This function gets the status of the tile, checking if the crop is harvestable, growing, and withered.
+     * This function gets the status of the tile, checking if the crop is
+     * harvestable, growing, and withered.
      * 
-     * @return report   a string that tells the user on what he or she can do with the tile/crop.
+     * @return report a string that tells the user on what he or she can do with the
+     * tile/crop.
      */
-=======
-    public Tile(){
-        
+    =======
+
+    public Tile() {
+
     }
 
->>>>>>> f180c714a3b0ee40d3ce9223334f7e0e85d7b3e3
+    >>>>>>>f180c714a3b0ee40d3ce9223334f7e0e85d7b3e3
+
     public String getStatus(int currentDay) {
         String report = "";
         String status;
@@ -85,7 +89,7 @@ public class Tile {
     }
 
     /*
-     * checks if the tile has a crop or not. If it doesn't it will return null. 
+     * checks if the tile has a crop or not. If it doesn't it will return null.
      * If it does it will return the crop
      * 
      * @return the crop or null if there's none
@@ -105,7 +109,7 @@ public class Tile {
     public void setRock() {
         this.rocked = true;
     }
-    
+
     /*
      * this function removes the rock if the tile is rocked.
      * 
@@ -123,7 +127,8 @@ public class Tile {
     }
 
     /*
-     * This function plows the tile. It also checks if the tile is already plowed or has a plant in it.
+     * This function plows the tile. It also checks if the tile is already plowed or
+     * has a plant in it.
      * It will return false if plowed or has a plant; true if it's not
      * 
      * @return true if not plowed or planted. False otherwise.
@@ -145,7 +150,8 @@ public class Tile {
     /*
      * Plants a crop inside the tile. It also prints the status of the crop.
      * 
-     * @param crop  the crop will become the crop inside the tile
+     * @param crop the crop will become the crop inside the tile
+     * 
      * @return a boolean if the planting was successful.
      */
     public boolean plantCrop(Crop crop) {
@@ -164,10 +170,12 @@ public class Tile {
     }
 
     /*
-     * removes the withered crop. It also checks the status of the crop whether it's withered or not.
+     * removes the withered crop. It also checks the status of the crop whether it's
+     * withered or not.
      * 
-     * @param currentDay    used to get the status of the crop inside the tile
-     * @return  a boolean whether removing the withered crop was successful or not
+     * @param currentDay used to get the status of the crop inside the tile
+     * 
+     * @return a boolean whether removing the withered crop was successful or not
      */
     public boolean removeWithered(int currentDay) {
         if (this.crop == null) {
@@ -185,7 +193,8 @@ public class Tile {
     }
 
     /*
-     * the harvest function harvests the crop inside the tile.  It also sets the crop back to null and hasCrop to false.
+     * the harvest function harvests the crop inside the tile. It also sets the crop
+     * back to null and hasCrop to false.
      */
     public void harvest(int currentDay) {
         String status;
