@@ -1,3 +1,11 @@
+/*
+ * Wray Nathan Andres
+ * Ana Muriel Veron
+ * 
+ * S22
+ * Group - 22
+ */
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
