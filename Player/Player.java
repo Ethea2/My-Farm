@@ -68,6 +68,9 @@ public class Player {
                 this.experience += crop.getExpYield();
                 tile.harvest(currentDay);
                 System.out.println("The crop was successfully harvested.");
+                System.out.println("Yield: " + crop.getYield());
+                System.out.println("Objectcoins Gained: " + crop.getFinalPrice());
+                System.out.println("Experience Gained: " + crop.getExpYield());
             } else if (status.equals("withered")) {
                 tile.cropWithered();
                 System.out.println("The crop has withered.");

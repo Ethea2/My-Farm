@@ -78,7 +78,7 @@ public class Crop {
 	 * @return the randomly generated yield of this crop
 	 */
 	public int randomizeYield() {
-		return this.yield = (int) ((Math.random() * (this.yieldMax - this.yieldMin)) + this.yieldMin);
+		return this.yield = (int) ((Math.random() * (this.yieldMax - this.yieldMin)) + this.yieldMin + 1);
 	}
 
 	/**

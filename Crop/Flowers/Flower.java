@@ -11,7 +11,6 @@ public class Flower extends Crop{
         super(plantDay);
         this.cropType = "Flower";
     }
-
     public Flower() {
         this.cropType = "Flower";
     }

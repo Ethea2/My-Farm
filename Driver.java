@@ -58,7 +58,7 @@ public class Driver {
                     int seed;
                     Scanner seedChoice = new Scanner(System.in);
                     System.out.println("Seeds available:");
-                    System.out.println("1. Turnip");
+                    System.out.println("1. Turnip [5C]"); //use methods in MCO2
                     seed = seedChoice.nextInt();
                     do { // error checker.
                         if (seed != 1) {
@@ -70,7 +70,7 @@ public class Driver {
                             System.out.println(
                                     "----------------------------------------------------------------------------");
                             System.out.println("Seeds available:");
-                            System.out.println("1. Turnip");
+                            System.out.println("1. Turnip [5C]"); //use methods in MCO2
 
                             seed = seedChoice.nextInt();
                         }
