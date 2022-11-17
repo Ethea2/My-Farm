@@ -30,14 +30,22 @@ public class Player extends Entity{
 
     public void getPlayerImage() {
         try {
-            up1 = ImageIO.read(getClass().getResourceAsStream("../resources/player/boy_up_1.png"));
-            up2 = ImageIO.read(getClass().getResourceAsStream("../resources/player/boy_up_2.png"));
-            down1 = ImageIO.read(getClass().getResourceAsStream("../resources/player/boy_down_1.png"));
-            down2 = ImageIO.read(getClass().getResourceAsStream("../resources/player/boy_down_2.png"));
-            left1 = ImageIO.read(getClass().getResourceAsStream("../resources/player/boy_left_1.png"));
-            left2 = ImageIO.read(getClass().getResourceAsStream("../resources/player/boy_left_2.png"));
-            right1 = ImageIO.read(getClass().getResourceAsStream("../resources/player/boy_right_1.png"));
-            right2 = ImageIO.read(getClass().getResourceAsStream("../resources/player/boy_right_2.png"));
+            up1 = ImageIO.read(getClass().getResourceAsStream("../resources/farmer/farmer_up1.png"));
+            up2 = ImageIO.read(getClass().getResourceAsStream("../resources/farmer/farmer_up2.png"));
+            up3 = ImageIO.read(getClass().getResourceAsStream("../resources/farmer/farmer_up3.png"));
+            up4 = ImageIO.read(getClass().getResourceAsStream("../resources/farmer/farmer_up4.png"));
+            down1 = ImageIO.read(getClass().getResourceAsStream("../resources/farmer/farmer_down3.png"));
+            down2 = ImageIO.read(getClass().getResourceAsStream("../resources/farmer/farmer_down3.png"));
+            down3 = ImageIO.read(getClass().getResourceAsStream("../resources/farmer/farmer_down3.png"));
+            down4 = ImageIO.read(getClass().getResourceAsStream("../resources/farmer/farmer_down4.png"));
+            left1 = ImageIO.read(getClass().getResourceAsStream("../resources/farmer/farmer_left3.png"));
+            left2 = ImageIO.read(getClass().getResourceAsStream("../resources/farmer/farmer_left3.png"));
+            left3 = ImageIO.read(getClass().getResourceAsStream("../resources/farmer/farmer_left3.png"));
+            left4 = ImageIO.read(getClass().getResourceAsStream("../resources/farmer/farmer_left4.png"));
+            right1 = ImageIO.read(getClass().getResourceAsStream("../resources/farmer/farmer_right3.png"));
+            right2 = ImageIO.read(getClass().getResourceAsStream("../resources/farmer/farmer_right3.png"));
+            right3 = ImageIO.read(getClass().getResourceAsStream("../resources/farmer/farmer_right3.png"));
+            right4 = ImageIO.read(getClass().getResourceAsStream("../resources/farmer/farmer_right4.png"));
         } catch (IOException e) {
             e.printStackTrace(); 
         }
@@ -63,11 +71,17 @@ public class Player extends Entity{
 
         if(keyHandler.pressed) {
             spriteCounter++;
-            if(spriteCounter > 12) {
+            if(spriteCounter > 5) {
                 if(spriteNumber == 1) {
                     spriteNumber = 2;
                 }
                 else if(spriteNumber == 2) {
+                    spriteNumber = 3;
+                }
+                else if(spriteNumber == 3) {
+                    spriteNumber = 4;
+                }
+                else if(spriteNumber == 4) {
                     spriteNumber = 1;
                 }
                 spriteCounter = 0;
@@ -92,6 +106,12 @@ public class Player extends Entity{
                 if(spriteNumber == 2)  {
                     image = up2;
                 }
+                if(spriteNumber == 3){
+                    image = up3;
+                }
+                if(spriteNumber == 4){
+                    image = up4;
+                }
                 break;
             case "down":
                 if(spriteNumber == 1) {
@@ -99,6 +119,12 @@ public class Player extends Entity{
                 }
                 if(spriteNumber == 2)  {
                     image = down2;
+                }
+                if(spriteNumber == 3){
+                    image = down3;
+                }
+                if(spriteNumber == 4){
+                    image = down4;
                 }
                 break;
             case "left":
@@ -108,6 +134,12 @@ public class Player extends Entity{
                 if(spriteNumber == 2)  {
                     image = left2;
                 }
+                if(spriteNumber == 3){
+                    image = left3;
+                }
+                if(spriteNumber == 4){
+                    image = left4;
+                }
                 break;
             case "right":
                 if(spriteNumber == 1) {
@@ -115,6 +147,12 @@ public class Player extends Entity{
                 }
                 if(spriteNumber == 2)  {
                     image = right2;
+                }
+                if(spriteNumber == 3){
+                    image = right3;
+                }
+                if(spriteNumber == 4){
+                    image = right4;
                 }
                 break;
         }
