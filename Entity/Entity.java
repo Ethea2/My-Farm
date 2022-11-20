@@ -1,9 +1,10 @@
 package Entity;
 
 import java.awt.image.BufferedImage;
+import java.awt.Rectangle;
 
 public class Entity {
-    public int x, y;
+    public int playerX, playerY;
     public int speed;
 
     public BufferedImage up1, up2, up3, up4, down1, down2, down3, down4, left1, left2, left3, left4, right1, right2, right3, right4;
@@ -12,4 +13,6 @@ public class Entity {
     public int spriteCounter = 0;
     public int spriteNumber = 1;
 
+    public Rectangle solidArea;
+    public boolean collisionOn = false;
 }

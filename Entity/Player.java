@@ -17,13 +17,20 @@ public class Player extends Entity{
     public Player(GamePanel gamePanel, KeyHandler keyHandler) {
         this.gamePanel = gamePanel;
         this.keyHandler = keyHandler;
+
+        solidArea = new Rectangle();
+        solidArea.x = 8;
+        solidArea.y = 16;
+        solidArea.width = 32;
+        solidArea.height = 32;
+
         setDefaultValues();
         getPlayerImage();
     }
     
     public void setDefaultValues() {
-        x = 100;
-        y = 100;
+        playerX = 100;
+        playerY = 100;
         speed = 4;
         direction = "down";
     }
@@ -54,41 +61,42 @@ public class Player extends Entity{
     public void update() {
         if(keyHandler.upPressed == true) {
             direction = "up";
-            this.y -= this.speed;
+            this.playerY -= this.speed;
         }
         if(keyHandler.downPressed) {
             direction = "down";
-            this.y += this.speed;
+            this.playerY += this.speed;
         }
         if(keyHandler.leftPressed) {
             direction = "left";
-            this.x -= this.speed;
+            this.playerX -= this.speed;
         }
         if(keyHandler.rightPressed) {
             direction = "right";
-            this.x += this.speed;
+            this.playerX += this.speed;
+        }
+        if(!keyHandler.pressed && (!keyHandler.leftPressed && !keyHandler.rightPressed && !keyHandler.upPressed && !keyHandler.downPressed)) {
+            direction = "standing";
         }
 
-        if(keyHandler.pressed) {
-            spriteCounter++;
-            if(spriteCounter > 5) {
-                if(spriteNumber == 1) {
-                    spriteNumber = 2;
-                }
-                else if(spriteNumber == 2) {
-                    spriteNumber = 3;
-                }
-                else if(spriteNumber == 3) {
-                    spriteNumber = 4;
-                }
-                else if(spriteNumber == 4) {
-                    spriteNumber = 1;
-                }
-                spriteCounter = 0;
+        collisionOn = false;
+        gamePanel.collisionChecker.checkTile(this);
+
+        spriteCounter++;
+        if(spriteCounter > 6) {
+            if(spriteNumber == 1) {
+                spriteNumber = 2;
             }
-        }
-        else {
-            spriteNumber = 1;
+            else if(spriteNumber == 2) {
+                spriteNumber = 3;
+            }
+            else if(spriteNumber == 3) {
+                spriteNumber = 4;
+            }
+            else if(spriteNumber == 4) {
+                spriteNumber = 1;
+            }
+            spriteCounter = 0;
         }
     }
 
@@ -155,8 +163,22 @@ public class Player extends Entity{
                     image = right4;
                 }
                 break;
+            case "standing":
+                if(spriteNumber == 1) {
+                    image = down1;
+                }
+                if(spriteNumber == 2)  {
+                    image = down2;
+                }
+                if(spriteNumber == 3){
+                    image = down3;
+                }
+                if(spriteNumber == 4){
+                    image = down4;
+                }
+                break;
         }
 
-        g2.drawImage(image, this.x, this.y, gamePanel.TILE_SIZE, gamePanel.TILE_SIZE, null);
+        g2.drawImage(image, this.playerX, this.playerY, gamePanel.TILE_SIZE, gamePanel.TILE_SIZE, null);
     }
 }
