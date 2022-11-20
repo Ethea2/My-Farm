@@ -29,8 +29,8 @@ public class Player extends Entity{
     }
     
     public void setDefaultValues() {
-        playerX = 100;
-        playerY = 100;
+        playerX = 144;
+        playerY = 144;
         speed = 4;
         direction = "down";
     }
@@ -61,19 +61,15 @@ public class Player extends Entity{
     public void update() {
         if(keyHandler.upPressed == true) {
             direction = "up";
-            this.playerY -= this.speed;
         }
         if(keyHandler.downPressed) {
             direction = "down";
-            this.playerY += this.speed;
         }
         if(keyHandler.leftPressed) {
             direction = "left";
-            this.playerX -= this.speed;
         }
         if(keyHandler.rightPressed) {
             direction = "right";
-            this.playerX += this.speed;
         }
         if(!keyHandler.pressed && (!keyHandler.leftPressed && !keyHandler.rightPressed && !keyHandler.upPressed && !keyHandler.downPressed)) {
             direction = "standing";
@@ -81,6 +77,23 @@ public class Player extends Entity{
 
         collisionOn = false;
         gamePanel.collisionChecker.checkTile(this);
+
+        if(collisionOn == false) {
+            switch(direction) {
+                case "up":
+                this.playerY -= this.speed;
+                break;
+            case "down":
+                this.playerY += this.speed;
+                break;
+            case "left":
+                this.playerX -= this.speed;
+                break;
+            case "right":
+                this.playerX += this.speed;
+                break;
+            }
+        }
 
         spriteCounter++;
         if(spriteCounter > 6) {

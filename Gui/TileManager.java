@@ -9,7 +9,7 @@ import java.io.InputStreamReader;
 public class TileManager {
     GamePanel gamePanel;
     GuiTile[] tile;
-    int mapTileNumber[][];
+    public int mapTileNumber[][];
 
     public TileManager(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
@@ -31,8 +31,9 @@ public class TileManager {
             tile[1].collision = true;
 
             tile[2] = new GuiTile();
-            tile[2].image = ImageIO.read(getClass().getResourceAsStream("../resources/tiles/water.png"));
+            tile[2].image = ImageIO.read(getClass().getResourceAsStream("../resources/farm/dirt.png"));
             tile[2].collision = true;
+
         } catch (Exception e) {
             e.printStackTrace();
         }

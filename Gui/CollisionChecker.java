@@ -28,12 +28,34 @@ public class CollisionChecker {
             case "up":
                 entityTopRow = (entityTopPlayerY - entity.speed)/gamePanel.TILE_SIZE;
                 tile1 = gamePanel.tileM.mapTileNumber[entityLeftCol][entityTopRow];
+                tile2 = gamePanel.tileM.mapTileNumber[entityRightCol][entityTopRow];
+                if(gamePanel.tileM.tile[tile1].collision == true || gamePanel.tileM.tile[tile2].collision == true) {
+                    entity.collisionOn = true;
+                }
                 break;
             case "down":
+                entityBottomRow = (entityBottomPlayerY - entity.speed)/gamePanel.TILE_SIZE;
+                tile1 = gamePanel.tileM.mapTileNumber[entityLeftCol][entityBottomRow];
+                tile2 = gamePanel.tileM.mapTileNumber[entityRightCol][entityBottomRow];
+                if(gamePanel.tileM.tile[tile1].collision == true || gamePanel.tileM.tile[tile2].collision == true) {
+                    entity.collisionOn = true;
+                }
                 break;
             case "left":
+                entityLeftCol = (entityLeftPlayerX - entity.speed)/gamePanel.TILE_SIZE;
+                tile1 = gamePanel.tileM.mapTileNumber[entityLeftCol][entityTopRow];
+                tile2 = gamePanel.tileM.mapTileNumber[entityLeftCol][entityBottomRow];
+                if(gamePanel.tileM.tile[tile1].collision == true || gamePanel.tileM.tile[tile2].collision == true) {
+                    entity.collisionOn = true;
+                }
                 break;
             case "right":
+                entityRightCol = (entityRightPlayerX - entity.speed)/gamePanel.TILE_SIZE;
+                tile1 = gamePanel.tileM.mapTileNumber[entityRightCol][entityTopRow];
+                tile2 = gamePanel.tileM.mapTileNumber[entityRightCol][entityBottomRow];
+                if(gamePanel.tileM.tile[tile1].collision == true || gamePanel.tileM.tile[tile2].collision == true) {
+                    entity.collisionOn = true;
+                }
                 break;
         }
     }
