@@ -23,16 +23,40 @@ public class TileManager {
 
     public void getTileImage() {
         try {
+            //BOARDER
             tile[0] = new GuiTile();
-            tile[0].image = ImageIO.read(getClass().getResourceAsStream("../resources/tiles/grass.png"));
+            tile[0].image = ImageIO.read(getClass().getResourceAsStream("../resources/tiles/wall.png"));
+            tile[0].collision = true;
 
+            //DIRT TILES
             tile[1] = new GuiTile();
-            tile[1].image = ImageIO.read(getClass().getResourceAsStream("../resources/tiles/wall.png"));
+            tile[1].image = ImageIO.read(getClass().getResourceAsStream("../resources/tiles/dirt.png"));
             tile[1].collision = true;
 
+            //GRASS TILES
             tile[2] = new GuiTile();
-            tile[2].image = ImageIO.read(getClass().getResourceAsStream("../resources/farm/dirt.png"));
-            tile[2].collision = true;
+            tile[2].image = ImageIO.read(getClass().getResourceAsStream("../resources/tiles/grass_top-left.png"));
+
+            tile[3] = new GuiTile();
+            tile[3].image = ImageIO.read(getClass().getResourceAsStream("../resources/tiles/grass_top.png"));
+
+            tile[4] = new GuiTile();
+            tile[4].image = ImageIO.read(getClass().getResourceAsStream("../resources/tiles/grass_top-right.png"));
+
+            tile[5] = new GuiTile();
+            tile[5].image = ImageIO.read(getClass().getResourceAsStream("../resources/tiles/grass_left.png"));
+
+            tile[6] = new GuiTile();
+            tile[6].image = ImageIO.read(getClass().getResourceAsStream("../resources/tiles/grass_right.png"));
+
+            tile[7] = new GuiTile();
+            tile[7].image = ImageIO.read(getClass().getResourceAsStream("../resources/tiles/grass_bottom-left.png"));
+
+            tile[8] = new GuiTile();
+            tile[8].image = ImageIO.read(getClass().getResourceAsStream("../resources/tiles/grass_bottom.png"));
+
+            tile[9] = new GuiTile();
+            tile[9].image = ImageIO.read(getClass().getResourceAsStream("../resources/tiles/grass_bottom-right.png"));
 
         } catch (Exception e) {
             e.printStackTrace();
