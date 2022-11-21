@@ -32,7 +32,6 @@ public class TileManager {
 
             tile[2] = new GuiTile();
             tile[2].image = ImageIO.read(getClass().getResourceAsStream("../resources/farm/dirt.png"));
-            tile[2].collision = true;
 
         } catch (Exception e) {
             e.printStackTrace();

@@ -59,7 +59,7 @@ public class Player extends Entity{
     }
 
     public void update() {
-        if(keyHandler.upPressed == true) {
+        if(keyHandler.upPressed) {
             direction = "up";
         }
         if(keyHandler.downPressed) {
@@ -79,19 +79,17 @@ public class Player extends Entity{
         gamePanel.collisionChecker.checkTile(this);
 
         if(collisionOn == false) {
-            switch(direction) {
-                case "up":
+            if(direction == "up") {
                 this.playerY -= this.speed;
-                break;
-            case "down":
+            }
+            if(direction == "down") {
                 this.playerY += this.speed;
-                break;
-            case "left":
+            }
+            if(direction == "left") {
                 this.playerX -= this.speed;
-                break;
-            case "right":
+            }
+            if(direction == "right") {
                 this.playerX += this.speed;
-                break;
             }
         }
 
