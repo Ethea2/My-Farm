@@ -1,7 +1,10 @@
 package Player;
 
+import java.util.ArrayList;
+
 import Crop.Crop;
 import Player.FarmerType.*;
+import Player.Tools.*;
 
 /*
  * The player class are where most of the player related functions are in. Functions such as leveling up,
@@ -13,6 +16,7 @@ public class Player {
     private double experience;
     private Farmer farmerType;
     private int level;
+    private ArrayList<Tools> tools;
 
     /*
      * The constructor for the player class.
@@ -22,6 +26,12 @@ public class Player {
         this.experience = 0;
         this.level = 0;
         this.farmerType = new Farmer();
+        tools = new ArrayList<Tools>();
+        tools.add(new Shovel());
+        tools.add(new WaterCan());
+        tools.add(new Pickaxe());
+        tools.add(new Fertilizer());
+        tools.add(new Plow());
     }
 
     /*
@@ -217,5 +227,11 @@ public class Player {
         this.experience = 0;
         this.level = 0;
         this.farmerType = new Farmer();
+        tools = new ArrayList<Tools>();
+        tools.add(new Shovel());
+        tools.add(new WaterCan());
+        tools.add(new Pickaxe());
+        tools.add(new Fertilizer());
+        tools.add(new Plow());
     }
 }

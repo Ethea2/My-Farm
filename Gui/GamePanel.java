@@ -4,7 +4,8 @@ import java.awt.*;
 
 import javax.swing.JPanel;
 
-import Entity.Player;
+import Entity.GuiPlayer;
+import Player.MyFarm;
 
 public class GamePanel extends JPanel implements Runnable {
     final int ORIGINAL_TILE_SIZE = 16;
@@ -18,11 +19,12 @@ public class GamePanel extends JPanel implements Runnable {
 
     int FPS = 60;
 
+    public MyFarm farm = new MyFarm();
     TileManager tileM = new TileManager(this);
     KeyHandler keyHandler = new KeyHandler();
     Thread gameThread;
     public CollisionChecker collisionChecker = new CollisionChecker(this);
-    Player player = new Player(this, keyHandler);
+    public GuiPlayer player = new GuiPlayer(this, keyHandler);
 
 
     public GamePanel() {

@@ -1,22 +1,17 @@
-/*
- * Wray Nathan Andres
- * Ana Muriel Veron
- * 
- * S22
- * Group - 22
- */
+package Player;
 
 import java.util.ArrayList;
 
 import Crop.Crop;
 import Crop.Flowers.*;
 import Crop.RootCrops.*;
-import Player.Player;
-import Player.Tile;
 
 public class MyFarm {
+    public final int TILE_ROW = 10;
+    public final int TILE_COL = 5;
     private int day;
-    private Tile tile;
+    private Tile[][] tile = new Tile[TILE_ROW][TILE_COL];
+    private Player player;
     private ArrayList<Crop> crops;
 
     /*
@@ -24,7 +19,7 @@ public class MyFarm {
      */
     public MyFarm() {
         this.day = 1;
-        this.tile = new Tile();
+        this.player = new Player();
         this.crops = new ArrayList<Crop>();
         this.crops.add(new Tulip());
         this.crops.add(new Sunflower());
@@ -32,6 +27,11 @@ public class MyFarm {
         this.crops.add(new Carrot());
         this.crops.add(new Potato());
         this.crops.add(new Turnip());
+        for(int i = 0; i < 10; i++) {
+            for(int j = 0; j < 5; j++) {
+                this.tile[i][j] = new Tile();
+            }
+        }
     }
 
     /*
@@ -59,11 +59,17 @@ public class MyFarm {
      * 
      * @return a boolean if the game continues or not.
      */
-    public boolean checkGameOver(Player player) {
+    public boolean checkGameOver() {
+        boolean temp = false;
+        for(int i = 0; i < 10; i++) {
+            for(int j = 0; j < 5; j++) {
+                temp = !tile[i][j].checkPlanted();
+            }
+        }
         if (player.getObjectcoins() < 5) {
             return true;
         } 
-        else if (!tile.checkPlanted()) {
+        else if (temp) {
             return true;
         }
         return false;
@@ -72,10 +78,14 @@ public class MyFarm {
     /*
      * basically resetting all the game values.
      */
-    public void gameReset(Player player) {
+    public void gameReset() {
         player.playerReset();
         this.day = 1;
-        this.tile = new Tile();
+        for(int i = 0; i < 10; i++) {
+            for(int j = 0; j < 5; j++) {
+                tile[i][j] = new Tile();
+            }
+        }
         this.crops = new ArrayList<Crop>();
         this.crops.add(new Tulip());
         this.crops.add(new Sunflower());
@@ -90,7 +100,7 @@ public class MyFarm {
      * 
      * @return the tile inside my farm
      */
-    public Tile getTile() {
+    public Tile[][] getTile() {
         return this.tile;
     }
 

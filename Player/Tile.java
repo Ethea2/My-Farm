@@ -8,6 +8,8 @@ public class Tile {
     private boolean plowed = false;
     private boolean hasCrop = false;
     private boolean withered = false;
+    public int coordinateX;
+    public int coordinateY;
 
     
 
@@ -209,5 +211,12 @@ public class Tile {
      */
     public void cropWithered() {
         this.withered = true;
+    }
+
+    public Tile getTileByXY(int x, int y) {
+        if(this.coordinateX == x && this.coordinateY == y) {
+            return this;
+        }
+        return null;
     }
 }

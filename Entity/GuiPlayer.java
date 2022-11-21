@@ -9,12 +9,12 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 
-public class Player extends Entity{
+public class GuiPlayer extends Entity{
     
     GamePanel gamePanel;
     KeyHandler keyHandler;
 
-    public Player(GamePanel gamePanel, KeyHandler keyHandler) {
+    public GuiPlayer(GamePanel gamePanel, KeyHandler keyHandler) {
         this.gamePanel = gamePanel;
         this.keyHandler = keyHandler;
 
@@ -59,6 +59,9 @@ public class Player extends Entity{
     }
 
     public void update() {
+        actualX = (this.playerX + this.solidArea.x)/gamePanel.TILE_SIZE;
+        actualY = (this.playerY + this.solidArea.y + this.solidArea.height)/gamePanel.TILE_SIZE;
+        //System.out.println(String.format("Farmer Location: %d\t%d", actualX, actualY));
         if(keyHandler.upPressed) {
             direction = "up";
         }
@@ -109,9 +112,6 @@ public class Player extends Entity{
             }
             spriteCounter = 0;
         }
-        // if(this.playerX % 48 < 48){
-        //     System.out.println(this.playerX);
-        // }
     }
 
     public void draw(Graphics2D g2) {

@@ -31,7 +31,6 @@ public class TileManager {
             //DIRT TILES
             tile[1] = new GuiTile();
             tile[1].image = ImageIO.read(getClass().getResourceAsStream("../resources/tiles/dirt.png"));
-            tile[1].collision = true;
 
             //GRASS TILES
             tile[2] = new GuiTile();
@@ -70,6 +69,8 @@ public class TileManager {
 
             int col = 0;
             int row = 0;
+            int tilecol = 0;
+            int tilerow = -3; //idk why but it fucking works
 
             while(col < gamePanel.MAX_SCREEN_COLUMN && row < gamePanel.MAX_SCREEN_ROW) {
 
@@ -80,13 +81,21 @@ public class TileManager {
                     String numbers[] = line.split(" ");
 
                     int num = Integer.parseInt(numbers[col]);
+                    if(num == 1) {
+                        gamePanel.farm.getTile()[tilerow][tilecol].coordinateX = col;
+                        gamePanel.farm.getTile()[tilerow][tilecol].coordinateY = row;
+                        tilecol++;
+                        // System.out.println(tilecol);
+                    }
 
                     mapTileNumber[col][row] = num;
                     col++;
                 }
                 if(col == gamePanel.MAX_SCREEN_COLUMN) {
                     col = 0;
+                    tilecol = 0;
                     row++;
+                    tilerow++;
                 }
             }
             br.close();
