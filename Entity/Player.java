@@ -29,8 +29,8 @@ public class Player extends Entity{
     }
     
     public void setDefaultValues() {
-        playerX = 144;
-        playerY = 144;
+        playerX = 100;
+        playerY = 100;
         speed = 4;
         direction = "down";
     }
@@ -109,6 +109,9 @@ public class Player extends Entity{
             }
             spriteCounter = 0;
         }
+        // if(this.playerX % 48 < 48){
+        //     System.out.println(this.playerX);
+        // }
     }
 
     public void draw(Graphics2D g2) {
