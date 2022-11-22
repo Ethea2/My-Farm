@@ -4,7 +4,7 @@ import java.awt.*;
 
 import javax.swing.JPanel;
 
-import Entity.GuiPlayer;
+import Gui.Entity.GuiPlayer;
 import Player.MyFarm;
 
 public class GamePanel extends JPanel implements Runnable {

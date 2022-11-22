@@ -1,4 +1,4 @@
-package Entity;
+package Gui.Entity;
 
 import java.awt.image.BufferedImage;
 import java.awt.Rectangle;

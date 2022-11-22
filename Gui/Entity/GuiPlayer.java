@@ -1,4 +1,4 @@
-package Entity;
+package Gui.Entity;
 
 import Gui.GamePanel;
 import Gui.KeyHandler;
@@ -37,22 +37,22 @@ public class GuiPlayer extends Entity{
 
     public void getPlayerImage() {
         try {
-            up1 = ImageIO.read(getClass().getResourceAsStream("../resources/farmer/farmer_up1.png"));
-            up2 = ImageIO.read(getClass().getResourceAsStream("../resources/farmer/farmer_up2.png"));
-            up3 = ImageIO.read(getClass().getResourceAsStream("../resources/farmer/farmer_up3.png"));
-            up4 = ImageIO.read(getClass().getResourceAsStream("../resources/farmer/farmer_up4.png"));
-            down1 = ImageIO.read(getClass().getResourceAsStream("../resources/farmer/farmer_down3.png"));
-            down2 = ImageIO.read(getClass().getResourceAsStream("../resources/farmer/farmer_down3.png"));
-            down3 = ImageIO.read(getClass().getResourceAsStream("../resources/farmer/farmer_down3.png"));
-            down4 = ImageIO.read(getClass().getResourceAsStream("../resources/farmer/farmer_down4.png"));
-            left1 = ImageIO.read(getClass().getResourceAsStream("../resources/farmer/farmer_left3.png"));
-            left2 = ImageIO.read(getClass().getResourceAsStream("../resources/farmer/farmer_left3.png"));
-            left3 = ImageIO.read(getClass().getResourceAsStream("../resources/farmer/farmer_left3.png"));
-            left4 = ImageIO.read(getClass().getResourceAsStream("../resources/farmer/farmer_left4.png"));
-            right1 = ImageIO.read(getClass().getResourceAsStream("../resources/farmer/farmer_right3.png"));
-            right2 = ImageIO.read(getClass().getResourceAsStream("../resources/farmer/farmer_right3.png"));
-            right3 = ImageIO.read(getClass().getResourceAsStream("../resources/farmer/farmer_right3.png"));
-            right4 = ImageIO.read(getClass().getResourceAsStream("../resources/farmer/farmer_right4.png"));
+            up1 = ImageIO.read(getClass().getResourceAsStream("../../resources/farmer/farmer_up1.png"));
+            up2 = ImageIO.read(getClass().getResourceAsStream("../../resources/farmer/farmer_up2.png"));
+            up3 = ImageIO.read(getClass().getResourceAsStream("../../resources/farmer/farmer_up3.png"));
+            up4 = ImageIO.read(getClass().getResourceAsStream("../../resources/farmer/farmer_up4.png"));
+            down1 = ImageIO.read(getClass().getResourceAsStream("../../resources/farmer/farmer_down3.png"));
+            down2 = ImageIO.read(getClass().getResourceAsStream("../../resources/farmer/farmer_down3.png"));
+            down3 = ImageIO.read(getClass().getResourceAsStream("../../resources/farmer/farmer_down3.png"));
+            down4 = ImageIO.read(getClass().getResourceAsStream("../../resources/farmer/farmer_down4.png"));
+            left1 = ImageIO.read(getClass().getResourceAsStream("../../resources/farmer/farmer_left3.png"));
+            left2 = ImageIO.read(getClass().getResourceAsStream("../../resources/farmer/farmer_left3.png"));
+            left3 = ImageIO.read(getClass().getResourceAsStream("../../resources/farmer/farmer_left3.png"));
+            left4 = ImageIO.read(getClass().getResourceAsStream("../../resources/farmer/farmer_left4.png"));
+            right1 = ImageIO.read(getClass().getResourceAsStream("../../resources/farmer/farmer_right3.png"));
+            right2 = ImageIO.read(getClass().getResourceAsStream("../../resources/farmer/farmer_right3.png"));
+            right3 = ImageIO.read(getClass().getResourceAsStream("../../resources/farmer/farmer_right3.png"));
+            right4 = ImageIO.read(getClass().getResourceAsStream("../../resources/farmer/farmer_right4.png"));
         } catch (IOException e) {
             e.printStackTrace(); 
         }
