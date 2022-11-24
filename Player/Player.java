@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import Crop.Crop;
 import Player.FarmerType.*;
 import Player.Tools.*;
+import Player.MyFarm;
 
 /*
  * The player class are where most of the player related functions are in. Functions such as leveling up,
@@ -42,10 +43,12 @@ public class Player {
      * 
      * @param plantDay takes the plant day of the plant
      * 
-     * @param cropSeed the crop type that is going to be planted
+     * @param cropSeed the crop that is going to be planted
+     * 
+     * @param farm the 
      */
-    public void buySeed(Tile tile, int plantDay, Crop cropSeed) {
-        if (tile.plantCrop(cropSeed)) { // The checks if the tile plant crop was successful
+    public void buySeed(Tile tile, int plantDay, Crop cropSeed, MyFarm farm) {
+        if (tile.plantCrop(cropSeed, farm)) { // The checks if the tile plant crop was successful
             this.objectCoin -= (cropSeed.getSeedCost() - farmerType.getSeedCostReduction()); // on a successful
                                                                                              // planting, we subtract
                                                                                              // the seed cost with the

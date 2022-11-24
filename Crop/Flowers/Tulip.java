@@ -17,8 +17,6 @@ public class Tulip extends Flower{
         this.yieldMin = 1;
         this.yieldMax = 1;
         
-        this.expYield = 5;
-        
         this.seedCost = 10;
         this.basePrice = 9;
 

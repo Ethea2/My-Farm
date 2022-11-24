@@ -17,8 +17,6 @@ public class Sunflower extends Flower{
         this.yieldMin = 1;
         this.yieldMax = 1;
         
-        this.expYield = 7.5;
-        
         this.seedCost = 20;
         this.basePrice = 19;
 
