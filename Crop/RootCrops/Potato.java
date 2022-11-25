@@ -16,8 +16,6 @@ public class Potato extends RootCrop{
 
         this.yieldMin = 1;
         this.yieldMax = 10;
-
-        this.expYield = 12.5;
         
         this.seedCost = 20;
         this.basePrice = 3;

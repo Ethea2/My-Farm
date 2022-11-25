@@ -1,5 +1,6 @@
 package Crop;
 
+import Player.MyFarm;
 import Player.FarmerType.Farmer;
 
 public class Crop {
@@ -130,6 +131,10 @@ public class Crop {
 	public double computeFinalPrice(Farmer farmer) {
 		this.finalPrice = computeHarvestTotal(farmer) + computeWaterBonus(farmer) + computeFertBonus(farmer);
 		return Math.round(this.finalPrice * 100.0) / 100.0;
+	}
+
+	public boolean canPlant(int x, int y, MyFarm farm){
+		return true;
 	}
 	
 

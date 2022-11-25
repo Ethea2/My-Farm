@@ -1,6 +1,7 @@
 package Player;
 
 import Crop.Crop;
+import Crop.FruitTrees.FruitTree;
 
 public class Tile {
     private Crop crop;
@@ -79,6 +80,20 @@ public class Tile {
     }
 
     /*
+     * checks if the tile contains a plant or a rock
+     * 
+     * @return the name of the crop
+     */
+    public boolean checkEmpty() {
+        if(this.hasCrop || this.rocked){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
+    /*
      * checks what's the name of the crop
      * 
      * @return the name of the crop
@@ -153,12 +168,15 @@ public class Tile {
      * 
      * @return a boolean if the planting was successful.
      */
-    public boolean plantCrop(Crop crop) {
+    public boolean plantCrop(Crop crop, MyFarm farm) {
         if (!plowed) {
             System.out.println("The tile has not been plowed.");
             return false;
         } else if (hasCrop) {
             System.out.println("The tile already has a crop.");
+            return false;
+        } else if(crop.getCropType() == "FruitTree" && crop.canPlant(this.coordinateX, this.coordinateY, farm)){
+            System.out.println("There is not enough space to plant this crop.");
             return false;
         } else {
             this.crop = crop;

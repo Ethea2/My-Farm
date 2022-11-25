@@ -1,9 +1,15 @@
 /*
- * Wray Nathan Andres
- * Ana Muriel Veron
+ * CCPROG3 (S22)
+ * Major Course Output 2
  * 
- * S22
- * Group - 22
+ * Description:--
+ * 
+ * Programmed by: [Group 22]
+ * Andres, Wray Nathan 
+ * Veorn, Ana Muriel
+ * 
+ * Last Modified: --
+ * Version: --
  */
 
 import java.io.IOException;
