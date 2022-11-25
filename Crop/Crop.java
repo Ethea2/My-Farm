@@ -33,6 +33,8 @@ public class Crop {
 	protected boolean withered = false;
 	protected boolean harvestable = false;
 
+	protected String stage;
+
 	public Crop(int plantDay) {
 		this.plantDay = plantDay;
 	}
@@ -237,6 +239,9 @@ public class Crop {
 		return this.expYield;
 	}
 
+	public char getStage(int currentDay){
+		return '0';
+	}
 
 	// "SETTERS"
 

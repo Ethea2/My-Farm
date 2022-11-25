@@ -25,4 +25,14 @@ public class Rose extends Flower{
     public Rose() {
         this.cropName = "Rose";
     }
+
+    @Override
+    public char getStage(int currentDay){
+        switch(currentDay-this.plantDay){
+            case 1:
+                return 'h';
+            default:
+                return '0';
+        }
+    }
 }

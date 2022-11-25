@@ -32,4 +32,32 @@ public class FruitTree extends Crop{
             return false;
         }
     }
+
+    @Override
+    public char getStage(int currentDay){
+        switch(currentDay-this.plantDay){
+            case 10:
+                return 'h';
+            case 9:
+                return '3';
+            case 8:
+                return '3';
+            case 7:
+                return '3';
+            case 6:
+                return '3';
+            case 5:
+                return '2';
+            case 4:
+                return '2';
+            case 3:
+                return '2';
+            case 2:
+                return '1';
+            case 1:
+                return '1';
+            default:
+                return '0';
+        }
+    }
 }

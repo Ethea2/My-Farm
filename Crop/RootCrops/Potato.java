@@ -25,4 +25,22 @@ public class Potato extends RootCrop{
     public Potato() {
         this.cropName = "Potato";
     }
+
+    @Override
+    public char getStage(int currentDay){
+        switch(currentDay-this.plantDay){
+            case 5:
+                return 'h';
+            case 4:
+                return '2';
+            case 3:
+                return '2';
+            case 2:
+                return '1';
+            case 1:
+                return '1';
+            default:
+                return '0';
+        }
+    }
 }

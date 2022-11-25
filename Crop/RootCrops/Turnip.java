@@ -25,4 +25,16 @@ public class Turnip extends RootCrop{
     public Turnip() {
         this.cropName = "Turnip";
     }
+
+    @Override
+    public char getStage(int currentDay){
+        switch(currentDay-this.plantDay){
+            case 2:
+                return 'h';
+            case 1:
+                return '1';
+            default:
+                return '0';
+        }
+    }
 }
