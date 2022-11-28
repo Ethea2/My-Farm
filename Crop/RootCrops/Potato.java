@@ -1,5 +1,10 @@
 package Crop.RootCrops;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+
+import Gui.GuiTile;
+
 public class Potato extends RootCrop{
     /** 
     * Potato class constructor.
@@ -21,9 +26,47 @@ public class Potato extends RootCrop{
         this.basePrice = 3;
 
         this.expYield = 12.5;
+
+        this.guiTiles = new GuiTile[4];
+        loadImages();
     }
     public Potato() {
         this.cropName = "Potato";
+    }
+
+    @Override
+    public void loadImages() {
+        try {
+            this.guiTiles[0] = new GuiTile();
+            this.guiTiles[0].image = ImageIO.read(getClass().getResourceAsStream("/resources/crops/root_crops/potato_0.png"));
+            
+            this.guiTiles[1] = new GuiTile();
+            this.guiTiles[1].image = ImageIO.read(getClass().getResourceAsStream("/resources/crops/root_crops/potato_1.png"));
+
+            this.guiTiles[2] = new GuiTile();
+            this.guiTiles[2].image = ImageIO.read(getClass().getResourceAsStream("/resources/crops/root_crops/potato_2.png"));
+
+            this.guiTiles[3] = new GuiTile();
+            this.guiTiles[3].image = ImageIO.read(getClass().getResourceAsStream("/resources/crops/root_crops/potato_h.png"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public BufferedImage setImage(int currentDay) {
+        if(getStage(currentDay) == 'h') {
+            return this.guiTiles[3].image;
+        }
+        else if(getStage(currentDay) == '1') {
+            return this.guiTiles[1].image;
+        }
+        else if(getStage(currentDay) == '2') {
+            return this.guiTiles[2].image;
+        }
+        else {
+            return this.guiTiles[0].image;
+        }
     }
 
     @Override

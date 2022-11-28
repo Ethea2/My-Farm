@@ -39,6 +39,12 @@ public class MyFarm {
      */
     public void advanceDay() {
         this.day++;
+        for(int i = 0; i < 10; i++) {
+            for(int j = 0; j < 5; j++) {
+                if(this.tile[i][j].getCrop() != null)
+                    this.tile[i][j].getCrop().setWithered(this.tile[i][j], this.tile[i][j].getCrop().checkStatus(this.day));
+            }
+        }
     }
     
     /*
@@ -111,5 +117,9 @@ public class MyFarm {
      */
     public int getCurrentDay() {
         return this.day;
+    }
+
+    public Player getPlayer() {
+        return this.player;
     }
 }

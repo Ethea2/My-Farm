@@ -1,5 +1,10 @@
 package Crop.RootCrops;
 
+import Gui.GuiTile;
+import java.awt.image.BufferedImage;
+
+import javax.imageio.ImageIO;
+
 public class Carrot extends RootCrop{
     /** 
     * Carrot class constructor.
@@ -21,10 +26,43 @@ public class Carrot extends RootCrop{
         this.basePrice = 9;
 
         this.expYield = 7.5;
+
+        this.guiTiles = new GuiTile[3];
+        loadImages();
     }
     public Carrot() {
         this.cropName = "Carrot";
     }
+
+    @Override
+    public void loadImages() {
+        try {
+            this.guiTiles[0] = new GuiTile();
+            this.guiTiles[0].image = ImageIO.read(getClass().getResourceAsStream("/resources/crops/root_crops/carrot_0.png"));
+            
+            this.guiTiles[1] = new GuiTile();
+            this.guiTiles[1].image = ImageIO.read(getClass().getResourceAsStream("/resources/crops/root_crops/carrot_1.png"));
+
+            this.guiTiles[2] = new GuiTile();
+            this.guiTiles[2].image = ImageIO.read(getClass().getResourceAsStream("/resources/crops/root_crops/carrot_h.png"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public BufferedImage setImage(int currentDay) {
+        if(getStage(currentDay) == 'h') {
+            return this.guiTiles[2].image;
+        }
+        else if(getStage(currentDay) == '1') {
+            return this.guiTiles[1].image;
+        }
+        else {
+            return this.guiTiles[0].image;
+        }
+    }
+
 
     @Override
     public char getStage(int currentDay){

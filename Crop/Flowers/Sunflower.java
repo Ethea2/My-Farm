@@ -1,5 +1,10 @@
 package Crop.Flowers;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+
+import Gui.GuiTile;
+
 public class Sunflower extends Flower{
     /** 
     * Sunflower class constructor.
@@ -21,9 +26,40 @@ public class Sunflower extends Flower{
         this.basePrice = 19;
 
         this.expYield = 7.5;
+        
+        this.guiTiles = new GuiTile[3];
+        loadImages();
     }
     public Sunflower() {
         this.cropName = "Sunflower";
+    }
+
+    public void loadImages() {
+        try {
+            this.guiTiles[0] = new GuiTile();
+            this.guiTiles[0].image = ImageIO.read(getClass().getResourceAsStream("/resources/crops/flowers/sunflower_0.png"));
+            
+            this.guiTiles[1] = new GuiTile();
+            this.guiTiles[1].image = ImageIO.read(getClass().getResourceAsStream("/resources/crops/flowers/sunflower_1.png"));
+
+            this.guiTiles[2] = new GuiTile();
+            this.guiTiles[2].image = ImageIO.read(getClass().getResourceAsStream("/resources/crops/flowers/sunflower_h.png"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public BufferedImage setImage(int currentDay) {
+        if(getStage(currentDay) == 'h') {
+            return this.guiTiles[2].image;
+        }
+        else if(getStage(currentDay) == '1') {
+            return this.guiTiles[1].image;
+        }
+        else {
+            return this.guiTiles[0].image;
+        }
     }
 
     @Override

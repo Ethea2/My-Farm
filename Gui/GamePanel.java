@@ -73,6 +73,12 @@ public class GamePanel extends JPanel implements Runnable {
 
         tileM.draw(g2);
 
+        for(int i = 0; i < 10; i++) {
+            for(int j = 0; j < 5; j++) {
+                farm.getTile()[i][j].draw(g2, this);
+            }
+        }
+
         player.draw(g2);
 
         g2.dispose();

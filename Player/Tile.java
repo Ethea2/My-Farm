@@ -1,7 +1,14 @@
 package Player;
 
 import Crop.Crop;
-import Crop.FruitTrees.FruitTree;
+import Gui.GamePanel;
+
+import java.awt.*;
+import java.awt.image.*;
+import java.util.concurrent.ThreadLocalRandom;
+
+import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
 
 public class Tile {
     private Crop crop;
@@ -11,13 +18,39 @@ public class Tile {
     private boolean withered = false;
     public int coordinateX;
     public int coordinateY;
+    public int randomNum;
+    public BufferedImage[] rockedImage;
+    public BufferedImage plowedImage;
+    public BufferedImage witheredImage;
+    public BufferedImage normalTile;
 
     
 
     public Tile() {
+        randomNum = ThreadLocalRandom.current().nextInt(0, 2 + 1);
+        this.rockedImage = new BufferedImage[3];
+        try {
+            this.rockedImage[0] = ImageIO.read(getClass().getResourceAsStream("../resources/tiles/rock1.png"));
+            this.rockedImage[1] = ImageIO.read(getClass().getResourceAsStream("../resources/tiles/rock2.png"));
+            this.rockedImage[2] = ImageIO.read(getClass().getResourceAsStream("../resources/tiles/rock3.png"));
+            this.plowedImage = ImageIO.read(getClass().getResourceAsStream("../resources/tiles/dirt_plowed.png"));
+            this.witheredImage = ImageIO.read(getClass().getResourceAsStream("../resources/crops/withered.png"));
+            this.normalTile = ImageIO.read(getClass().getResourceAsStream("../resources/tiles/dirt.png"));
+        } catch (Exception e) {
+            e.printStackTrace();    
+        }
+
+        //random rocked
+        if (ThreadLocalRandom.current().nextInt(0,1+1) == 1) {
+            this.rocked = true;
+        }
 
     }
     
+    public void showMessage(String message) {
+        JOptionPane.showMessageDialog(null, message, "Tile Error", JOptionPane.PLAIN_MESSAGE);
+    }
+
     /*
      * This function gets the status of the tile, checking if the crop is
      * harvestable, growing, and withered.
@@ -25,21 +58,13 @@ public class Tile {
      * @return report a string that tells the user on what he or she can do with the
      * tile/crop.
      */
-    public String getStatus(int currentDay) {
+    public String getStatus() {
         String report = "";
-        String status;
-        if (this.crop != null) {
-            status = this.crop.checkStatus(currentDay);
-            if (status.equals("harvestable")) {
-                System.out.println("The crop is harvestable.");
-            } else if (status.equals("withered")) {
-                this.withered = true;
-            } else if (status.equals("growing")) {
-                System.out.println("This crop is still growing and is unharvestable.");
-            }
-        }
 
-        if (withered) {
+        if(this.crop == null) {
+            report += "The tile does not have a crop.";
+        }
+        else if (withered) {
             report += "The crop in this tile has withered.";
         } else if (plowed && !hasCrop) {
             report += "This tile is has been plowed and is plantable.";
@@ -135,7 +160,7 @@ public class Tile {
             System.out.println("The rock was successfully removed.");
             return true;
         } else {
-            System.out.println("The tile is not rocked.");
+            showMessage("The tile is not rocked.");
             return false;
         }
     }
@@ -149,12 +174,17 @@ public class Tile {
      */
     public boolean setPlowed() {
         if (hasCrop) {
-            System.out.println("The tile already has a crop.");
+            showMessage("The tile already has a crop.");
             return false;
         } else if (plowed) {
-            System.out.println("The tile has already been plowed.");
+            showMessage("The tile has already been plowed.");
             return false;
-        } else {
+        }
+        else if(rocked) {
+            showMessage("The tile has a rock.");
+            return false;
+        }
+        else {
             this.plowed = true;
             System.out.println("The tile has successfully been plowed.");
             return true;
@@ -201,6 +231,8 @@ public class Tile {
         } else if (this.crop.checkStatus(currentDay).equals("withered")) {
             this.withered = false;
             this.hasCrop = false;
+            this.crop = null;
+            this.plowed = false;
             System.out.println("The withered crop has been shoveled.");
             return true;
         } else {
@@ -236,5 +268,25 @@ public class Tile {
             return this;
         }
         return null;
+    }
+
+    public void draw(Graphics2D g2, GamePanel gamePanel) {
+        //System.out.println("I got triggered " + this.rocked + coordinateX+coordinateY);
+        //fix withered status.
+        if(this.crop != null && !this.withered) {
+            g2.drawImage(this.crop.setImage(gamePanel.farm.getCurrentDay()), (this.coordinateX * gamePanel.TILE_SIZE), (this.coordinateY * gamePanel.TILE_SIZE), gamePanel.TILE_SIZE, gamePanel.TILE_SIZE, null);
+        }
+        else if(this.plowed && !this.hasCrop) {
+            g2.drawImage(this.plowedImage, (this.coordinateX * gamePanel.TILE_SIZE), (this.coordinateY * gamePanel.TILE_SIZE), gamePanel.TILE_SIZE, gamePanel.TILE_SIZE, null);
+        }
+        else if(this.withered) {
+            g2.drawImage(this.witheredImage, (this.coordinateX * gamePanel.TILE_SIZE), (this.coordinateY * gamePanel.TILE_SIZE), gamePanel.TILE_SIZE, gamePanel.TILE_SIZE, null);
+        }
+        else if(this.rocked) {
+            g2.drawImage(this.rockedImage[this.randomNum], (this.coordinateX * gamePanel.TILE_SIZE), (this.coordinateY * gamePanel.TILE_SIZE), gamePanel.TILE_SIZE, gamePanel.TILE_SIZE, null);
+        }
+        else {
+            g2.drawImage(this.normalTile, (this.coordinateX * gamePanel.TILE_SIZE), (this.coordinateY * gamePanel.TILE_SIZE), gamePanel.TILE_SIZE, gamePanel.TILE_SIZE, null);
+        }
     }
 }

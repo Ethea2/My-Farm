@@ -4,6 +4,10 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import Player.Tile;
+import Crop.Flowers.*;
+import Crop.RootCrops.Carrot;
+import Crop.RootCrops.Potato;
+import Crop.RootCrops.Turnip;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -19,7 +23,8 @@ public class SidePanel extends JPanel implements ActionListener {
     public final int SCREEN_HEIGHT = MAX_SCREEN_ROW * TILE_SIZE;
 
     GamePanel gamePanel;
-    JButton getTile;
+    JButton pickaxeButton, plowButton, advanceDayButton, buyRoseButton, waterCanButton, shovelButton, fertilizerButton,
+    sunflowerButton, tulipButton, carrotButton, potatoButton, turnipButton;
 
     public SidePanel(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
@@ -28,15 +33,108 @@ public class SidePanel extends JPanel implements ActionListener {
         this.setBackground(new Color(0x854a01));
         this.setDoubleBuffered(true);
         this.setFocusable(false);
-        getTile = new JButton();
-        getTile.addActionListener(this);
-        this.add(getTile);
+
+
+        pickaxeButton = new JButton();
+        pickaxeButton.addActionListener(this);
+        pickaxeButton.setText("Pickaxe");
+
+        plowButton = new JButton();
+        plowButton.addActionListener(this);
+        plowButton.setText("Plow");
+
+        advanceDayButton = new JButton();
+        advanceDayButton.addActionListener(this);
+        advanceDayButton.setText("Advance Day");
+
+        buyRoseButton = new JButton();
+        buyRoseButton.addActionListener(this);
+        buyRoseButton.setText("Buy Rose");
+
+        waterCanButton = new JButton();
+        waterCanButton.addActionListener(this);
+        waterCanButton.setText("Water Tile");
+
+        shovelButton = new JButton();
+        shovelButton.addActionListener(this);
+        shovelButton.setText("Shovel");
+
+        fertilizerButton = new JButton();
+        fertilizerButton.addActionListener(this);
+        fertilizerButton.setText("Fertilize");
+        
+        sunflowerButton = new JButton();
+        sunflowerButton.addActionListener(this);
+        sunflowerButton.setText("Sunflower");
+
+        tulipButton = new JButton();
+        tulipButton.addActionListener(this);
+        tulipButton.setText("Tulip");
+
+        carrotButton = new JButton();
+        carrotButton.addActionListener(this);
+        carrotButton.setText("Carrot");
+
+        potatoButton = new JButton();
+        potatoButton.addActionListener(this);
+        potatoButton.setText("Potato");
+
+        turnipButton = new JButton();
+        turnipButton.addActionListener(this);
+        turnipButton.setText("Turnip");
+
+
+        this.add(pickaxeButton);
+        this.add(plowButton);
+        this.add(advanceDayButton);
+        this.add(waterCanButton);
+        this.add(shovelButton);
+        this.add(fertilizerButton);
+        this.add(buyRoseButton);
+        this.add(sunflowerButton);
+        this.add(tulipButton);
+        this.add(carrotButton);
+        this.add(potatoButton);
+        this.add(turnipButton);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == getTile) {
-            getTile();
+        if(e.getSource() == pickaxeButton) {
+            pickaxe();
+        }
+        else if(e.getSource() == plowButton) {
+            plow();
+        }
+        else if(e.getSource() == advanceDayButton) {
+            advanceDay();
+        }
+        else if(e.getSource() == buyRoseButton) {
+            buyRose();
+        }
+        else if(e.getSource() == waterCanButton) {
+            water();
+        }
+        else if(e.getSource() == shovelButton) {
+            shovel();
+        }
+        else if(e.getSource() == fertilizerButton) {
+            fertilize();
+        }
+        else if(e.getSource() == tulipButton) {
+            buyTulip();
+        }
+        else if(e.getSource() == sunflowerButton) {
+            buySunflower();
+        }
+        else if(e.getSource() == turnipButton) {
+            buyTurnip();
+        }
+        else if(e.getSource() == potatoButton) {
+            buyPotato();
+        }
+        else if(e.getSource() == carrotButton) {
+            buyCarrot();
         }
 
 
@@ -49,7 +147,7 @@ public class SidePanel extends JPanel implements ActionListener {
          });
     }
 
-    public void getTile() {
+    public Tile getTile() {
         Tile tempTile[][] = gamePanel.farm.getTile();
         Tile tile = null;
         int playerX = gamePanel.player.actualX;
@@ -62,10 +160,56 @@ public class SidePanel extends JPanel implements ActionListener {
                 }
             }
         }
+        return tile;
+    }
 
-        if(tile != null)
-            System.out.println(String.format("I am in tile: %d %d", tile.coordinateX, tile.coordinateY));
-        else
-            System.out.println("Not in a tile");
+    public void pickaxe() {
+        if(getTile() != null)
+            gamePanel.farm.getPlayer().getTool(2).useTool(getTile(), gamePanel.farm.getPlayer(), gamePanel.farm.getCurrentDay());;
+    }
+    public void plow() {
+        if(getTile() != null)
+            gamePanel.farm.getPlayer().getTool(4).useTool(getTile(), gamePanel.farm.getPlayer(), gamePanel.farm.getCurrentDay());;
+    }
+    public void water() {
+        if(getTile() != null)
+            gamePanel.farm.getPlayer().getTool(1).useTool(getTile(), gamePanel.farm.getPlayer(), gamePanel.farm.getCurrentDay());;
+    }
+    public void shovel() {
+        if(getTile() != null)
+            gamePanel.farm.getPlayer().getTool(0).useTool(getTile(), gamePanel.farm.getPlayer(), gamePanel.farm.getCurrentDay());;
+    }
+    public void fertilize() {
+        if(getTile() != null)
+            gamePanel.farm.getPlayer().getTool(3).useTool(getTile(), gamePanel.farm.getPlayer(), gamePanel.farm.getCurrentDay());;
+    }
+
+    public void advanceDay() {
+        gamePanel.farm.advanceDay();
+    }
+
+    public void buyRose() {
+        if(getTile() != null)
+            gamePanel.farm.getPlayer().buySeed(getTile(), gamePanel.farm.getCurrentDay(), new Rose(gamePanel.farm.getCurrentDay()), gamePanel.farm);
+    }
+    public void buySunflower() {
+        if(getTile() != null)
+            gamePanel.farm.getPlayer().buySeed(getTile(), gamePanel.farm.getCurrentDay(), new Sunflower(gamePanel.farm.getCurrentDay()), gamePanel.farm);
+    }
+    public void buyTulip() {
+        if(getTile() != null)
+            gamePanel.farm.getPlayer().buySeed(getTile(), gamePanel.farm.getCurrentDay(), new Tulip(gamePanel.farm.getCurrentDay()), gamePanel.farm);
+    }
+    public void buyCarrot() {
+        if(getTile() != null)
+            gamePanel.farm.getPlayer().buySeed(getTile(), gamePanel.farm.getCurrentDay(), new Carrot(gamePanel.farm.getCurrentDay()), gamePanel.farm);
+    }
+    public void buyPotato() {
+        if(getTile() != null)
+            gamePanel.farm.getPlayer().buySeed(getTile(), gamePanel.farm.getCurrentDay(), new Potato(gamePanel.farm.getCurrentDay()), gamePanel.farm);
+    }
+    public void buyTurnip() {
+        if(getTile() != null)
+            gamePanel.farm.getPlayer().buySeed(getTile(), gamePanel.farm.getCurrentDay(), new Turnip(gamePanel.farm.getCurrentDay()), gamePanel.farm);
     }
 }

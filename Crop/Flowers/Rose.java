@@ -1,5 +1,12 @@
 package Crop.Flowers;
 
+import java.awt.image.*;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
+import Gui.GuiTile;
+
 public class Rose extends Flower{
     /** 
     * Rose class constructor.
@@ -21,13 +28,41 @@ public class Rose extends Flower{
         this.basePrice = 5;
 
         this.expYield = 2.5;
+
+        this.guiTiles = new GuiTile[2];
+        loadImages();
     }
+
     public Rose() {
         this.cropName = "Rose";
     }
 
     @Override
+    public void loadImages() {
+        try {
+            this.guiTiles[0] = new GuiTile();
+            this.guiTiles[0].image = ImageIO.read(getClass().getResourceAsStream("/resources/crops/flowers/rose_0.png"));
+            
+            this.guiTiles[1] = new GuiTile();
+            this.guiTiles[1].image = ImageIO.read(getClass().getResourceAsStream("/resources/crops/flowers/rose_h.png"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public BufferedImage setImage(int currentDay) {
+        if(getStage(currentDay) == 'h') {
+            return this.guiTiles[1].image;
+        }
+        else {
+            return this.guiTiles[0].image;
+        }
+    }
+
+    @Override
     public char getStage(int currentDay){
+        //System.out.println(checkStatus(currentDay));
         switch(currentDay-this.plantDay){
             case 1:
                 return 'h';

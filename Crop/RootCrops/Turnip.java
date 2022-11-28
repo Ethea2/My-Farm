@@ -1,5 +1,9 @@
 package Crop.RootCrops;
 
+import java.awt.image.BufferedImage;
+import javax.imageio.ImageIO;
+import Gui.GuiTile;
+
 public class Turnip extends RootCrop{
     /** 
     * Turnip class constructor.
@@ -21,9 +25,41 @@ public class Turnip extends RootCrop{
         this.basePrice = 6;
 
         this.expYield = 5;
+
+        this.guiTiles = new GuiTile[3];
+        loadImages();
     }
     public Turnip() {
         this.cropName = "Turnip";
+    }
+    
+    @Override
+    public void loadImages() {
+        try {
+            this.guiTiles[0] = new GuiTile();
+            this.guiTiles[0].image = ImageIO.read(getClass().getResourceAsStream("/resources/crops/root_crops/turnip_0.png"));
+            
+            this.guiTiles[1] = new GuiTile();
+            this.guiTiles[1].image = ImageIO.read(getClass().getResourceAsStream("/resources/crops/root_crops/turnip_1.png"));
+
+            this.guiTiles[2] = new GuiTile();
+            this.guiTiles[2].image = ImageIO.read(getClass().getResourceAsStream("/resources/crops/root_crops/turnip_h.png"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public BufferedImage setImage(int currentDay) {
+        if(getStage(currentDay) == 'h') {
+            return this.guiTiles[2].image;
+        }
+        else if(getStage(currentDay) == '1') {
+            return this.guiTiles[1].image;
+        }
+        else {
+            return this.guiTiles[0].image;
+        }
     }
 
     @Override

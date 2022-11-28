@@ -25,6 +25,7 @@ public class WaterCan extends Tools {
             tile.getCrop().addWater();
             player.addExperience(expGained);
             player.subtractObjectcoins(costUsage);
+            System.out.println("The watering was successful");
         }
     }
 }

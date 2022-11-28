@@ -1,7 +1,11 @@
 package Crop;
 
 import Player.MyFarm;
+import Player.Tile;
 import Player.FarmerType.Farmer;
+import java.awt.image.*;
+
+import Gui.GuiTile;
 
 public class Crop {
 	protected String cropName;
@@ -28,6 +32,8 @@ public class Crop {
 
 	protected int waterCount = 0;
 	protected int fertCount = 0;
+
+    public GuiTile guiTiles[];
 
 	// STATUS
 	protected boolean withered = false;
@@ -73,6 +79,16 @@ public class Crop {
 
 		return "growing";
 	}
+
+    public void loadImages() {
+        
+    }
+
+    public void setWithered(Tile tile, String status) {
+        if(status == "withered") {
+            tile.cropWithered();
+        }
+    }
 
 	/**
 	 * Generates a random int based on the minimum and maximum yield
@@ -238,6 +254,10 @@ public class Crop {
 	public double getExpYield() {
 		return this.expYield;
 	}
+
+    public BufferedImage setImage(int currentDay) {
+        return this.guiTiles[0].image;
+    }
 
 	public char getStage(int currentDay){
 		return '0';

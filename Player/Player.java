@@ -222,6 +222,10 @@ public class Player {
         this.experience += gain;
     }
 
+    public Tools getTool(int index) {
+        return this.tools.get(index);
+    }
+
     /*
      * a function to reset all the player stats when the game starts again.
      */
