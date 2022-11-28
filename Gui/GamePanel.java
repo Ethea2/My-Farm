@@ -23,6 +23,7 @@ public class GamePanel extends JPanel implements Runnable {
     TileManager tileM = new TileManager(this);
     KeyHandler keyHandler = new KeyHandler();
     Thread gameThread;
+    Sound sound = new Sound();
     public CollisionChecker collisionChecker = new CollisionChecker(this);
     public GuiPlayer player = new GuiPlayer(this, keyHandler);
 
@@ -82,5 +83,14 @@ public class GamePanel extends JPanel implements Runnable {
         player.draw(g2);
 
         g2.dispose();
+    }
+
+    public void playMusic() {
+        sound.setFile();
+        sound.play();
+        sound.loop();
+    }
+    public void stopMusic() {
+        sound.stop();
     }
 }
