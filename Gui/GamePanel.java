@@ -12,8 +12,8 @@ public class GamePanel extends JPanel implements Runnable {
     final int SCALE = 3;
     public final int TILE_SIZE = ORIGINAL_TILE_SIZE * SCALE; //48x48
 
-    public final int MAX_SCREEN_COLUMN = 19;
-    public final int MAX_SCREEN_ROW = 16;
+    public final int MAX_SCREEN_COLUMN = 16;
+    public final int MAX_SCREEN_ROW = 11;
     public final int SCREEN_WIDTH = MAX_SCREEN_COLUMN * TILE_SIZE;
     public final int SCREEN_HEIGHT = MAX_SCREEN_ROW * TILE_SIZE;
 
@@ -74,8 +74,8 @@ public class GamePanel extends JPanel implements Runnable {
 
         tileM.draw(g2);
 
-        for(int i = 0; i < 10; i++) {
-            for(int j = 0; j < 5; j++) {
+        for(int i = 0; i < 5; i++) {
+            for(int j = 0; j < 10; j++) {
                 farm.getTile()[i][j].draw(g2, this);
             }
         }

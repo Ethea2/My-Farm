@@ -7,8 +7,8 @@ import Crop.Flowers.*;
 import Crop.RootCrops.*;
 
 public class MyFarm {
-    public final int TILE_ROW = 10;
-    public final int TILE_COL = 5;
+    public final int TILE_ROW = 5;
+    public final int TILE_COL = 10;
     private int day;
     private Tile[][] tile = new Tile[TILE_ROW][TILE_COL];
     private Player player;
@@ -27,8 +27,8 @@ public class MyFarm {
         this.crops.add(new Carrot());
         this.crops.add(new Potato());
         this.crops.add(new Turnip());
-        for(int i = 0; i < 10; i++) {
-            for(int j = 0; j < 5; j++) {
+        for(int i = 0; i < TILE_ROW; i++) {
+            for(int j = 0; j < TILE_COL; j++) {
                 this.tile[i][j] = new Tile();
             }
         }
@@ -39,8 +39,8 @@ public class MyFarm {
      */
     public void advanceDay() {
         this.day++;
-        for(int i = 0; i < 10; i++) {
-            for(int j = 0; j < 5; j++) {
+        for(int i = 0; i < TILE_ROW; i++) {
+            for(int j = 0; j < TILE_COL; j++) {
                 if(this.tile[i][j].getCrop() != null)
                     this.tile[i][j].getCrop().setWithered(this.tile[i][j], this.tile[i][j].getCrop().checkStatus(this.day));
             }
@@ -67,8 +67,8 @@ public class MyFarm {
      */
     public boolean checkGameOver() {
         boolean temp = false;
-        for(int i = 0; i < 10; i++) {
-            for(int j = 0; j < 5; j++) {
+        for(int i = 0; i < TILE_ROW; i++) {
+            for(int j = 0; j < TILE_COL; j++) {
                 temp = !tile[i][j].checkPlanted();
             }
         }
@@ -87,8 +87,8 @@ public class MyFarm {
     public void gameReset() {
         player.playerReset();
         this.day = 1;
-        for(int i = 0; i < 10; i++) {
-            for(int j = 0; j < 5; j++) {
+        for(int i = 0; i < TILE_ROW; i++) {
+            for(int j = 0; j < TILE_COL; j++) {
                 tile[i][j] = new Tile();
             }
         }

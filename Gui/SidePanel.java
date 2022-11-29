@@ -18,7 +18,7 @@ public class SidePanel extends JPanel implements ActionListener {
     public final int TILE_SIZE = ORIGINAL_TILE_SIZE * SCALE; //48x48
 
     public final int MAX_SCREEN_COLUMN = 3;
-    public final int MAX_SCREEN_ROW = 16;
+    public final int MAX_SCREEN_ROW = 11;
     public final int SCREEN_WIDTH = MAX_SCREEN_COLUMN * TILE_SIZE;
     public final int SCREEN_HEIGHT = MAX_SCREEN_ROW * TILE_SIZE;
 
@@ -49,7 +49,7 @@ public class SidePanel extends JPanel implements ActionListener {
 
         buyRoseButton = new JButton();
         buyRoseButton.addActionListener(this);
-        buyRoseButton.setText("Buy Rose");
+        buyRoseButton.setText("Rose");
 
         waterCanButton = new JButton();
         waterCanButton.addActionListener(this);

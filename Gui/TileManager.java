@@ -23,40 +23,42 @@ public class TileManager {
 
     public void getTileImage() {
         try {
-            //BOARDER
+            //SOIL TILES
             tile[0] = new GuiTile();
-            tile[0].image = ImageIO.read(getClass().getResourceAsStream("../resources/tiles/wall.png"));
-            tile[0].collision = true;
-
-            //DIRT TILES
-            tile[1] = new GuiTile();
-            tile[1].image = ImageIO.read(getClass().getResourceAsStream("../resources/tiles/dirt.png"));
-
+            tile[0].image = ImageIO.read(getClass().getResourceAsStream("../resources/tiles/soil.png"));
+            
             //GRASS TILES
+            tile[1] = new GuiTile();
+            tile[1].image = ImageIO.read(getClass().getResourceAsStream("../resources/tiles/grass.png"));
+
             tile[2] = new GuiTile();
-            tile[2].image = ImageIO.read(getClass().getResourceAsStream("../resources/tiles/grass_top-left.png"));
+            tile[2].image = ImageIO.read(getClass().getResourceAsStream("../resources/tiles/grass_top.png"));
 
             tile[3] = new GuiTile();
-            tile[3].image = ImageIO.read(getClass().getResourceAsStream("../resources/tiles/grass_top.png"));
+            tile[3].image = ImageIO.read(getClass().getResourceAsStream("../resources/tiles/grass_left.png"));
 
             tile[4] = new GuiTile();
-            tile[4].image = ImageIO.read(getClass().getResourceAsStream("../resources/tiles/grass_top-right.png"));
+            tile[4].image = ImageIO.read(getClass().getResourceAsStream("../resources/tiles/grass_right.png"));
 
             tile[5] = new GuiTile();
-            tile[5].image = ImageIO.read(getClass().getResourceAsStream("../resources/tiles/grass_left.png"));
+            tile[5].image = ImageIO.read(getClass().getResourceAsStream("../resources/tiles/grass_bott.png"));
 
+            //TREE BOARDER
             tile[6] = new GuiTile();
-            tile[6].image = ImageIO.read(getClass().getResourceAsStream("../resources/tiles/grass_right.png"));
+            tile[6].image = ImageIO.read(getClass().getResourceAsStream("../resources/tiles/trees_top.png"));
+            tile[6].collision = true;
 
             tile[7] = new GuiTile();
-            tile[7].image = ImageIO.read(getClass().getResourceAsStream("../resources/tiles/grass_bottom-left.png"));
+            tile[7].image = ImageIO.read(getClass().getResourceAsStream("../resources/tiles/trees_left.png"));
+            tile[7].collision = true;
 
             tile[8] = new GuiTile();
-            tile[8].image = ImageIO.read(getClass().getResourceAsStream("../resources/tiles/grass_bottom.png"));
+            tile[8].image = ImageIO.read(getClass().getResourceAsStream("../resources/tiles/trees_right"));
+            tile[8].collision = true;
 
             tile[9] = new GuiTile();
-            tile[9].image = ImageIO.read(getClass().getResourceAsStream("../resources/tiles/grass_bottom-right.png"));
-
+            tile[9].image = ImageIO.read(getClass().getResourceAsStream("../resources/tiles/trees_bott"));
+            tile[9].collision = true;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -64,7 +66,7 @@ public class TileManager {
 
     public void loadMap() {
         try {
-            InputStream is = getClass().getResourceAsStream("../resources/maps/farmMap.txt");
+            InputStream is = getClass().getResourceAsStream("../resources/maps/farmMapPlain.txt");
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
 
             int col = 0;

@@ -30,12 +30,12 @@ public class Tile {
         randomNum = ThreadLocalRandom.current().nextInt(0, 2 + 1);
         this.rockedImage = new BufferedImage[3];
         try {
-            this.rockedImage[0] = ImageIO.read(getClass().getResourceAsStream("../resources/tiles/rock1.png"));
-            this.rockedImage[1] = ImageIO.read(getClass().getResourceAsStream("../resources/tiles/rock2.png"));
-            this.rockedImage[2] = ImageIO.read(getClass().getResourceAsStream("../resources/tiles/rock3.png"));
-            this.plowedImage = ImageIO.read(getClass().getResourceAsStream("../resources/tiles/dirt_plowed.png"));
+            this.rockedImage[0] = ImageIO.read(getClass().getResourceAsStream("../resources/tiles/rock_1.png"));
+            this.rockedImage[1] = ImageIO.read(getClass().getResourceAsStream("../resources/tiles/rock_2.png"));
+            this.rockedImage[2] = ImageIO.read(getClass().getResourceAsStream("../resources/tiles/rock_3.png"));
+            this.plowedImage = ImageIO.read(getClass().getResourceAsStream("../resources/tiles/soil_plowed.png"));
             this.witheredImage = ImageIO.read(getClass().getResourceAsStream("../resources/crops/withered.png"));
-            this.normalTile = ImageIO.read(getClass().getResourceAsStream("../resources/tiles/dirt.png"));
+            this.normalTile = ImageIO.read(getClass().getResourceAsStream("../resources/tiles/soil.png"));
         } catch (Exception e) {
             e.printStackTrace();    
         }
