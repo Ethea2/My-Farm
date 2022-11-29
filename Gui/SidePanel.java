@@ -1,5 +1,8 @@
 package Gui;
 
+import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -11,6 +14,7 @@ import Crop.RootCrops.Turnip;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
 
 public class SidePanel extends JPanel implements ActionListener {
     final int ORIGINAL_TILE_SIZE = 16;
@@ -25,19 +29,21 @@ public class SidePanel extends JPanel implements ActionListener {
     GamePanel gamePanel;
     JButton pickaxeButton, plowButton, advanceDayButton, buyRoseButton, waterCanButton, shovelButton, fertilizerButton,
     sunflowerButton, tulipButton, carrotButton, potatoButton, turnipButton;
+    ButtonIcon buttonImages[];
 
     public SidePanel(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
         this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
-        this.setLayout(new GridLayout(16, 1));
+        this.setLayout(null);
         this.setBackground(new Color(0x854a01));
         this.setDoubleBuffered(true);
         this.setFocusable(false);
+        buttonImages = new ButtonIcon[10];
+        loadImages();
 
-
-        pickaxeButton = new JButton();
+        pickaxeButton = new JButton(buttonImages[0]);
         pickaxeButton.addActionListener(this);
-        pickaxeButton.setText("Pickaxe");
+        pickaxeButton.setBounds(0, 1*TILE_SIZE, TILE_SIZE, TILE_SIZE);
 
         plowButton = new JButton();
         plowButton.addActionListener(this);
@@ -96,6 +102,16 @@ public class SidePanel extends JPanel implements ActionListener {
         this.add(carrotButton);
         this.add(potatoButton);
         this.add(turnipButton);
+    }
+
+    public void loadImages() {
+        try {
+            buttonImages[0] = new ButtonIcon(this);
+            buttonImages[0].image = ImageIO.read(getClass().getResourceAsStream("/resources/tools/pickaxe.png"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
     }
 
     @Override

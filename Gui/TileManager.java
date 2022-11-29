@@ -53,11 +53,11 @@ public class TileManager {
             tile[7].collision = true;
 
             tile[8] = new GuiTile();
-            tile[8].image = ImageIO.read(getClass().getResourceAsStream("../resources/tiles/trees_right"));
+            tile[8].image = ImageIO.read(getClass().getResourceAsStream("../resources/tiles/trees_right.png"));
             tile[8].collision = true;
 
             tile[9] = new GuiTile();
-            tile[9].image = ImageIO.read(getClass().getResourceAsStream("../resources/tiles/trees_bott"));
+            tile[9].image = ImageIO.read(getClass().getResourceAsStream("../resources/tiles/trees_bott.png"));
             tile[9].collision = true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -66,7 +66,7 @@ public class TileManager {
 
     public void loadMap() {
         try {
-            InputStream is = getClass().getResourceAsStream("../resources/maps/farmMapPlain.txt");
+            InputStream is = getClass().getResourceAsStream("../resources/maps/farmMap.txt");
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
 
             int col = 0;
@@ -83,7 +83,7 @@ public class TileManager {
                     String numbers[] = line.split(" ");
 
                     int num = Integer.parseInt(numbers[col]);
-                    if(num == 1) {
+                    if(num == 0) {
                         gamePanel.farm.getTile()[tilerow][tilecol].coordinateX = col;
                         gamePanel.farm.getTile()[tilerow][tilecol].coordinateY = row;
                         tilecol++;
