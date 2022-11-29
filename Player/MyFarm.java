@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import Crop.Crop;
 import Crop.Flowers.*;
 import Crop.RootCrops.*;
+import Crop.FruitTrees.*;
 
 public class MyFarm {
     public final int TILE_ROW = 5;
@@ -27,6 +28,8 @@ public class MyFarm {
         this.crops.add(new Carrot());
         this.crops.add(new Potato());
         this.crops.add(new Turnip());
+        this.crops.add(new Mango());
+        this.crops.add(new Apple());
         for(int i = 0; i < TILE_ROW; i++) {
             for(int j = 0; j < TILE_COL; j++) {
                 this.tile[i][j] = new Tile();
@@ -99,6 +102,8 @@ public class MyFarm {
         this.crops.add(new Carrot());
         this.crops.add(new Potato());
         this.crops.add(new Turnip());
+        this.crops.add(new Mango());
+        this.crops.add(new Apple());
     }
 
     /*
