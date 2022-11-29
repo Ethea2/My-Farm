@@ -27,8 +27,8 @@ public class SidePanel extends JPanel implements ActionListener {
     public final int SCREEN_HEIGHT = MAX_SCREEN_ROW * TILE_SIZE;
 
     GamePanel gamePanel;
-    JButton pickaxeButton, plowButton, advanceDayButton, buyRoseButton, waterCanButton, shovelButton, fertilizerButton,
-    sunflowerButton, tulipButton, carrotButton, potatoButton, turnipButton;
+    JButton pickaxeButton, plowButton, advanceDayButton, RoseButton, waterCanButton, shovelButton, fertilizerButton,
+    sunflowerButton, tulipButton, carrotButton, potatoButton, turnipButton, mangoButton, appleButton;
     ButtonIcon buttonImages[];
 
     public SidePanel(GamePanel gamePanel) {
@@ -38,45 +38,37 @@ public class SidePanel extends JPanel implements ActionListener {
         this.setBackground(new Color(0x854a01));
         this.setDoubleBuffered(true);
         this.setFocusable(false);
-        buttonImages = new ButtonIcon[10];
+        buttonImages = new ButtonIcon[20];
         loadImages();
-
-        pickaxeButton = new JButton(buttonImages[0]);
-        pickaxeButton.addActionListener(this);
-        pickaxeButton.setBounds(0, 1*TILE_SIZE, TILE_SIZE, TILE_SIZE);
 
         plowButton = new JButton();
         plowButton.addActionListener(this);
         plowButton.setText("Plow");
-
-        advanceDayButton = new JButton();
-        advanceDayButton.addActionListener(this);
-        advanceDayButton.setText("Advance Day");
-
-        buyRoseButton = new JButton();
-        buyRoseButton.addActionListener(this);
-        buyRoseButton.setText("Rose");
-
-        waterCanButton = new JButton();
-        waterCanButton.addActionListener(this);
-        waterCanButton.setText("Water Tile");
+ 
+        pickaxeButton = new JButton(buttonImages[0]);
+        pickaxeButton.addActionListener(this);
+        pickaxeButton.setBounds(0, 1*TILE_SIZE, TILE_SIZE, TILE_SIZE);
 
         shovelButton = new JButton();
         shovelButton.addActionListener(this);
         shovelButton.setText("Shovel");
 
+        waterCanButton = new JButton();
+        waterCanButton.addActionListener(this);
+        waterCanButton.setText("Water Tile");
+
         fertilizerButton = new JButton();
         fertilizerButton.addActionListener(this);
         fertilizerButton.setText("Fertilize");
         
-        sunflowerButton = new JButton();
-        sunflowerButton.addActionListener(this);
-        sunflowerButton.setText("Sunflower");
+        advanceDayButton = new JButton();
+        advanceDayButton.addActionListener(this);
+        advanceDayButton.setText("Advance Day");
 
-        tulipButton = new JButton();
-        tulipButton.addActionListener(this);
-        tulipButton.setText("Tulip");
-
+        turnipButton = new JButton();
+        turnipButton.addActionListener(this);
+        turnipButton.setText("Turnip");
+        
         carrotButton = new JButton();
         carrotButton.addActionListener(this);
         carrotButton.setText("Carrot");
@@ -85,10 +77,25 @@ public class SidePanel extends JPanel implements ActionListener {
         potatoButton.addActionListener(this);
         potatoButton.setText("Potato");
 
-        turnipButton = new JButton();
-        turnipButton.addActionListener(this);
-        turnipButton.setText("Turnip");
+        RoseButton = new JButton();
+        RoseButton.addActionListener(this);
+        RoseButton.setText("Rose");
+        
+        tulipButton = new JButton();
+        tulipButton.addActionListener(this);
+        tulipButton.setText("Tulip");
 
+        sunflowerButton = new JButton();
+        sunflowerButton.addActionListener(this);
+        sunflowerButton.setText("Sunflower");
+
+        mangoButton = new JButton();
+        mangoButton.addActionListener(this);
+        mangoButton.setText("Mango");
+
+        appleButton = new JButton();
+        appleButton.addActionListener(this);
+        appleButton.setText("Apple");
 
         this.add(pickaxeButton);
         this.add(plowButton);
@@ -96,18 +103,26 @@ public class SidePanel extends JPanel implements ActionListener {
         this.add(waterCanButton);
         this.add(shovelButton);
         this.add(fertilizerButton);
-        this.add(buyRoseButton);
+        this.add(RoseButton);
         this.add(sunflowerButton);
         this.add(tulipButton);
         this.add(carrotButton);
         this.add(potatoButton);
         this.add(turnipButton);
+        this.add(mangoButton);
+        this.add(appleButton);
     }
 
     public void loadImages() {
         try {
             buttonImages[0] = new ButtonIcon(this);
-            buttonImages[0].image = ImageIO.read(getClass().getResourceAsStream("/resources/tools/pickaxe.png"));
+            buttonImages[0].image = ImageIO.read(getClass().getResourceAsStream("/resources/gui/pickaxe.png"));
+
+            buttonImages[1] = new ButtonIcon(this);
+            buttonImages[1].image = ImageIO.read(getClass().getResourceAsStream("/resources/gui/pickaxe.png"));
+
+            buttonImages[2] = new ButtonIcon(this);
+            buttonImages[2].image = ImageIO.read(getClass().getResourceAsStream("/resources/gui/pickaxe.png"));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -125,7 +140,7 @@ public class SidePanel extends JPanel implements ActionListener {
         else if(e.getSource() == advanceDayButton) {
             advanceDay();
         }
-        else if(e.getSource() == buyRoseButton) {
+        else if(e.getSource() == RoseButton) {
             buyRose();
         }
         else if(e.getSource() == waterCanButton) {
