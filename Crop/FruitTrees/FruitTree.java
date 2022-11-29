@@ -39,13 +39,13 @@ public class FruitTree extends Crop{
             case 10:
                 return 'h';
             case 9:
-                return '3';
+                return '2';
             case 8:
-                return '3';
+                return '2';
             case 7:
-                return '3';
+                return '2';
             case 6:
-                return '3';
+                return '2';
             case 5:
                 return '2';
             case 4:
