@@ -17,7 +17,17 @@ public class FruitTree extends Crop{
     
     @Override
     public boolean canPlant(int x, int y, MyFarm farm){
-        if(farm.getTile()[x][y].checkEmpty() && //checks planting tile
+        // System.out.println(x + " " + y);
+        // System.out.println((x+1) + " " + y);
+        // System.out.println((x+1) + " " + (y+1));
+        // System.out.println((x+1) + " " + (y-1));
+        // System.out.println(x + " " + y);
+        // System.out.println(x + " " + y);
+        // System.out.println(x + " " + y);
+        // System.out.println(x + " " + y);
+
+        try {
+            if(farm.getTile()[x][y].checkEmpty() && //checks planting tile
             farm.getTile()[x-1][y-1].checkEmpty() && //checks above-left tile
             farm.getTile()[x-1][y].checkEmpty() && //checks above tile
             farm.getTile()[x-1][y+1].checkEmpty() && //checks above-right tile
@@ -27,10 +37,14 @@ public class FruitTree extends Crop{
             farm.getTile()[x+1][y].checkEmpty() && //checks below tile
             farm.getTile()[x+1][y+1].checkEmpty()) { //checks below-right tile
             return true;
-        }
-        else{
+            }
+            else{
+                return false;
+            }
+        } catch (Exception e) {
             return false;
         }
+        
     }
 
     @Override

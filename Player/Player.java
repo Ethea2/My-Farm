@@ -13,7 +13,7 @@ import Player.MyFarm;
  */
 
 public class Player {
-    private int objectCoin;
+    private double objectCoin;
     private double experience;
     private Farmer farmerType;
     private int level;
@@ -49,7 +49,8 @@ public class Player {
      */
     public void buySeed(Tile tile, int plantDay, Crop cropSeed, MyFarm farm) {
         if (tile.plantCrop(cropSeed, farm)) { // The checks if the tile plant crop was successful
-            this.objectCoin -= (cropSeed.getSeedCost() - farmerType.getSeedCostReduction()); // on a successful
+            this.objectCoin = this.objectCoin - (cropSeed.getSeedCost() - farmerType.getSeedCostReduction());
+                                                                                            // on a successful
                                                                                              // planting, we subtract
                                                                                              // the seed cost with the
                                                                                              // cost reduction of t he
@@ -77,7 +78,7 @@ public class Player {
             Crop crop = tile.getCrop(); // stores the tile's crop reference
             String status = crop.checkStatus(currentDay);
             if (status.equals("harvestable")) {
-                this.objectCoin += crop.computeFinalPrice(farmerType);
+                this.objectCoin = this.objectCoin + crop.computeFinalPrice(farmerType);
                 this.experience += crop.getExpYield();
                 tile.harvest(currentDay);
                 System.out.println("The crop was successfully harvested.");

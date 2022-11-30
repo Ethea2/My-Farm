@@ -4,6 +4,9 @@ import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import Player.Tile;
@@ -11,11 +14,12 @@ import Player.Player;
 import Crop.Flowers.*;
 import Crop.FruitTrees.*;
 import Crop.RootCrops.*;
-import Gui.TextAreaOutputStream;
 
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class SidePanel extends JPanel implements ActionListener {
     final int ORIGINAL_TILE_SIZE = 16;
@@ -30,7 +34,13 @@ public class SidePanel extends JPanel implements ActionListener {
     GamePanel gamePanel;
     JButton pickaxeButton, plowButton, advanceDayButton, harvestButton, RoseButton, waterCanButton, shovelButton, fertilizerButton,
     sunflowerButton, tulipButton, carrotButton, potatoButton, turnipButton, mangoButton, appleButton, registerButton;
+    JLabel coinsBackground, dayBackground, expBackground, lvlBackground, logBackground;
+    JLabel coinsText, dayText, expText, lvlText;
     ButtonIcon buttonImages[];
+    BufferedImage registerImage, coinsBG, dayBG, expBG, lvlBG, logBG;
+    Font font;
+    Mango tMango;
+    Tile tTile;
 
     public SidePanel(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
@@ -41,6 +51,7 @@ public class SidePanel extends JPanel implements ActionListener {
         this.setFocusable(false);
         buttonImages = new ButtonIcon[20];
         loadImages();
+        loadFont();
 
         //TOOLS
         plowButton = new JButton(buttonImages[0]);
@@ -105,9 +116,34 @@ public class SidePanel extends JPanel implements ActionListener {
         appleButton.addActionListener(this);
         appleButton.setBounds(2*TILE_SIZE, 7*TILE_SIZE, TILE_SIZE, TILE_SIZE);
 
-        registerButton = new JButton(buttonImages[15]);
+        registerButton = new JButton(new ImageIcon(registerImage));
         registerButton.addActionListener(this);
-        registerButton.setBounds(TILE_SIZE, 8*TILE_SIZE, 3*TILE_SIZE, TILE_SIZE);
+        registerButton.setBounds(0, 8*TILE_SIZE, 3*TILE_SIZE, TILE_SIZE);
+
+        coinsText = new JLabel();
+        coinsText.setText(String.format("%s", gamePanel.farm.getPlayer().getObjectcoins()));
+        coinsText.setBounds(2*TILE_SIZE, 0, 3*TILE_SIZE, TILE_SIZE);
+        //coinsText.setFont(font);
+
+        coinsBackground = new JLabel(new ImageIcon(coinsBG));
+        coinsBackground.setBounds(0, 0, 3*TILE_SIZE, TILE_SIZE);
+        //coinsBackground.add(coinsText);
+
+        dayText = new JLabel();
+        dayText.setText(String.format("%s", gamePanel.farm.getCurrentDay()));
+        dayText.setBounds(2*TILE_SIZE, 1*TILE_SIZE, 2*TILE_SIZE, TILE_SIZE);
+
+        dayBackground = new JLabel(new ImageIcon(dayBG));
+        dayBackground.setBounds(1*TILE_SIZE, 1*TILE_SIZE, 2*TILE_SIZE, TILE_SIZE);
+
+        lvlBackground = new JLabel(new ImageIcon(lvlBG));
+        lvlBackground.setBounds(1*TILE_SIZE, 2*TILE_SIZE, 2*TILE_SIZE, TILE_SIZE);
+
+        expBackground = new JLabel(new ImageIcon(expBG));
+        expBackground.setBounds(1*TILE_SIZE, 3*TILE_SIZE, 2*TILE_SIZE, TILE_SIZE);
+
+        logBackground = new JLabel(new ImageIcon(logBG));
+        logBackground.setBounds(0*TILE_SIZE, 9*TILE_SIZE, 3*TILE_SIZE, 2*TILE_SIZE);
 
         this.add(pickaxeButton);
         this.add(plowButton);
@@ -125,6 +161,28 @@ public class SidePanel extends JPanel implements ActionListener {
         this.add(mangoButton);
         this.add(appleButton);
         this.add(registerButton);
+        this.add(coinsText);
+        this.add(coinsBackground);
+        this.add(dayText);
+        this.add(dayBackground);
+        this.add(lvlBackground);
+        this.add(expBackground);
+        this.add(logBackground);
+    }
+
+    public void loadFont() {
+        try {
+            InputStream is = getClass().getResourceAsStream("/resources/font/ConnectionIi-2wj8.otf");
+            font = Font.createFont(Font.TRUETYPE_FONT, is);
+            GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(font);
+            System.out.println(String.format("%s", font));
+        } catch (FontFormatException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
     public void loadImages() {
@@ -180,6 +238,13 @@ public class SidePanel extends JPanel implements ActionListener {
             //REGISTER
             buttonImages[15] = new ButtonIcon(this);
             buttonImages[15].image = ImageIO.read(getClass().getResourceAsStream("/resources/gui/register.png"));
+
+            registerImage = ImageIO.read(getClass().getResourceAsStream("/resources/gui/register.png"));
+            coinsBG = ImageIO.read(getClass().getResourceAsStream("/resources/gui/coins.png"));
+            dayBG = ImageIO.read(getClass().getResourceAsStream("/resources/gui/day.png"));
+            lvlBG = ImageIO.read(getClass().getResourceAsStream("/resources/gui/lvl.png"));
+            expBG = ImageIO.read(getClass().getResourceAsStream("/resources/gui/exp.png"));
+            logBG = ImageIO.read(getClass().getResourceAsStream("/resources/gui/log.png"));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -190,48 +255,63 @@ public class SidePanel extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == pickaxeButton) {
             pickaxe();
+            updateText();
         }
         else if(e.getSource() == plowButton) {
             plow();
+            updateText();
         }
         else if(e.getSource() == advanceDayButton) {
             advanceDay();
+            updateText();
         }
         else if(e.getSource() == harvestButton) {
             harvest();
+            updateText();
         }
         else if(e.getSource() == RoseButton) {
             buyRose();
+            updateText();
         }
         else if(e.getSource() == waterCanButton) {
             water();
+            updateText();
         }
         else if(e.getSource() == shovelButton) {
             shovel();
+            updateText();
         }
         else if(e.getSource() == fertilizerButton) {
             fertilize();
+            updateText();
         }
         else if(e.getSource() == tulipButton) {
             buyTulip();
+            updateText();
         }
         else if(e.getSource() == sunflowerButton) {
             buySunflower();
+            updateText();
         }
         else if(e.getSource() == turnipButton) {
             buyTurnip();
+            updateText();
         }
         else if(e.getSource() == potatoButton) {
             buyPotato();
+            updateText();
         }
         else if(e.getSource() == carrotButton) {
             buyCarrot();
+            updateText();
         }
         else if(e.getSource() == mangoButton) {
             buyMango();
+            updateText();
         }
         else if(e.getSource() == appleButton) {
             buyApple();
+            updateText();
         }
         /*
         else if(e.getSource() == registerButton) {
@@ -247,6 +327,10 @@ public class SidePanel extends JPanel implements ActionListener {
                   gamePanel.requestFocus();
               }
          });
+    }
+
+    public void updateText() {
+        coinsText.setText(String.format("%s", gamePanel.farm.getPlayer().getObjectcoins()));
     }
 
     public Tile getTile() {
@@ -322,14 +406,13 @@ public class SidePanel extends JPanel implements ActionListener {
             gamePanel.farm.getPlayer().buySeed(getTile(), gamePanel.farm.getCurrentDay(), new Turnip(gamePanel.farm.getCurrentDay()), gamePanel.farm);
     }
     public void buyMango() {
-        if(getTile() != null)
+        if(getTile() != null )
             gamePanel.farm.getPlayer().buySeed(getTile(), gamePanel.farm.getCurrentDay(), new Mango(gamePanel.farm.getCurrentDay()), gamePanel.farm);
     }
     public void buyApple() {
         if(getTile() != null)
             gamePanel.farm.getPlayer().buySeed(getTile(), gamePanel.farm.getCurrentDay(), new Apple(gamePanel.farm.getCurrentDay()), gamePanel.farm);
     }
-
     //REGISTER
     /*
     public void Register() {

@@ -16,6 +16,8 @@ public class Tile {
     private boolean plowed = false;
     private boolean hasCrop = false;
     private boolean withered = false;
+    public int row;
+    public int col;
     public int coordinateX;
     public int coordinateY;
     public int randomNum;
@@ -41,9 +43,9 @@ public class Tile {
         }
 
         //random rocked
-        if (ThreadLocalRandom.current().nextInt(0,1+1) == 1) {
-            this.rocked = true;
-        }
+        // if (ThreadLocalRandom.current().nextInt(0,1+1) == 1) {
+        //     this.rocked = true;
+        // }
 
     }
     
@@ -137,7 +139,6 @@ public class Tile {
         if (hasCrop) {
             return this.crop;
         } else {
-            System.out.println("This tile does not have a crop");
             return this.crop;
         }
     }
@@ -205,7 +206,7 @@ public class Tile {
         } else if (hasCrop) {
             System.out.println("The tile already has a crop.");
             return false;
-        } else if(crop.getCropType() == "FruitTree" && crop.canPlant(this.coordinateX, this.coordinateY, farm)){
+        } else if(crop.getCropType() == "FruitTree" && !crop.canPlant(row, col, farm)){
             System.out.println("There is not enough space to plant this crop.");
             return false;
         } else {

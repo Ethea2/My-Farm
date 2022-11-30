@@ -33,6 +33,8 @@ public class MyFarm {
         for(int i = 0; i < TILE_ROW; i++) {
             for(int j = 0; j < TILE_COL; j++) {
                 this.tile[i][j] = new Tile();
+                tile[i][j].row = i;
+                tile[i][j].col = j;
             }
         }
     }
@@ -93,6 +95,8 @@ public class MyFarm {
         for(int i = 0; i < TILE_ROW; i++) {
             for(int j = 0; j < TILE_COL; j++) {
                 tile[i][j] = new Tile();
+                tile[i][j].row = i;
+                tile[i][j].col = j;
             }
         }
         this.crops = new ArrayList<Crop>();

@@ -26,6 +26,9 @@ public class Apple extends FruitTree {
         this.basePrice = 5;
 
         this.expYield = 25;
+
+        this.guiTiles = new GuiTile[4];
+        loadImages();
     }
     public Apple() {
         this.cropName = "Apple";
@@ -35,16 +38,16 @@ public class Apple extends FruitTree {
     public void loadImages() {
         try {
             this.guiTiles[0] = new GuiTile();
-            this.guiTiles[0].image = ImageIO.read(getClass().getResourceAsStream("/resources/crops/fruit_trees/apple_0.png"));
+            this.guiTiles[0].image = ImageIO.read(getClass().getResourceAsStream("/resources/crops/fruit_trees/Apple_0.png"));
             
             this.guiTiles[1] = new GuiTile();
-            this.guiTiles[1].image = ImageIO.read(getClass().getResourceAsStream("/resources/crops/fruit_trees/apple_1.png"));
+            this.guiTiles[1].image = ImageIO.read(getClass().getResourceAsStream("/resources/crops/fruit_trees/Apple_1.png"));
 
             this.guiTiles[2] = new GuiTile();
-            this.guiTiles[2].image = ImageIO.read(getClass().getResourceAsStream("/resources/crops/fruit_trees/apple_2.png"));
+            this.guiTiles[2].image = ImageIO.read(getClass().getResourceAsStream("/resources/crops/fruit_trees/Apple_2.png"));
 
             this.guiTiles[3] = new GuiTile();
-            this.guiTiles[3].image = ImageIO.read(getClass().getResourceAsStream("/resources/crops/fruit_trees/apple_h.png"));
+            this.guiTiles[3].image = ImageIO.read(getClass().getResourceAsStream("/resources/crops/fruit_trees/Apple_h.png"));
         } catch (Exception e) {
             e.printStackTrace();
         }

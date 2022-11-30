@@ -34,6 +34,7 @@ public class Tulip extends Flower{
         this.cropName = "Tulip";
     }
 
+    @Override
     public void loadImages() {
         try {
             this.guiTiles[0] = new GuiTile();

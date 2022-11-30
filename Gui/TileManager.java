@@ -14,7 +14,7 @@ public class TileManager {
     public TileManager(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
 
-        tile = new GuiTile[10];
+        tile = new GuiTile[11];
         mapTileNumber = new int[gamePanel.MAX_SCREEN_COLUMN][gamePanel.MAX_SCREEN_ROW];
 
         getTileImage();
@@ -59,6 +59,9 @@ public class TileManager {
             tile[9] = new GuiTile();
             tile[9].image = ImageIO.read(getClass().getResourceAsStream("../resources/tiles/trees_bott.png"));
             tile[9].collision = true;
+
+            tile[10] = new GuiTile();
+            tile[10].image = ImageIO.read(getClass().getResourceAsStream("../resources/tiles/soil.png"));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -73,19 +76,20 @@ public class TileManager {
             int row = 0;
             int tilecol = 0;
             int tilerow = -3; //idk why but it fucking works
-
             while(col < gamePanel.MAX_SCREEN_COLUMN && row < gamePanel.MAX_SCREEN_ROW) {
 
                 String line = br.readLine();
-                System.out.println(line);
+                //System.out.println(line);
 
                 while(col < gamePanel.MAX_SCREEN_COLUMN) {
                     String numbers[] = line.split(" ");
 
                     int num = Integer.parseInt(numbers[col]);
-                    if(num == 0) {
+                    if(num == 0 || num == 10) {
                         gamePanel.farm.getTile()[tilerow][tilecol].coordinateX = col;
                         gamePanel.farm.getTile()[tilerow][tilecol].coordinateY = row;
+                        if(num == 10)
+                            gamePanel.farm.getTile()[tilerow][tilecol].setRock();
                         tilecol++;
                         // System.out.println(tilecol);
                     }
