@@ -16,6 +16,8 @@ public class Tile {
     private boolean plowed = false;
     private boolean hasCrop = false;
     private boolean withered = false;
+    public int row;
+    public int col;
     public int coordinateX;
     public int coordinateY;
     public int randomNum;
@@ -30,20 +32,20 @@ public class Tile {
         randomNum = ThreadLocalRandom.current().nextInt(0, 2 + 1);
         this.rockedImage = new BufferedImage[3];
         try {
-            this.rockedImage[0] = ImageIO.read(getClass().getResourceAsStream("../resources/tiles/rock1.png"));
-            this.rockedImage[1] = ImageIO.read(getClass().getResourceAsStream("../resources/tiles/rock2.png"));
-            this.rockedImage[2] = ImageIO.read(getClass().getResourceAsStream("../resources/tiles/rock3.png"));
-            this.plowedImage = ImageIO.read(getClass().getResourceAsStream("../resources/tiles/dirt_plowed.png"));
+            this.rockedImage[0] = ImageIO.read(getClass().getResourceAsStream("../resources/tiles/rock_1.png"));
+            this.rockedImage[1] = ImageIO.read(getClass().getResourceAsStream("../resources/tiles/rock_2.png"));
+            this.rockedImage[2] = ImageIO.read(getClass().getResourceAsStream("../resources/tiles/rock_3.png"));
+            this.plowedImage = ImageIO.read(getClass().getResourceAsStream("../resources/tiles/soil_plowed.png"));
             this.witheredImage = ImageIO.read(getClass().getResourceAsStream("../resources/crops/withered.png"));
-            this.normalTile = ImageIO.read(getClass().getResourceAsStream("../resources/tiles/dirt.png"));
+            this.normalTile = ImageIO.read(getClass().getResourceAsStream("../resources/tiles/soil.png"));
         } catch (Exception e) {
             e.printStackTrace();    
         }
 
         //random rocked
-        if (ThreadLocalRandom.current().nextInt(0,1+1) == 1) {
-            this.rocked = true;
-        }
+        // if (ThreadLocalRandom.current().nextInt(0,1+1) == 1) {
+        //     this.rocked = true;
+        // }
 
     }
     
@@ -137,7 +139,6 @@ public class Tile {
         if (hasCrop) {
             return this.crop;
         } else {
-            System.out.println("This tile does not have a crop");
             return this.crop;
         }
     }
@@ -200,13 +201,16 @@ public class Tile {
      */
     public boolean plantCrop(Crop crop, MyFarm farm) {
         if (!plowed) {
-            System.out.println("The tile has not been plowed.");
+            showMessage("The tile has not been plowed.");
             return false;
         } else if (hasCrop) {
-            System.out.println("The tile already has a crop.");
+            showMessage("The tile already has a crop.");
             return false;
-        } else if(crop.getCropType() == "FruitTree" && crop.canPlant(this.coordinateX, this.coordinateY, farm)){
-            System.out.println("There is not enough space to plant this crop.");
+        } else if(crop.getSeedCost() > farm.getPlayer().getObjectcoins()){
+            showMessage("You do not have enough coins to buy these seeds.");
+            return false;
+        } else if(crop.getCropType() == "FruitTree" && !crop.canPlant(row, col, farm)){
+            showMessage("There is not enough space to plant this crop.");
             return false;
         } else {
             this.crop = crop;
@@ -252,6 +256,9 @@ public class Tile {
             if (status.equals("harvestable")) {
                 this.crop = null;
                 this.hasCrop = false;
+            }
+            else{
+                showMessage("This crop is not ready to be harvested.");
             }
         }
     }

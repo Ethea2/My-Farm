@@ -24,9 +24,11 @@ public class Pickaxe extends Tools {
      */
     @Override
     public void useTool(Tile tile, Player player, int currentDay) {
-        if (tile.removeRock()) {
-            player.addExperience(expGained);
-            player.subtractObjectcoins(costUsage);
+        if(checkAfford(player)){
+            if (tile.removeRock()) {
+                player.addExperience(expGained);
+                player.subtractObjectcoins(costUsage);
+            }
         }
     }
 }

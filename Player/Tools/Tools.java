@@ -1,5 +1,7 @@
 package Player.Tools;
 
+import javax.swing.JOptionPane;
+
 import Player.*;
 
 public class Tools {
@@ -47,5 +49,17 @@ public class Tools {
     public void useTool(Tile tile, Player player, int currentDay) {
         player.addExperience(expGained);
         player.subtractObjectcoins(costUsage);
+    }
+
+    public boolean checkAfford(Player player){
+        if(this.costUsage > player.getObjectcoins()){
+            showMessage("You do not have enough coins to use this tool.");
+            return false;
+        }
+        else return true;
+    }
+
+    public void showMessage(String message) {
+        JOptionPane.showMessageDialog(null, message, "Tool Error", JOptionPane.PLAIN_MESSAGE);
     }
 }

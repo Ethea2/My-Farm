@@ -13,7 +13,7 @@ import Player.MyFarm;
  */
 
 public class Player {
-    private int objectCoin;
+    private double objectCoin;
     private double experience;
     private Farmer farmerType;
     private int level;
@@ -49,7 +49,8 @@ public class Player {
      */
     public void buySeed(Tile tile, int plantDay, Crop cropSeed, MyFarm farm) {
         if (tile.plantCrop(cropSeed, farm)) { // The checks if the tile plant crop was successful
-            this.objectCoin -= (cropSeed.getSeedCost() - farmerType.getSeedCostReduction()); // on a successful
+            this.objectCoin = this.objectCoin - (cropSeed.getSeedCost() - farmerType.getSeedCostReduction());
+                                                                                            // on a successful
                                                                                              // planting, we subtract
                                                                                              // the seed cost with the
                                                                                              // cost reduction of t he
@@ -77,7 +78,7 @@ public class Player {
             Crop crop = tile.getCrop(); // stores the tile's crop reference
             String status = crop.checkStatus(currentDay);
             if (status.equals("harvestable")) {
-                this.objectCoin += crop.computeFinalPrice(farmerType);
+                this.objectCoin = this.objectCoin + crop.computeFinalPrice(farmerType);
                 this.experience += crop.getExpYield();
                 tile.harvest(currentDay);
                 System.out.println("The crop was successfully harvested.");
@@ -95,20 +96,6 @@ public class Player {
     }
 
     /*
-     * The levelUp function checks the level of the farmer and computes if
-     * the farmer is eligible for a level up.
-     */
-    public void levelUp() {
-        int temp = this.level;
-        this.level = (int) this.experience / 100;
-        if (this.level == temp) {
-            System.out.println("You were unable to level up due to the lack of experience.");
-        } else if (this.level != temp) {
-            System.out.println(String.format("You have leveled up to %d!", this.level));
-        }
-    }
-
-    /*
      * The register function decides whether the farmer is eligible to register for
      * a new farmer type. If the farmer is eligible, he can then register for the 
      * farmer type he's aiming.
@@ -116,23 +103,23 @@ public class Player {
      * @param choice    the choice of the user on what farmer type
      */
     public void register(int choice) {
-        if (choice == 1 && (this.objectCoin >= 200 && level >= 5) //checks if the farmer has enough money and levels for the farmer upgrade
+        if (choice == 1 && (this.objectCoin >= 200 && getLevel() >= 5) //checks if the farmer has enough money and levels for the farmer upgrade
                 && !this.farmerType.getFarmerType().equals("Registered Farmer")) { // checks if the farmer is already a registered farmer
             this.farmerType = new RegisteredFarmer();
             this.objectCoin -= 200;
             System.out.println("You have successfully become a Registered Farmer");
-        } else if (choice == 1 && !(this.objectCoin >= 200 && level >= 5)) {
+        } else if (choice == 1 && !(this.objectCoin >= 200 && getLevel() >= 5)) {
             System.out.println("You are inelgible for this Registered Farmer status");
         } else if (choice == 1 && this.farmerType.getFarmerType().equals("Registered Farmer")) {
             System.out.println("You are already a Registered Farmer");
         }
 
-        if (choice == 2 && (this.objectCoin >= 300 && level >= 10)
+        if (choice == 2 && (this.objectCoin >= 300 && getLevel() >= 10)
                 && !this.farmerType.getFarmerType().equals("Distinguished Farmer")) {
             this.farmerType = new DistinguishedFarmer();
             this.objectCoin -= 300;
             System.out.println("You have successfully become a Distinguished Farmer");
-        } else if (choice == 2 && !(this.objectCoin >= 300 && level >= 10)) {
+        } else if (choice == 2 && !(this.objectCoin >= 300 && getLevel() >= 10)) {
             System.out.println("You are inelgible for this Distinguished Farmer status");
         } else if (choice == 2 && this.farmerType.getFarmerType().equals("Distinguished Farmer")) {
             System.out.println("You are already a Distinguished Farmer...");
@@ -154,11 +141,12 @@ public class Player {
 
     /*
      * The getter function for the level of the player.
+     * A gains 1 level for every 100 experience points.
      * 
      * @return level    the level of the player
      */
     public int getLevel() {
-        return this.level;
+        return this.level = (int) Math.floor(this.experience / 100);
     }
 
     /*
