@@ -24,9 +24,11 @@ public class Plow extends Tools {
      */
     @Override
     public void useTool(Tile tile, Player player, int currentDay) {
-        if (tile.setPlowed()) {
-            player.addExperience(expGained);
-            player.subtractObjectcoins(costUsage);
+        if (checkAfford(player)){
+            if(tile.setPlowed()) {
+                player.addExperience(expGained);
+                player.subtractObjectcoins(costUsage);
+            }
         }
     }
 }

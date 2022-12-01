@@ -24,10 +24,12 @@ public class Fertilizer extends Tools {
      */
     @Override
     public void useTool(Tile tile, Player player, int currentDay) {
-        if (!(tile.getCrop() == null)) {
-            player.addExperience(expGained);
-            player.subtractObjectcoins(costUsage);
-            tile.getCrop().addFert();
+        if (checkAfford(player)){
+            if (!(tile.getCrop() == null)) {
+                player.addExperience(expGained);
+                player.subtractObjectcoins(costUsage);
+                tile.getCrop().addFert();
+            }
         }
     }
 }

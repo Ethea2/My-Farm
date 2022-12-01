@@ -24,9 +24,11 @@ public class Shovel extends Tools {
      */
     @Override
     public void useTool(Tile tile, Player player, int currentDay) {
-        if (tile.removeWithered(currentDay)) {
-            player.addExperience(expGained);
-            player.subtractObjectcoins(costUsage);
+        if(checkAfford(player)){
+            if (tile.removeWithered(currentDay)) {
+                player.addExperience(expGained);
+                player.subtractObjectcoins(costUsage);
+            }
         }
     }
 }

@@ -201,13 +201,16 @@ public class Tile {
      */
     public boolean plantCrop(Crop crop, MyFarm farm) {
         if (!plowed) {
-            System.out.println("The tile has not been plowed.");
+            showMessage("The tile has not been plowed.");
             return false;
         } else if (hasCrop) {
-            System.out.println("The tile already has a crop.");
+            showMessage("The tile already has a crop.");
+            return false;
+        } else if(crop.getSeedCost() > farm.getPlayer().getObjectcoins()){
+            showMessage("You do not have enough coins to buy these seeds.");
             return false;
         } else if(crop.getCropType() == "FruitTree" && !crop.canPlant(row, col, farm)){
-            System.out.println("There is not enough space to plant this crop.");
+            showMessage("There is not enough space to plant this crop.");
             return false;
         } else {
             this.crop = crop;
@@ -253,6 +256,9 @@ public class Tile {
             if (status.equals("harvestable")) {
                 this.crop = null;
                 this.hasCrop = false;
+            }
+            else{
+                showMessage("This crop is not ready to be harvested.");
             }
         }
     }

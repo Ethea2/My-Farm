@@ -30,6 +30,10 @@ public class SidePanel extends JPanel implements ActionListener {
     public final int MAX_SCREEN_ROW = 11;
     public final int SCREEN_WIDTH = MAX_SCREEN_COLUMN * TILE_SIZE;
     public final int SCREEN_HEIGHT = MAX_SCREEN_ROW * TILE_SIZE;
+    
+    public final int SPACE = 5;
+    public final float COIN_FONT_SIZE = 18f;
+    public final float INFO_FONT_SIZE = 14f;
 
     GamePanel gamePanel;
     JButton pickaxeButton, plowButton, advanceDayButton, harvestButton, RoseButton, waterCanButton, shovelButton, fertilizerButton,
@@ -120,24 +124,36 @@ public class SidePanel extends JPanel implements ActionListener {
         registerButton.addActionListener(this);
         registerButton.setBounds(0, 8*TILE_SIZE, 3*TILE_SIZE, TILE_SIZE);
 
+        //INFO
         coinsText = new JLabel();
-        coinsText.setText(String.format("%s", gamePanel.farm.getPlayer().getObjectcoins()));
-        coinsText.setBounds(2*TILE_SIZE, 0, 3*TILE_SIZE, TILE_SIZE);
-        //coinsText.setFont(font);
+        double coins = Math.round((gamePanel.farm.getPlayer().getObjectcoins())*100)/100;
+        coinsText.setText(String.format("%s", coins));
+        coinsText.setBounds(1*TILE_SIZE + SPACE, 0, 3*TILE_SIZE, TILE_SIZE);
+        coinsText.setFont(font.deriveFont(Font.BOLD, COIN_FONT_SIZE));
 
         coinsBackground = new JLabel(new ImageIcon(coinsBG));
         coinsBackground.setBounds(0, 0, 3*TILE_SIZE, TILE_SIZE);
-        //coinsBackground.add(coinsText);
 
         dayText = new JLabel();
         dayText.setText(String.format("%s", gamePanel.farm.getCurrentDay()));
-        dayText.setBounds(2*TILE_SIZE, 1*TILE_SIZE, 2*TILE_SIZE, TILE_SIZE);
+        dayText.setBounds(2*TILE_SIZE + SPACE, 1*TILE_SIZE, 2*TILE_SIZE, TILE_SIZE);
+        dayText.setFont(font.deriveFont(Font.BOLD, INFO_FONT_SIZE));
 
         dayBackground = new JLabel(new ImageIcon(dayBG));
         dayBackground.setBounds(1*TILE_SIZE, 1*TILE_SIZE, 2*TILE_SIZE, TILE_SIZE);
+        
+        lvlText = new JLabel();
+        lvlText.setText(String.format("%s", gamePanel.farm.getPlayer().getLevel()));
+        lvlText.setBounds(2*TILE_SIZE + SPACE, 2*TILE_SIZE, 2*TILE_SIZE, TILE_SIZE);
+        lvlText.setFont(font.deriveFont(Font.BOLD, INFO_FONT_SIZE));
 
         lvlBackground = new JLabel(new ImageIcon(lvlBG));
         lvlBackground.setBounds(1*TILE_SIZE, 2*TILE_SIZE, 2*TILE_SIZE, TILE_SIZE);
+
+        expText = new JLabel();
+        expText.setText(String.format("%s", gamePanel.farm.getPlayer().getExperience()));
+        expText.setBounds(2*TILE_SIZE + SPACE, 3*TILE_SIZE, 2*TILE_SIZE, TILE_SIZE);
+        expText.setFont(font.deriveFont(Font.BOLD, INFO_FONT_SIZE));
 
         expBackground = new JLabel(new ImageIcon(expBG));
         expBackground.setBounds(1*TILE_SIZE, 3*TILE_SIZE, 2*TILE_SIZE, TILE_SIZE);
@@ -165,14 +181,16 @@ public class SidePanel extends JPanel implements ActionListener {
         this.add(coinsBackground);
         this.add(dayText);
         this.add(dayBackground);
+        this.add(lvlText);
         this.add(lvlBackground);
+        this.add(expText);
         this.add(expBackground);
         this.add(logBackground);
     }
 
     public void loadFont() {
         try {
-            InputStream is = getClass().getResourceAsStream("/resources/font/ConnectionIi-2wj8.otf");
+            InputStream is = getClass().getResourceAsStream("/resources/font/NineteenNinetyThree-L1Ay.ttf");
             font = Font.createFont(Font.TRUETYPE_FONT, is);
             GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(font);
             System.out.println(String.format("%s", font));
@@ -331,6 +349,9 @@ public class SidePanel extends JPanel implements ActionListener {
 
     public void updateText() {
         coinsText.setText(String.format("%s", gamePanel.farm.getPlayer().getObjectcoins()));
+        dayText.setText(String.format("%s", gamePanel.farm.getCurrentDay()));
+        lvlText.setText(String.format("%s", gamePanel.farm.getPlayer().getLevel()));
+        expText.setText(String.format("%s", gamePanel.farm.getPlayer().getExperience()));
     }
 
     public Tile getTile() {
