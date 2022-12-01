@@ -331,11 +331,10 @@ public class SidePanel extends JPanel implements ActionListener {
             buyApple();
             updateText();
         }
-        /*
         else if(e.getSource() == registerButton) {
             register();
+            updateText();
         }
-        */
 
 
         EventQueue.invokeLater(new Runnable() {
@@ -434,11 +433,10 @@ public class SidePanel extends JPanel implements ActionListener {
         if(getTile() != null)
             gamePanel.farm.getPlayer().buySeed(getTile(), gamePanel.farm.getCurrentDay(), new Apple(gamePanel.farm.getCurrentDay()), gamePanel.farm);
     }
+
     //REGISTER
-    /*
-    public void Register() {
+    public void register() {
         if(getTile() != null)
-        gamePanel.farm.getPlayer().register(ABORT););
+            gamePanel.farm.getPlayer().register();
     }
-    */
 }

@@ -17,6 +17,9 @@ public class GamePanel extends JPanel implements Runnable {
     public final int SCREEN_WIDTH = MAX_SCREEN_COLUMN * TILE_SIZE;
     public final int SCREEN_HEIGHT = MAX_SCREEN_ROW * TILE_SIZE;
 
+    public final int SOIL_TILES_ROW = 5;
+    public final int SOIL_TILES_COLUMN = 10;
+
     int FPS = 60;
 
     public MyFarm farm = new MyFarm();
@@ -74,8 +77,8 @@ public class GamePanel extends JPanel implements Runnable {
 
         tileM.draw(g2);
 
-        for(int i = 0; i < 5; i++) {
-            for(int j = 0; j < 10; j++) {
+        for(int i = 0; i < SOIL_TILES_ROW; i++) {
+            for(int j = 0; j < SOIL_TILES_COLUMN; j++) {
                 farm.getTile()[i][j].draw(g2, this);
             }
         }
