@@ -24,10 +24,10 @@ public class Player {
      * The constructor for the player class.
      */
     public Player() {
-        this.objectCoin = 100; //100
-        this.experience = 0; //0
-        this.level = 0; //0
-        this.farmerType = new Farmer();
+        this.objectCoin = 2000; //100
+        this.experience = 1500; //0
+        this.level = 15; //0
+        this.farmerType = new Farmer(); //Farmer()
         tools = new ArrayList<Tools>();
         tools.add(new Shovel());
         tools.add(new WaterCan());
@@ -117,23 +117,23 @@ public class Player {
             //System.out.println("***CHECKED***");
             if(this.objectCoin >= 200 && this.level >= 5){
                 this.farmerType = new RegisteredFarmer();
-                this.objectCoin -= 200;
+                this.subtractObjectcoins(200);
                 System.out.println("You have successfully become a Registered Farmer");
             } else{
                 showMessage("You are not eligible to become a Registered Farmer.");
             }
         } else if (this.farmerType.getFarmerType() == "Registered Farmer"){
             if(this.objectCoin >= 300 && this.level >= 10){
-                this.farmerType = new RegisteredFarmer();
-                this.objectCoin -= 200;
-                System.out.println("You have successfully become a Distinguised Farmer");
+                this.farmerType = new DistinguishedFarmer();
+                this.subtractObjectcoins(300);
+                System.out.println("You have successfully become a Distinguished Farmer");
             } else{
-                showMessage("You are not eligible to become a Distinguised Farmer.");
+                showMessage("You are not eligible to become a Distinguished Farmer.");
             }
-        } else if (this.farmerType.getFarmerType() == "Distinguised Farmer"){
+        } else if (this.farmerType.getFarmerType() == "Distinguished Farmer"){
             if(this.objectCoin >= 400 && this.level >= 15){
-                this.farmerType = new RegisteredFarmer();
-                this.objectCoin -= 200;
+                this.farmerType = new LegendaryFarmer();
+                this.subtractObjectcoins(400);
                 System.out.println("You have successfully become a Legendary Farmer");
             } else{
                 showMessage("You are not eligible to become a Legendary Farmer.");

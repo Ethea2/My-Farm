@@ -277,6 +277,24 @@ public class Tile {
         return null;
     }
 
+    public void printTileInfo(int currentDay){
+        if(this.hasCrop){
+            System.out.println("-----------------------------------");
+            System.out.println("Crop: " + this.crop.getCropName());
+            System.out.println("Crop Type: " + this.crop.getCropType());
+            System.out.println("Plant Day: " + this.crop.getPlantDay());
+            System.out.println("Harvest In: " + (currentDay - (this.crop.getPlantDay() + this.crop.getHarvestTime())) + "days");
+
+            System.out.println("\nTimes Watered: " + this.crop.getWaterCount());
+            System.out.println("Times Fertilized: " + this.crop.getFertCount());
+            System.out.println("-----------------------------------");
+        } else{
+            System.out.println("Crop: No crop");
+        }
+        System.out.println("Rocked: " + this.crop.getCropName());
+        
+    }
+
     public void draw(Graphics2D g2, GamePanel gamePanel) {
         //System.out.println("I got triggered " + this.rocked + coordinateX+coordinateY);
         //fix withered status.

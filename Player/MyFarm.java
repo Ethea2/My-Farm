@@ -44,11 +44,13 @@ public class MyFarm {
      * The advanceDay function increases the day count.
      */
     public void advanceDay() {
+        /*
         if(checkGameOver()){
             String message = "Game Over. Play Again?";
             JOptionPane.showMessageDialog(null, message, "Game Over", JOptionPane.PLAIN_MESSAGE);
             gameReset();
         }
+        */
         this.day++;
         for(int i = 0; i < TILE_ROW; i++) {
             for(int j = 0; j < TILE_COL; j++) {

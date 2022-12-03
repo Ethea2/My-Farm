@@ -207,6 +207,15 @@ public class Crop {
 	}
 
 	/** 
+	 * Gets the days it takes for the plant to be
+	 * ready for harvest.
+	 * @return this crop's harvest time
+	 */
+	public int getHarvestTime(){
+		return this.harvestTime;
+	}
+
+	/** 
 	 * Checks if this crop is harvestable or not.
 	 * @return this crop's harvestable status
 	 */

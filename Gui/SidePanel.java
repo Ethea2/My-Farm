@@ -34,12 +34,13 @@ public class SidePanel extends JPanel implements ActionListener {
     public final int SPACE = 5;
     public final float COIN_FONT_SIZE = 18f;
     public final float INFO_FONT_SIZE = 14f;
+    public final float TYPE_FONT_SIZE = 12f;
 
     GamePanel gamePanel;
     JButton pickaxeButton, plowButton, advanceDayButton, harvestButton, RoseButton, waterCanButton, shovelButton, fertilizerButton,
     sunflowerButton, tulipButton, carrotButton, potatoButton, turnipButton, mangoButton, appleButton, registerButton;
-    JLabel coinsBackground, dayBackground, expBackground, lvlBackground, logBackground;
-    JLabel coinsText, dayText, expText, lvlText;
+    JLabel coinsBackground, dayBackground, expBackground, lvlBackground, farmerTypeBackground, logBackground;
+    JLabel coinsText, dayText, expText, typeText, lvlText;
     ButtonIcon buttonImages[];
     BufferedImage registerImage, coinsBG, dayBG, expBG, lvlBG, logBG;
     Font font;
@@ -155,11 +156,16 @@ public class SidePanel extends JPanel implements ActionListener {
         expText.setBounds(2*TILE_SIZE + SPACE, 3*TILE_SIZE, 2*TILE_SIZE, TILE_SIZE);
         expText.setFont(font.deriveFont(Font.BOLD, INFO_FONT_SIZE));
 
+        typeText = new JLabel();
+        typeText.setText(String.format("%s", gamePanel.farm.getPlayer().getFarmerType().getFarmerType()));
+        typeText.setBounds(2*SPACE, 9*TILE_SIZE, 3*TILE_SIZE, TILE_SIZE);
+        typeText.setFont(font.deriveFont(Font.BOLD, TYPE_FONT_SIZE));
+
         expBackground = new JLabel(new ImageIcon(expBG));
         expBackground.setBounds(1*TILE_SIZE, 3*TILE_SIZE, 2*TILE_SIZE, TILE_SIZE);
-
+        
         logBackground = new JLabel(new ImageIcon(logBG));
-        logBackground.setBounds(0*TILE_SIZE, 9*TILE_SIZE, 3*TILE_SIZE, 2*TILE_SIZE);
+        logBackground.setBounds(0, 9*TILE_SIZE, 3*TILE_SIZE, TILE_SIZE);
 
         this.add(pickaxeButton);
         this.add(plowButton);
@@ -184,6 +190,7 @@ public class SidePanel extends JPanel implements ActionListener {
         this.add(lvlText);
         this.add(lvlBackground);
         this.add(expText);
+        this.add(typeText);
         this.add(expBackground);
         this.add(logBackground);
     }
@@ -351,6 +358,8 @@ public class SidePanel extends JPanel implements ActionListener {
         dayText.setText(String.format("%s", gamePanel.farm.getCurrentDay()));
         lvlText.setText(String.format("%s", gamePanel.farm.getPlayer().getLevel()));
         expText.setText(String.format("%s", gamePanel.farm.getPlayer().getExperience()));
+        typeText.setText(String.format("%s", gamePanel.farm.getPlayer().getFarmerType().getFarmerType()));
+        //showFarmerType();
     }
 
     public Tile getTile() {
@@ -436,7 +445,6 @@ public class SidePanel extends JPanel implements ActionListener {
 
     //REGISTER
     public void register() {
-        if(getTile() != null)
-            gamePanel.farm.getPlayer().register();
+        gamePanel.farm.getPlayer().register();
     }
 }
