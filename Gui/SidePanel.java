@@ -20,6 +20,7 @@ import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.DecimalFormat;
 
 public class SidePanel extends JPanel implements ActionListener {
     final int ORIGINAL_TILE_SIZE = 16;
@@ -34,6 +35,9 @@ public class SidePanel extends JPanel implements ActionListener {
     public final int SPACE = 5;
     public final float COIN_FONT_SIZE = 18f;
     public final float INFO_FONT_SIZE = 14f;
+
+    private final DecimalFormat df1 = new DecimalFormat("0.0");
+    private final DecimalFormat df2 = new DecimalFormat("0.00");
 
     GamePanel gamePanel;
     JButton pickaxeButton, plowButton, advanceDayButton, harvestButton, RoseButton, waterCanButton, shovelButton, fertilizerButton,
@@ -126,8 +130,9 @@ public class SidePanel extends JPanel implements ActionListener {
 
         //INFO
         coinsText = new JLabel();
-        double coins = Math.round((gamePanel.farm.getPlayer().getObjectcoins())*100)/100;
-        coinsText.setText(String.format("%s", coins));
+        //double coins = Math.round((gamePanel.farm.getPlayer().getObjectcoins())*100)/100;
+        double coins = gamePanel.farm.getPlayer().getObjectcoins();
+        coinsText.setText(String.format("%s", df2.format(coins)));
         coinsText.setBounds(1*TILE_SIZE + SPACE, 0, 3*TILE_SIZE, TILE_SIZE);
         coinsText.setFont(font.deriveFont(Font.BOLD, COIN_FONT_SIZE));
 
@@ -151,7 +156,7 @@ public class SidePanel extends JPanel implements ActionListener {
         lvlBackground.setBounds(1*TILE_SIZE, 2*TILE_SIZE, 2*TILE_SIZE, TILE_SIZE);
 
         expText = new JLabel();
-        expText.setText(String.format("%s", gamePanel.farm.getPlayer().getExperience()));
+        expText.setText(String.format("%s", df1.format(gamePanel.farm.getPlayer().getExperience())));
         expText.setBounds(2*TILE_SIZE + SPACE, 3*TILE_SIZE, 2*TILE_SIZE, TILE_SIZE);
         expText.setFont(font.deriveFont(Font.BOLD, INFO_FONT_SIZE));
 
@@ -193,12 +198,9 @@ public class SidePanel extends JPanel implements ActionListener {
             InputStream is = getClass().getResourceAsStream("/resources/font/NineteenNinetyThree-L1Ay.ttf");
             font = Font.createFont(Font.TRUETYPE_FONT, is);
             GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(font);
-            System.out.println(String.format("%s", font));
         } catch (FontFormatException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
@@ -373,23 +375,23 @@ public class SidePanel extends JPanel implements ActionListener {
     //TOOLS
     public void pickaxe() {
         if(getTile() != null)
-            gamePanel.farm.getPlayer().getTool(2).useTool(getTile(), gamePanel.farm.getPlayer(), gamePanel.farm.getCurrentDay());;
+            gamePanel.farm.getPlayer().getTool(2).useTool(getTile(), gamePanel.farm.getPlayer(), gamePanel.farm.getCurrentDay());
     }
     public void plow() {
         if(getTile() != null)
-            gamePanel.farm.getPlayer().getTool(4).useTool(getTile(), gamePanel.farm.getPlayer(), gamePanel.farm.getCurrentDay());;
+            gamePanel.farm.getPlayer().getTool(4).useTool(getTile(), gamePanel.farm.getPlayer(), gamePanel.farm.getCurrentDay());
     }
     public void water() {
         if(getTile() != null)
-            gamePanel.farm.getPlayer().getTool(1).useTool(getTile(), gamePanel.farm.getPlayer(), gamePanel.farm.getCurrentDay());;
+            gamePanel.farm.getPlayer().getTool(1).useTool(getTile(), gamePanel.farm.getPlayer(), gamePanel.farm.getCurrentDay());
     }
     public void shovel() {
         if(getTile() != null)
-            gamePanel.farm.getPlayer().getTool(0).useTool(getTile(), gamePanel.farm.getPlayer(), gamePanel.farm.getCurrentDay());;
+            gamePanel.farm.getPlayer().getTool(0).useTool(getTile(), gamePanel.farm.getPlayer(), gamePanel.farm.getCurrentDay());
     }
     public void fertilize() {
         if(getTile() != null)
-            gamePanel.farm.getPlayer().getTool(3).useTool(getTile(), gamePanel.farm.getPlayer(), gamePanel.farm.getCurrentDay());;
+            gamePanel.farm.getPlayer().getTool(3).useTool(getTile(), gamePanel.farm.getPlayer(), gamePanel.farm.getCurrentDay());
     }
 
     //ACTIONS
