@@ -46,7 +46,7 @@ public class Player {
      * 
      * @param cropSeed the crop that is going to be planted
      * 
-     * @param farm the 
+     * @param farm the
      */
     public void buySeed(Tile tile, int plantDay, Crop cropSeed, MyFarm farm) {
         if (tile.plantCrop(cropSeed, farm)) { // The checks if the tile plant crop was successful
@@ -74,7 +74,7 @@ public class Player {
      */
     public void harvestTile(Tile tile, int currentDay) {
         if (tile.getCrop() == null) { // checks if the tile has a crop or not.
-            System.out.println("");
+
         } else {
             Crop crop = tile.getCrop(); // stores the tile's crop reference
             String status = crop.checkStatus(currentDay);
@@ -82,10 +82,10 @@ public class Player {
                 addObjectcoins(crop.computeFinalPrice(farmerType));
                 addExperience(crop.getExpYield());
                 tile.harvest(currentDay);
-                System.out.println("The crop was successfully harvested.");
-                System.out.println("Yield: " + crop.getYield());
-                System.out.println("Objectcoins Gained: " + crop.getFinalPrice());
-                System.out.println("Experience Gained: " + crop.getExpYield());
+                JOptionPane.showMessageDialog(null, String.format(
+                        "The %s was harvested successfully!\nYield: %d\nObjectcoins Gained: %.2f\nExperience Gained: %.2f",
+                        crop.getCropName(), crop.getYield(), crop.getFinalPrice(), crop.getExpYield()), "Harvest Pane",
+                        JOptionPane.WARNING_MESSAGE);
             } else if (status.equals("withered")) {
                 tile.cropWithered();
                 showMessage("The crop has withered.");
@@ -106,10 +106,10 @@ public class Player {
 
     /*
      * The register function decides whether the farmer is eligible to register for
-     * a new farmer type. If the farmer is eligible, he can then register for the 
+     * a new farmer type. If the farmer is eligible, he can then register for the
      * farmer type he's aiming.
      * 
-     * @param choice    the choice of the user on what farmer type
+     * @param choice the choice of the user on what farmer type
      */
     public void register() {
         //System.out.println("***CHECKED***");
@@ -153,7 +153,7 @@ public class Player {
      * The getter function for the level of the player.
      * Player gains 1 level for every 100 experience points.
      * 
-     * @return level    the level of the player
+     * @return level the level of the player
      */
     public int getLevel() {
         return this.level;
@@ -162,16 +162,16 @@ public class Player {
     /*
      * The getter function for the experience of the player
      * 
-     * @return experience   the experience of the player
+     * @return experience the experience of the player
      */
     public double getExperience() {
         return this.experience;
     }
 
     /*
-     * The getter function for the farmer type. 
+     * The getter function for the farmer type.
      * 
-     * @return farmerType   the current farmer type of the player.
+     * @return farmerType the current farmer type of the player.
      */
     public Farmer getFarmerType() {
         return this.farmerType;
@@ -180,7 +180,7 @@ public class Player {
     /*
      * The getter function for objectCoins.
      * 
-     * @return objectCoin   the player's current object coin amount
+     * @return objectCoin the player's current object coin amount
      */
     public double getObjectcoins() {
         return this.objectCoin;
@@ -189,10 +189,11 @@ public class Player {
     // Subtract
 
     /*
-     * The subtractObjectcoins function basically subtracts the amount of cost to the 
+     * The subtractObjectcoins function basically subtracts the amount of cost to
+     * the
      * current amount of objectCoins
      * 
-     * @param cost  the cost of transaction.
+     * @param cost the cost of transaction.
      */
     public void subtractObjectcoins(double cost) {
         this.objectCoin -= cost;
@@ -204,7 +205,7 @@ public class Player {
      * addObjectcoins adds to the current object coins of the player
      * depending on the gains input.
      * 
-     * @param gain  the player's gain from the transaction
+     * @param gain the player's gain from the transaction
      */
     public void addObjectcoins(double gain) {
         this.objectCoin += gain;
@@ -214,7 +215,7 @@ public class Player {
      * The addExperience function appends the gained experience to the current
      * overall experience of the player.
      * 
-     * @param gain  the player's gain from the transaction
+     * @param gain the player's gain from the transaction
      */
     public void addExperience(double gain) {
         this.experience += gain;

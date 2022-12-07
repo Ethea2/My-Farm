@@ -5,6 +5,9 @@ import Player.Tile;
 import Player.FarmerType.Farmer;
 import java.awt.image.*;
 
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
+
 import Gui.GuiTile;
 
 public class Crop {
@@ -38,6 +41,7 @@ public class Crop {
 	// STATUS
 	protected boolean withered = false;
 	protected boolean harvestable = false;
+    protected boolean watered = false;
 
 	protected String stage;
 
@@ -277,10 +281,19 @@ public class Crop {
 	/** 
 	 * Adds water to this crop's water count.
 	 */
-	public void addWater() {
-		this.waterCount = this.waterCount + 1;
-		System.out.println("The crop was successfully watered!");
+	public boolean addWater() {
+        if(watered) {
+            JOptionPane.showMessageDialog(null, "The crop has already been watered today.", "Water error", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+        this.waterCount = this.waterCount + 1;
+        this.watered = true;
+        return true;
 	}
+
+    public void resetWater() {
+        this.watered = false;
+    }
 
 	/** 
 	 * Adds fertilizer to this crop's fertilizer water count.
