@@ -1,7 +1,6 @@
 package Player;
 
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
 
 import Crop.Crop;
 import Crop.Flowers.*;

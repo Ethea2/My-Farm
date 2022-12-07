@@ -1,16 +1,13 @@
 package Gui;
 
 import javax.imageio.ImageIO;
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import Player.Tile;
-import Player.Player;
 import Crop.Flowers.*;
 import Crop.FruitTrees.*;
 import Crop.RootCrops.*;
@@ -163,7 +160,7 @@ public class SidePanel extends JPanel implements ActionListener {
 
         typeText = new JLabel();
         typeText.setText(String.format("%s", gamePanel.farm.getPlayer().getFarmerType().getFarmerType()));
-        typeText.setBounds(2*SPACE, 9*TILE_SIZE, 3*TILE_SIZE, TILE_SIZE);
+        typeText.setBounds(2*SPACE, (9*TILE_SIZE)+3, 3*TILE_SIZE, TILE_SIZE);
         typeText.setFont(font.deriveFont(Font.BOLD, TYPE_FONT_SIZE));
 
         expBackground = new JLabel(new ImageIcon(expBG));

@@ -187,7 +187,6 @@ public class Tile {
         }
         else {
             this.plowed = true;
-            System.out.println("The tile has successfully been plowed.");
             return true;
         }
     }
@@ -215,7 +214,6 @@ public class Tile {
         } else {
             this.crop = crop;
             this.hasCrop = true;
-            System.out.println("The crop has been successfully planted!");
             return true;
         }
     }

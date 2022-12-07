@@ -6,7 +6,6 @@ import javax.swing.JOptionPane;
 import Crop.Crop;
 import Player.FarmerType.*;
 import Player.Tools.*;
-import Player.MyFarm;
 
 /*
  * The player class are where most of the player related functions are in. Functions such as leveling up,
@@ -118,7 +117,7 @@ public class Player {
             if(this.objectCoin >= 200 && this.level >= 5){
                 this.farmerType = new RegisteredFarmer();
                 this.subtractObjectcoins(200);
-                System.out.println("You have successfully become a Registered Farmer");
+                showMessage("You have successfully become a Registered Farmer.");;
             } else{
                 showMessage("You are not eligible to become a Registered Farmer.");
             }
@@ -126,7 +125,7 @@ public class Player {
             if(this.objectCoin >= 300 && this.level >= 10){
                 this.farmerType = new DistinguishedFarmer();
                 this.subtractObjectcoins(300);
-                System.out.println("You have successfully become a Distinguished Farmer");
+                showMessage("You have successfully become a Distinguished Farmer");
             } else{
                 showMessage("You are not eligible to become a Distinguished Farmer.");
             }
@@ -134,7 +133,7 @@ public class Player {
             if(this.objectCoin >= 400 && this.level >= 15){
                 this.farmerType = new LegendaryFarmer();
                 this.subtractObjectcoins(400);
-                System.out.println("You have successfully become a Legendary Farmer");
+                showMessage("You have successfully become a Legendary Farmer");
             } else{
                 showMessage("You are not eligible to become a Legendary Farmer.");
             }
@@ -144,7 +143,7 @@ public class Player {
     }
 
     public void showMessage(String message) {
-        JOptionPane.showMessageDialog(null, message, " ", JOptionPane.PLAIN_MESSAGE);
+        JOptionPane.showMessageDialog(null, message, "Registration.", JOptionPane.WARNING_MESSAGE);
     }
 
     // GETTERS

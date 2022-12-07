@@ -300,6 +300,6 @@ public class Crop {
 	 */
 	public void addFert() {
 		this.fertCount = this.fertCount + 1;
-		System.out.println("The crop was successfully fertilized!");
+		JOptionPane.showMessageDialog(null, "This tile was successfully fertilized!", "Fertilize Success!", JOptionPane.WARNING_MESSAGE);
 	}
 }
