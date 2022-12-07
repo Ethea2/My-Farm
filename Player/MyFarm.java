@@ -46,8 +46,11 @@ public class MyFarm {
         this.day++;
         for(int i = 0; i < TILE_ROW; i++) {
             for(int j = 0; j < TILE_COL; j++) {
-                if(this.tile[i][j].getCrop() != null)
+                if(this.tile[i][j].getCrop() != null){
                     this.tile[i][j].getCrop().setWithered(this.tile[i][j], this.tile[i][j].getCrop().checkStatus(this.day));
+                    this.tile[i][j].getCrop().resetWater();
+                }
+                    
             }
         }
     }
@@ -65,22 +68,32 @@ public class MyFarm {
         return cropsAvailable;
     }
 
+    public boolean checkTilesHasPlant() {
+        boolean temp = false;
+        if(this.day == 1) {
+            return !temp;
+        }
+        for(int i = 0; i < TILE_ROW; i++) {
+            for(int j = 0; j < TILE_COL; j++) {
+                temp = tile[i][j].checkPlanted();
+                if(temp) {
+                    return true;
+                }
+            }
+        }
+        return temp;
+    }
+
     /*
      * checks if all the game ending scenarios are true, will return true if either of them are true and false if not.
      * 
      * @return a boolean if the game continues or not.
      */
     public boolean checkGameOver() {
-        boolean temp = false;
-        for(int i = 0; i < TILE_ROW; i++) {
-            for(int j = 0; j < TILE_COL; j++) {
-                temp = !tile[i][j].checkPlanted();
-            }
-        }
         if (player.getObjectcoins() < 5) {
             return true;
         } 
-        else if (temp) {
+        else if (!checkTilesHasPlant()) {
             return true;
         }
         return false;

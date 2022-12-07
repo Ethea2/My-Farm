@@ -397,6 +397,16 @@ public class SidePanel extends JPanel implements ActionListener {
     //ACTIONS
     public void advanceDay() {
         gamePanel.farm.advanceDay();
+        if(gamePanel.farm.checkGameOver()) {
+            String[] options = {"Yes", "No"};
+            int response = JOptionPane.showOptionDialog(null, "You lose...\nDo you want to play again?", "Game Over", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
+            if(response == 0) {
+                gamePanel.restartGame();
+            }
+            else {
+                System.exit(1);
+            }
+        }
     }
     public void harvest() {
         if(getTile() != null)

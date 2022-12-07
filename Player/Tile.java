@@ -230,17 +230,16 @@ public class Tile {
      */
     public boolean removeWithered(int currentDay) {
         if (this.crop == null) {
-            System.out.println("This tile does not have a crop");
+            JOptionPane.showMessageDialog(null, "This tile does not have a withered crop.", "Shovel Error", JOptionPane.WARNING_MESSAGE);
             return false;
         } else if (this.crop.checkStatus(currentDay).equals("withered")) {
             this.withered = false;
             this.hasCrop = false;
             this.crop = null;
             this.plowed = false;
-            System.out.println("The withered crop has been shoveled.");
             return true;
         } else {
-            System.out.println("The crop is not withered or there are no crops.");
+            JOptionPane.showMessageDialog(null, "This tile does not have a withered crop.", "Shovel Error", JOptionPane.WARNING_MESSAGE);
             return false;
         }
     }

@@ -1,8 +1,15 @@
 package Gui;
 
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
+import java.lang.management.ManagementFactory;
+import java.util.ArrayList;
 
+import javax.swing.JComponent;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 import Gui.Entity.GuiPlayer;
 import Player.MyFarm;
@@ -10,7 +17,7 @@ import Player.MyFarm;
 public class GamePanel extends JPanel implements Runnable {
     final int ORIGINAL_TILE_SIZE = 16;
     final int SCALE = 3;
-    public final int TILE_SIZE = ORIGINAL_TILE_SIZE * SCALE; //48x48
+    public final int TILE_SIZE = ORIGINAL_TILE_SIZE * SCALE; // 48x48
 
     public final int MAX_SCREEN_COLUMN = 16;
     public final int MAX_SCREEN_ROW = 11;
@@ -27,7 +34,6 @@ public class GamePanel extends JPanel implements Runnable {
     public CollisionChecker collisionChecker = new CollisionChecker(this);
     public GuiPlayer player = new GuiPlayer(this, keyHandler);
 
-
     public GamePanel() {
         this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
         this.setBackground(Color.pink);
@@ -36,7 +42,6 @@ public class GamePanel extends JPanel implements Runnable {
         this.setFocusable(true);
     }
 
-
     public void startGameThread() {
         gameThread = new Thread(this);
         gameThread.start();
@@ -44,18 +49,18 @@ public class GamePanel extends JPanel implements Runnable {
 
     @Override
     public void run() {
-        double drawInterval = 1000000000/FPS;
+        double drawInterval = 1000000000 / FPS;
         double delta = 0;
         long lastTime = System.nanoTime();
         long currentTime;
 
-        while(gameThread != null) {
+        while (gameThread != null) {
             currentTime = System.nanoTime();
 
             delta += (currentTime - lastTime) / drawInterval;
             lastTime = currentTime;
 
-            if(delta >= 1) {
+            if (delta >= 1) {
                 update();
                 repaint();
                 delta--;
@@ -74,8 +79,8 @@ public class GamePanel extends JPanel implements Runnable {
 
         tileM.draw(g2);
 
-        for(int i = 0; i < 5; i++) {
-            for(int j = 0; j < 10; j++) {
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 10; j++) {
                 farm.getTile()[i][j].draw(g2, this);
             }
         }
@@ -90,7 +95,16 @@ public class GamePanel extends JPanel implements Runnable {
         sound.play();
         sound.loop();
     }
+
     public void stopMusic() {
         sound.stop();
+    }
+
+    public void restartGame() {
+        java.awt.Window win = SwingUtilities.getWindowAncestor(this);
+        farm.gameReset();
+        win.dispose();
+        stopMusic();
+        new Window();
     }
 }
