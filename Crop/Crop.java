@@ -5,7 +5,6 @@ import Player.Tile;
 import Player.FarmerType.Farmer;
 import java.awt.image.*;
 
-import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
 import Gui.GuiTile;

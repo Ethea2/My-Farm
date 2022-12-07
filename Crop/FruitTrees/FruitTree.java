@@ -2,9 +2,6 @@ package Crop.FruitTrees;
 
 import Crop.Crop;
 import Player.MyFarm;
-import Player.Tile;
-
-import java.util.ArrayList;
 
 public class FruitTree extends Crop{
     public FruitTree(int plantDay){

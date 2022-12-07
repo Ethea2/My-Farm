@@ -1,7 +1,6 @@
 package Crop.Flowers;
 
 import java.awt.image.*;
-import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
