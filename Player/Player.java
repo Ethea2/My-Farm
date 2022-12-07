@@ -23,9 +23,9 @@ public class Player {
      * The constructor for the player class.
      */
     public Player() {
-        this.objectCoin = 2000; //100
-        this.experience = 1500; //0
-        this.level = 15; //0
+        this.objectCoin = 100; //100
+        this.experience = 0; //0
+        this.level = 0; //0
         this.farmerType = new Farmer(); //Farmer()
         tools = new ArrayList<Tools>();
         tools.add(new Shovel());
@@ -92,7 +92,6 @@ public class Player {
                 showMessage("This crop is still growing and is unharvestable.");
             }
         }
-
     }
 
     public void checkLevelUp(){
@@ -186,7 +185,7 @@ public class Player {
     }
 
     // Subtract
-
+    
     /*
      * The subtractObjectcoins function basically subtracts the amount of cost to
      * the

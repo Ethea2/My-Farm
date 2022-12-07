@@ -275,21 +275,32 @@ public class Tile {
     }
 
     public void printTileInfo(int currentDay){
+        System.out.println("-----------------------------------");
+        System.out.println("Tile Coordinates X: " + this.coordinateX + "Y: " + this.coordinateY);
         if(this.hasCrop){
-            System.out.println("-----------------------------------");
             System.out.println("Crop: " + this.crop.getCropName());
             System.out.println("Crop Type: " + this.crop.getCropType());
+            System.out.println("Status: " + this.crop.checkStatus(currentDay));
             System.out.println("Plant Day: " + this.crop.getPlantDay());
             System.out.println("Harvest In: " + (currentDay - (this.crop.getPlantDay() + this.crop.getHarvestTime())) + "days");
 
             System.out.println("\nTimes Watered: " + this.crop.getWaterCount());
             System.out.println("Times Fertilized: " + this.crop.getFertCount());
-            System.out.println("-----------------------------------");
         } else{
-            System.out.println("Crop: No crop");
+            System.out.println("This tile has no crop");
+            if(this.plowed){
+                System.out.println("This tile is plowed.");
+            } else {
+                System.out.println("This tile is not plowed.");
+            }
+            
+            if(this.rocked){
+                System.out.println("This tile is rocked.");
+            } else {
+                System.out.println("This tile is not rocked.");
+            }
         }
-        System.out.println("Rocked: " + this.crop.getCropName());
-        
+        System.out.println("-----------------------------------");
     }
 
     public void draw(Graphics2D g2, GamePanel gamePanel) {

@@ -40,10 +40,10 @@ public class SidePanel extends JPanel implements ActionListener {
     GamePanel gamePanel;
     JButton pickaxeButton, plowButton, advanceDayButton, harvestButton, RoseButton, waterCanButton, shovelButton, fertilizerButton,
     sunflowerButton, tulipButton, carrotButton, potatoButton, turnipButton, mangoButton, appleButton, registerButton;
-    JLabel coinsBackground, dayBackground, expBackground, lvlBackground, farmerTypeBackground, logBackground;
+    JLabel coinsBackground, dayBackground, expBackground, lvlBackground, farmerTypeBackground, logBackground, logo;
     JLabel coinsText, dayText, expText, typeText, lvlText;
     ButtonIcon buttonImages[];
-    BufferedImage registerImage, coinsBG, dayBG, expBG, lvlBG, logBG;
+    BufferedImage registerImage, coinsBG, dayBG, expBG, lvlBG, logBG, logoImage;
     Font font;
     Mango tMango;
     Tile tTile;
@@ -169,6 +169,9 @@ public class SidePanel extends JPanel implements ActionListener {
         logBackground = new JLabel(new ImageIcon(logBG));
         logBackground.setBounds(0, 9*TILE_SIZE, 3*TILE_SIZE, TILE_SIZE);
 
+        logo = new JLabel(new ImageIcon(logoImage));
+        logo.setBounds(0, 10*TILE_SIZE, 3*TILE_SIZE, TILE_SIZE);
+
         this.add(pickaxeButton);
         this.add(plowButton);
         this.add(advanceDayButton);
@@ -195,6 +198,7 @@ public class SidePanel extends JPanel implements ActionListener {
         this.add(typeText);
         this.add(expBackground);
         this.add(logBackground);
+        this.add(logo);
     }
 
     public void loadFont() {
@@ -269,6 +273,7 @@ public class SidePanel extends JPanel implements ActionListener {
             lvlBG = ImageIO.read(getClass().getResourceAsStream("/resources/gui/lvl.png"));
             expBG = ImageIO.read(getClass().getResourceAsStream("/resources/gui/exp.png"));
             logBG = ImageIO.read(getClass().getResourceAsStream("/resources/gui/log.png"));
+            logoImage = ImageIO.read(getClass().getResourceAsStream("/resources/gui/isagani_logo.png"));
         } catch (Exception e) {
             e.printStackTrace();
         }
