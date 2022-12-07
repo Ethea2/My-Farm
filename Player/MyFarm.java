@@ -77,13 +77,15 @@ public class MyFarm {
 
     public boolean checkTilesHasPlant() {
         boolean temp = false;
+        boolean temp2 = false;
         if(this.day == 1) {
             return !temp;
         }
         for(int i = 0; i < TILE_ROW; i++) {
             for(int j = 0; j < TILE_COL; j++) {
                 temp = tile[i][j].checkPlanted();
-                if(temp) {
+                temp2 = tile[i][j].getWithered();
+                if(temp && !temp2) {
                     return true;
                 }
             }
@@ -97,12 +99,9 @@ public class MyFarm {
      * @return a boolean if the game continues or not.
      */
     public boolean checkGameOver() {
-        if (player.getObjectcoins() < 5) {
+        if (player.getObjectcoins() < 5 && !checkTilesHasPlant()) {
             return true;
         } 
-        else if (!checkTilesHasPlant()) {
-            return true;
-        }
         return false;
     }
 

@@ -191,6 +191,10 @@ public class Tile {
         }
     }
 
+    public boolean getWithered() {
+        return this.withered;
+    }
+
     /*
      * Plants a crop inside the tile. It also prints the status of the crop.
      * 
@@ -253,6 +257,7 @@ public class Tile {
             if (status.equals("harvestable")) {
                 this.crop = null;
                 this.hasCrop = false;
+                this.plowed = false;
             }
             else{
                 showMessage("This crop is not ready to be harvested.");

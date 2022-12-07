@@ -13,7 +13,7 @@ public class Window extends JFrame {
         GamePanel gamePanel = new GamePanel();
         this.add(gamePanel);
         this.add(new SidePanel(gamePanel), BorderLayout.EAST);
-
+        
         this.pack();
 
         this.setLocationRelativeTo(null);
