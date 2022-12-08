@@ -15,7 +15,7 @@ public class MyFarm {
     private Player player;
     private ArrayList<Crop> crops;
 
-    /*
+    /**
      * The constructor method for the MyFarm class. Initializing all the necessary requirements.
      */
     public MyFarm() {
@@ -39,17 +39,12 @@ public class MyFarm {
         }
     }
 
-    /*
-     * The advanceDay function increases the day count.
+    /**
+     * Advances to the next day and increases the day count. Sets any tiles
+     * with withered crops to "withered" and resets the "watered" status on
+     * all crops.
      */
     public void advanceDay() {
-        /*
-        if(checkGameOver()){
-            String message = "Game Over. Play Again?";
-            JOptionPane.showMessageDialog(null, message, "Game Over", JOptionPane.PLAIN_MESSAGE);
-            gameReset();
-        }
-        */
         this.day++;
         for(int i = 0; i < TILE_ROW; i++) {
             for(int j = 0; j < TILE_COL; j++) {
@@ -62,7 +57,7 @@ public class MyFarm {
         }
     }
     
-    /*
+    /**
      * The getCrops function gets all the names of the crops in the crops array list.
      * 
      * @return cropsAvailable   the names of all the crops.
@@ -75,6 +70,13 @@ public class MyFarm {
         return cropsAvailable;
     }
 
+    /**
+     * Checks all the plantable tiles in the farm if they
+     * contain a crop.
+     * 
+     * @return false if ALL tiles do not have any crops or
+     *          only withered crops, otherwise return true.
+     */
     public boolean checkTilesHasPlant() {
         boolean temp = false;
         boolean temp2 = false;
@@ -93,8 +95,9 @@ public class MyFarm {
         return temp;
     }
 
-    /*
-     * checks if all the game ending scenarios are true, will return true if either of them are true and false if not.
+    /**
+     * Checks if all the game ending scenarios are true, will return true
+     * if either of them are true and false if not.
      * 
      * @return a boolean if the game continues or not.
      */
@@ -105,8 +108,8 @@ public class MyFarm {
         return false;
     }
 
-    /*
-     * basically resetting all the game values.
+    /**
+     * Resets all the game values.
      */
     public void gameReset() {
         player.playerReset();
@@ -129,16 +132,16 @@ public class MyFarm {
         this.crops.add(new Apple());
     }
 
-    /*
+    /**
      * a getter function for the tiles in play
      * 
-     * @return the tile inside my farm
+     * @return the tile inside the farm.
      */
     public Tile[][] getTile() {
         return this.tile;
     }
 
-    /*
+    /**
      * a getter function for the current day
      * 
      * @return the current day of the game loop.
@@ -146,7 +149,12 @@ public class MyFarm {
     public int getCurrentDay() {
         return this.day;
     }
-
+    
+    /**
+     * a getter function for the player
+     * 
+     * @return the player.
+     */
     public Player getPlayer() {
         return this.player;
     }

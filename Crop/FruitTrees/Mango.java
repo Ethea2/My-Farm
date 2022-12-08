@@ -8,6 +8,7 @@ import javax.imageio.ImageIO;
 public class Mango extends FruitTree {
     /** 
     * Mango class constructor.
+    * @param plantDay the day the crop was planted.
     */
     public Mango(int plantDay){
         super(plantDay);
@@ -34,6 +35,9 @@ public class Mango extends FruitTree {
         this.cropName = "Mango";
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void loadImages() {
         try {
@@ -53,6 +57,9 @@ public class Mango extends FruitTree {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public BufferedImage setImage(int currentDay) {
         if(getStage(currentDay) == 'h') {
@@ -68,32 +75,4 @@ public class Mango extends FruitTree {
             return this.guiTiles[0].image;
         }
     }
-    
-    // @Override
-    // public char getStage(int currentDay){
-    //     switch(currentDay-this.plantDay){
-    //         case 10:
-    //             return 'h';
-    //         case 9:
-    //             return '2';
-    //         case 8:
-    //             return '2';
-    //         case 7:
-    //             return '2';
-    //         case 6:
-    //             return '2';
-    //         case 5:
-    //             return '2';
-    //         case 4:
-    //             return '2';
-    //         case 3:
-    //             return '2';
-    //         case 2:
-    //             return '1';
-    //         case 1:
-    //             return '1';
-    //         default:
-    //             return '0';
-    //     }
-    // }
 }

@@ -1,11 +1,13 @@
 package Player.FarmerType;
 
-/*
+/**
  * This class represents the type of the Farmer
  */
 
 public class DistinguishedFarmer extends Farmer {
-    // Constructor of Distinguished farmer.
+    /**
+     * Constructor of Distinguished farmer.
+     */
     public DistinguishedFarmer() {
         this.levelRequirement = 10;
         this.bonusEarnings = 2;

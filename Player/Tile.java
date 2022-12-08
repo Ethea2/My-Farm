@@ -27,7 +27,9 @@ public class Tile {
     public BufferedImage normalTile;
 
     
-
+    /**
+     * Constuructior for the Tile class
+     */
     public Tile() {
         randomNum = ThreadLocalRandom.current().nextInt(0, 2 + 1);
         this.rockedImage = new BufferedImage[3];
@@ -41,19 +43,18 @@ public class Tile {
         } catch (Exception e) {
             e.printStackTrace();    
         }
-
-        //random rocked
-        // if (ThreadLocalRandom.current().nextInt(0,1+1) == 1) {
-        //     this.rocked = true;
-        // }
-
     }
     
+    /**
+     * Helper function for displaying messages as pop-ups.
+     * 
+     * @param message the text to be displayed on the pop-up.
+     */
     public void showMessage(String message) {
         JOptionPane.showMessageDialog(null, message, "Tile Error", JOptionPane.PLAIN_MESSAGE);
     }
 
-    /*
+    /**
      * This function gets the status of the tile, checking if the crop is
      * harvestable, growing, and withered.
      * 
@@ -79,37 +80,38 @@ public class Tile {
         return report;
     }
 
-    /*
-     * checks if the tile is rocked or not
+    /**
+     * Checks if the tile is rocked or not.
      * 
-     * @return a boolean if the tile is rocked
+     * @return a boolean if the tile is rocked.
      */
     public boolean checkRocked() {
         return this.rocked;
     }
 
-    /*
-     * checks if the tile is plowed and plantable or not
+    /**
+     * Checks if the tile is plowed and plantable or not.
      * 
-     * @return true if plowed; false if not
+     * @return true if plowed; false if not.
      */
     public boolean checkPlowed() {
         return this.plowed;
     }
 
-    /*
-     * checks if the tile has a plant/crop in it.
+    /**
+     * Checks if the tile has a plant/crop in it.
      * 
-     * @return a boolean if the tile has a crop or not
+     * @return a boolean if the tile has a crop or not.
      */
     public boolean checkPlanted() {
         return this.hasCrop;
     }
 
-    /*
-     * checks if the tile contains a plant or a rock
+    /**
+     * Checks if the tile is empty (contains a plant or a rock).
      * 
-     * @return the name of the crop
+     * @return false if the tile contains either a plant or a rock
+     *          otherwise true.
      */
     public boolean checkEmpty() {
         if(this.hasCrop || this.rocked){
@@ -120,20 +122,20 @@ public class Tile {
         }
     }
 
-    /*
-     * checks what's the name of the crop
+    /**
+     * Checks what the crop's name is.
      * 
-     * @return the name of the crop
+     * @return the name of the crop.
      */
     public String checkCrop() {
         return this.crop.getCropName();
     }
 
-    /*
-     * checks if the tile has a crop or not. If it doesn't it will return null.
-     * If it does it will return the crop
+    /**
+     * Checks if the tile has a crop or not. If it doesn't it will return null.
+     * If it does it will return the crop.
      * 
-     * @return the crop or null if there's none
+     * @return the crop or null if there's none.
      */
     public Crop getCrop() {
         if (hasCrop) {
@@ -143,15 +145,15 @@ public class Tile {
         }
     }
 
-    /*
-     * this function sets the tile to rocked if triggered
+    /**
+     * Sets the tile to rocked if triggered.
      */
     public void setRock() {
         this.rocked = true;
     }
 
-    /*
-     * this function removes the rock if the tile is rocked.
+    /**
+     * Removes the rock if the tile is rocked.
      * 
      * @return a boolean if the tile's rock was successfully removed
      */
@@ -166,7 +168,7 @@ public class Tile {
         }
     }
 
-    /*
+    /**
      * This function plows the tile. It also checks if the tile is already plowed or
      * has a plant in it.
      * It will return false if plowed or has a plant; true if it's not
@@ -195,11 +197,10 @@ public class Tile {
         return this.withered;
     }
 
-    /*
+    /**
      * Plants a crop inside the tile. It also prints the status of the crop.
      * 
      * @param crop the crop will become the crop inside the tile
-     * 
      * @return a boolean if the planting was successful.
      */
     public boolean plantCrop(Crop crop, MyFarm farm) {
@@ -222,12 +223,11 @@ public class Tile {
         }
     }
 
-    /*
+    /**
      * removes the withered crop. It also checks the status of the crop whether it's
      * withered or not.
      * 
      * @param currentDay used to get the status of the crop inside the tile
-     * 
      * @return a boolean whether removing the withered crop was successful or not
      */
     public boolean removeWithered(int currentDay) {
@@ -246,8 +246,8 @@ public class Tile {
         }
     }
 
-    /*
-     * the harvest function harvests the crop inside the tile. It also sets the crop
+    /**
+     * The harvest function harvests the crop inside the tile. It also sets the crop
      * back to null and hasCrop to false.
      */
     public void harvest(int currentDay) {
@@ -265,13 +265,20 @@ public class Tile {
         }
     }
 
-    /*
-     * Makes the tile have a withered status.
+    /**
+     * Sets the tile's withered status to true.
      */
     public void cropWithered() {
         this.withered = true;
     }
 
+    /**
+     * Gets the tile based on the coordinates given.
+     * 
+     * @param x the x-axis coordinate of the tile.
+     * @param y the y-axis coordinate of the tile.
+     * @return the tile if it matchs the coordinates.
+     */
     public Tile getTileByXY(int x, int y) {
         if(this.coordinateX == x && this.coordinateY == y) {
             return this;
@@ -279,6 +286,11 @@ public class Tile {
         return null;
     }
 
+    /**
+     * Prints relevant information about the tile in the terminal if triggered.
+     * 
+     * @param currentDay the current day in the game loop.
+     */
     public void printTileInfo(int currentDay){
         System.out.println("-----------------------------------");
         System.out.println("Tile Coordinates X: " + this.coordinateX + "Y: " + this.coordinateY);
@@ -308,6 +320,12 @@ public class Tile {
         System.out.println("-----------------------------------");
     }
 
+    /**
+     * Displays the tile's image based on its contents.
+     *
+     * @param g2 the graphics object.
+     * @param gamePanel the area where the farm, crops, and charcter are displayed.
+     */
     public void draw(Graphics2D g2, GamePanel gamePanel) {
         //System.out.println("I got triggered " + this.rocked + coordinateX+coordinateY);
         //fix withered status.

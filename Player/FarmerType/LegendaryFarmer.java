@@ -1,7 +1,7 @@
 package Player.FarmerType;
 
 public class LegendaryFarmer extends Farmer {
-    /*
+    /**
      * The constructor for the Legendary Farmer class
      */
     public LegendaryFarmer() {

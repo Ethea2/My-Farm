@@ -32,7 +32,7 @@ public class GamePanel extends JPanel implements Runnable {
     public CollisionChecker collisionChecker = new CollisionChecker(this);
     public GuiPlayer player = new GuiPlayer(this, keyHandler);
 
-    /*
+    /**
      * Constructor for the GamePanel class.
      */
     public GamePanel() {
@@ -43,7 +43,7 @@ public class GamePanel extends JPanel implements Runnable {
         this.setFocusable(true);
     }
 
-    /*
+    /**
      * Initializes the gamethread for the game.
      */
     public void startGameThread() {
@@ -51,7 +51,7 @@ public class GamePanel extends JPanel implements Runnable {
         gameThread.start();
     }
 
-    /*
+    /**
      * The function that triggers the game loop. It also computes for the FPS
      * of the game making it smoother looking.
      */
@@ -76,11 +76,14 @@ public class GamePanel extends JPanel implements Runnable {
         }
     }
 
-    /*
+    /**
      * Updates the player position and animations.
      */
     public void update() {
         player.update();
+        if(keyHandler.cTyped && (farm.getTile()[player.actualX][player.actualY] != null)){
+            farm.getTile()[player.actualX][player.actualY].printTileInfo(farm.getCurrentDay());
+        }
     }
 
     
@@ -107,7 +110,7 @@ public class GamePanel extends JPanel implements Runnable {
         g2.dispose();
     }
 
-    /*
+    /**
      * Plays the music for the game and loops it.
      */
     public void playMusic() {
@@ -116,14 +119,14 @@ public class GamePanel extends JPanel implements Runnable {
         sound.loop();
     }
 
-    /*
+    /**
      * Stops the music.
      */
     public void stopMusic() {
         sound.stop();
     }
-
-    /*
+    
+    /**
      * Restarts the game and reopens the frame. Resets the stats and stops the music.
      */
     public void restartGame() {

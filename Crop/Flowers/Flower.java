@@ -5,7 +5,7 @@ import Player.FarmerType.*;
 
 public class Flower extends Crop{
     /** 
-    * Flower class constructor.
+    * Flower subclass constructor.
     */
     public Flower(int plantDay){
         super(plantDay);
@@ -16,17 +16,10 @@ public class Flower extends Crop{
     }
 
     /**
-	 * Overrides <code>computeFinalPrice()</code> in <code>Crop</code>.
-     * <p>
-     * Computes the final price of the harvested crop by adding the
-	 * water and fertilizer bonuses to the initial harvest total and
-     * adds the Flower crop type multiplier.
-	 *
-	 * @return the final harvest price.
-     * @see Crop.Crop.#computeFinalPrice(Farmer farmer)
-	 */
+     * {@inheritDoc}
+     */
     @Override
-    public double computeFinalPrice(Farmer farmer){
+    public double computeFinalPrice(Farmer farmer){ //adds the Flower crop type multiplier.
         this.finalPrice = (computeHarvestTotal(farmer) + computeWaterBonus(farmer) + computeFertBonus(farmer)) * 1.1;
         return Math.round(this.finalPrice * 100.0) / 100.0;
 	}

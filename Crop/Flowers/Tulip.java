@@ -8,6 +8,7 @@ import Gui.GuiTile;
 public class Tulip extends Flower{
     /** 
     * Tulip class constructor.
+    * @param plantDay the day the crop was planted.
     */
     public Tulip(int plantDay){
         super(plantDay);
@@ -34,6 +35,9 @@ public class Tulip extends Flower{
         this.cropName = "Tulip";
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void loadImages() {
         try {
@@ -50,6 +54,9 @@ public class Tulip extends Flower{
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public BufferedImage setImage(int currentDay) {
         if(getStage(currentDay) == 'h') {
@@ -63,6 +70,9 @@ public class Tulip extends Flower{
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public char getStage(int currentDay){
         switch(currentDay-this.plantDay){

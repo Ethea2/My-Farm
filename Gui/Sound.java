@@ -10,14 +10,14 @@ public class Sound {
     Clip clip;
     URL soundUrl;
 
-    /*
+    /**
      * Constructor for the sound class.
      */
     public Sound() {
         soundUrl = getClass().getResource("/resources/music/music.wav");
     }
 
-    /*
+    /**
      * Sets the file to be used in for the game.
      */
     public void setFile() {
@@ -30,21 +30,21 @@ public class Sound {
         }
     }
 
-    /*
+    /**
      * This function starts the music. 
      */
     public void play() {
         clip.start();
     }
 
-    /*
+    /**
      * This fucntion loops the song continuously.
      */
     public void loop() {
         clip.loop(Clip.LOOP_CONTINUOUSLY);
     }
 
-    /*
+    /**
      * This function stops the music.
      */
     public void stop() {

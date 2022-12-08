@@ -33,6 +33,9 @@ public class Turnip extends RootCrop{
         this.cropName = "Turnip";
     }
     
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void loadImages() {
         try {
@@ -48,7 +51,10 @@ public class Turnip extends RootCrop{
             e.printStackTrace();
         }
     }
-
+    
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public BufferedImage setImage(int currentDay) {
         if(getStage(currentDay) == 'h') {
@@ -62,6 +68,9 @@ public class Turnip extends RootCrop{
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public char getStage(int currentDay){
         switch(currentDay-this.plantDay){

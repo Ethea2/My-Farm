@@ -3,6 +3,9 @@ package Gui.Entity;
 import java.awt.image.BufferedImage;
 import java.awt.Rectangle;
 
+/**
+ * Parent class for movable entities in the game panel.
+ */
 public class Entity {
     public int playerX, playerY;
     public int actualX, actualY;

@@ -6,17 +6,21 @@ public class CollisionChecker {
     
     GamePanel gamePanel;
 
-    /*
+    /**
      * Constructor for CollisionChecker class.
+     * 
+     * @param gamePanel the area that displays the farm, crops, and player.
      */
     public CollisionChecker(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
     }
 
-    /*
+    /**
      * Checks the player collisions with solid tiles. It gets the player's X and Y
      * while drawing the small box inside the player, the small box is then used for the collision
      * computations.
+     * 
+     * @param entity a movable entity in the gamePanel
      */
     public void checkTile(Entity entity) {
 

@@ -3,7 +3,7 @@ package Player.Tools;
 import Player.*;
 
 public class Plow extends Tools {
-    /*
+    /**
      * The plow class constructor
      */
     public Plow() {
@@ -12,15 +12,13 @@ public class Plow extends Tools {
         this.toolName = "Plow";
     }
 
-    /*
+    /**
      * The use tool override allows the plow to add experience and plow
      * the the unplowed tile.
      * 
-     * @params tile the tile that is going to be plowed
-     * 
-     * @params player the player class that gains experience
-     * 
-     * @params currentDay the current day count
+     * @param tile the tile that is going to be plowed
+     * @param player the player class that gains experience
+     * @param currentDay the current day count
      */
     @Override
     public void useTool(Tile tile, Player player, int currentDay) {

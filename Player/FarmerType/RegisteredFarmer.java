@@ -1,7 +1,7 @@
 package Player.FarmerType;
 
 public class RegisteredFarmer extends Farmer {
-    /*
+    /**
      * The constructor for the Registered Farmer class
      */
     public RegisteredFarmer() {

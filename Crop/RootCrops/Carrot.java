@@ -8,6 +8,7 @@ import javax.imageio.ImageIO;
 public class Carrot extends RootCrop{
     /** 
     * Carrot class constructor.
+    * @param plantDay the day the crop was planted.
     */
     public Carrot(int plantDay){
         super(plantDay);
@@ -34,6 +35,9 @@ public class Carrot extends RootCrop{
         this.cropName = "Carrot";
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void loadImages() {
         try {
@@ -50,6 +54,9 @@ public class Carrot extends RootCrop{
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public BufferedImage setImage(int currentDay) {
         if(getStage(currentDay) == 'h') {
@@ -63,7 +70,9 @@ public class Carrot extends RootCrop{
         }
     }
 
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public char getStage(int currentDay){
         switch(currentDay-this.plantDay){

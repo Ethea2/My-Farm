@@ -11,7 +11,7 @@ public class ButtonIcon implements Icon {
     public BufferedImage image;
     public SidePanel sp;
 
-    /*
+    /**
      * Constructor for the ButtonIcon class.
      * 
      * @param sp the SidePanel for the gui.

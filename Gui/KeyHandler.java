@@ -5,13 +5,23 @@ import java.awt.event.*;
 public class KeyHandler implements KeyListener {
 
     public boolean upPressed, downPressed, leftPressed, rightPressed;
+    public boolean cTyped;
     public boolean pressed = false;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void keyTyped(KeyEvent e) {
-      
+        int code = e.getKeyCode();
+        if(code == KeyEvent.VK_C) {
+            cTyped = true;
+        }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void keyPressed(KeyEvent e) {
         int code = e.getKeyCode();
@@ -32,6 +42,9 @@ public class KeyHandler implements KeyListener {
         
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void keyReleased(KeyEvent e) {
         int code = e.getKeyCode();

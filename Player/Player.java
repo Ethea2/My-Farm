@@ -7,7 +7,7 @@ import Crop.Crop;
 import Player.FarmerType.*;
 import Player.Tools.*;
 
-/*
+/**
  * The player class are where most of the player related functions are in. Functions such as leveling up,
  * registering the farmertype, increasing the objectcoins, and more...
  */
@@ -19,7 +19,7 @@ public class Player {
     private int level;
     private ArrayList<Tools> tools;
 
-    /*
+    /**
      * The constructor for the player class.
      */
     public Player() {
@@ -35,17 +35,14 @@ public class Player {
         tools.add(new Plow());
     }
 
-    /*
+    /**
      * Buying seeds automatically plants the crop seed. It also takes from the
      * player's wallet, depending on the crop price.
      * 
-     * @param tile the targeted tile for planting
-     * 
-     * @param plantDay takes the plant day of the plant
-     * 
-     * @param cropSeed the crop that is going to be planted
-     * 
-     * @param farm the
+     * @param tile the targeted tile for planting.
+     * @param plantDay takes the plant day of the plant.
+     * @param cropSeed the crop that is going to be planted.
+     * @param farm the farm where all farm tiles are contained.
      */
     public void buySeed(Tile tile, int plantDay, Crop cropSeed, MyFarm farm) {
         if (tile.plantCrop(cropSeed, farm)) { // The checks if the tile plant crop was successful
@@ -61,14 +58,13 @@ public class Player {
         }
     }
 
-    /*
+    /**
      * The harvestTile function harvests the crop in the tile, this also takes into
      * consideration when the harvest time is.
      * It also checks the status of the crop whether it's withered, harvestable, or
      * growing.
      * 
      * @param tile the targeted tile for harvesting
-     * 
      * @param currentDay the current day count of the farm
      */
     public void harvestTile(Tile tile, int currentDay) {
@@ -94,6 +90,10 @@ public class Player {
         }
     }
 
+    /**
+     * Checks if the player is eligible to level up and updates
+     * their level accordingly.
+     */
     public void checkLevelUp(){
         int temp = (int) Math.floor(this.experience / 100);
         if(temp>this.level){
@@ -102,17 +102,14 @@ public class Player {
         }
     }
 
-    /*
+    /**
      * The register function decides whether the farmer is eligible to register for
      * a new farmer type. If the farmer is eligible, he can then register for the
-     * farmer type he's aiming.
+     * next more advanced farmer type.
      * 
-     * @param choice the choice of the user on what farmer type
      */
     public void register() {
-        //System.out.println("***CHECKED***");
         if(this.farmerType.getFarmerType() == "Farmer"){
-            //System.out.println("***CHECKED***");
             if(this.objectCoin >= 200 && this.level >= 5){
                 this.farmerType = new RegisteredFarmer();
                 this.subtractObjectcoins(200);
@@ -141,13 +138,18 @@ public class Player {
         }
     }
 
+    /**
+     * Helper function that shows the imput message as a pop-up.
+     * 
+     * @param message text to be displayed on the pop-up.
+     */
     public void showMessage(String message) {
         JOptionPane.showMessageDialog(null, message, "Registration.", JOptionPane.WARNING_MESSAGE);
     }
 
     // GETTERS
 
-    /*
+    /**
      * The getter function for the level of the player.
      * Player gains 1 level for every 100 experience points.
      * 
@@ -157,7 +159,7 @@ public class Player {
         return this.level;
     }
 
-    /*
+    /**
      * The getter function for the experience of the player
      * 
      * @return experience the experience of the player
@@ -166,7 +168,7 @@ public class Player {
         return this.experience;
     }
 
-    /*
+    /**
      * The getter function for the farmer type.
      * 
      * @return farmerType the current farmer type of the player.
@@ -175,7 +177,7 @@ public class Player {
         return this.farmerType;
     }
 
-    /*
+    /**
      * The getter function for objectCoins.
      * 
      * @return objectCoin the player's current object coin amount
@@ -185,11 +187,9 @@ public class Player {
     }
 
     // Subtract
-    
-    /*
-     * The subtractObjectcoins function basically subtracts the amount of cost to
-     * the
-     * current amount of objectCoins
+    /**
+     * The subtractObjectcoins function subtracts the amount of cost to
+     * the current amount of objectCoins
      * 
      * @param cost the cost of transaction.
      */
@@ -198,8 +198,7 @@ public class Player {
     }
 
     // Add
-
-    /*
+    /**
      * addObjectcoins adds to the current object coins of the player
      * depending on the gains input.
      * 
@@ -209,8 +208,8 @@ public class Player {
         this.objectCoin += gain;
     }
 
-    /*
-     * The addExperience function appends the gained experience to the current
+    /**
+     * The addExperience function adds the gained experience to the current
      * overall experience of the player.
      * 
      * @param gain the player's gain from the transaction
@@ -220,11 +219,22 @@ public class Player {
         checkLevelUp();
     }
 
+    /**
+     * Gets the appropriate tool based on the index input.
+     * 0: Shovel
+     * 1: WaterCan
+     * 2: Pickaxe
+     * 3: Fertilizer
+     * 4: Plow
+     * 
+     * @param index the index of a specific tool.
+     * @return the chosen tool.
+     */
     public Tools getTool(int index) {
         return this.tools.get(index);
     }
 
-    /*
+    /**
      * a function to reset all the player stats when the game starts again.
      */
     public void playerReset() {

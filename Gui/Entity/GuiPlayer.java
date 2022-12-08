@@ -14,6 +14,12 @@ public class GuiPlayer extends Entity{
     GamePanel gamePanel;
     KeyHandler keyHandler;
 
+    /**
+     * Constructor for the GuiPlayer class.
+     * 
+     * @param gamePanel the main game panel that displays the farm and player.
+     * @param keyHandler manages the users keyboard input for movement.
+     */
     public GuiPlayer(GamePanel gamePanel, KeyHandler keyHandler) {
         this.gamePanel = gamePanel;
         this.keyHandler = keyHandler;
@@ -28,6 +34,10 @@ public class GuiPlayer extends Entity{
         getPlayerImage();
     }
     
+    /**
+     * Sets the default values for the player's coordinates, speed, and direction
+     * upon the start of the game.
+     */
     public void setDefaultValues() {
         playerX = 100;
         playerY = 100;
@@ -35,6 +45,9 @@ public class GuiPlayer extends Entity{
         direction = "down";
     }
 
+    /**
+     * Loads the player's image files.
+     */
     public void getPlayerImage() {
         try {
             up1 = ImageIO.read(getClass().getResourceAsStream("../../resources/farmer/farmer_up1.png"));
@@ -58,6 +71,10 @@ public class GuiPlayer extends Entity{
         }
     }
 
+    /**
+     * Updates the player's position and appearance based on
+     * the user's movement input.
+     */
     public void update() {
         actualX = (this.playerX + this.solidArea.x)/gamePanel.TILE_SIZE;
         actualY = (this.playerY + this.solidArea.y + this.solidArea.height)/gamePanel.TILE_SIZE;
@@ -114,6 +131,12 @@ public class GuiPlayer extends Entity{
         }
     }
 
+    
+    /** 
+     * Displays the farmer on the screen depending on his movement and direction.
+     * 
+     * @param g2 graphics object to be used in the drawing of components.
+     */
     public void draw(Graphics2D g2) {
         // g2.setColor(Color.white);
 

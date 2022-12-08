@@ -4,6 +4,10 @@ import Crop.Crop;
 import Player.MyFarm;
 
 public class FruitTree extends Crop {
+    /** 
+    * FruitTree class constructor.
+    * @param plantDay the day the crop was planted.
+    */
     public FruitTree(int plantDay) {
         super(plantDay);
         this.cropType = "FruitTree";
@@ -13,16 +17,11 @@ public class FruitTree extends Crop {
         this.cropType = "FruitTree";
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean canPlant(int x, int y, MyFarm farm) {
-        // System.out.println(x + " " + y);
-        // System.out.println((x+1) + " " + y);
-        // System.out.println((x+1) + " " + (y+1));
-        // System.out.println((x+1) + " " + (y-1));
-        // System.out.println(x + " " + y);
-        // System.out.println(x + " " + y);
-        // System.out.println(x + " " + y);
-        // System.out.println(x + " " + y);
         try {
             if (farm.getTile()[x][y].checkEmpty() && // checks planting tile
                     farm.getTile()[x - 1][y - 1].checkEmpty() && // checks above-left tile
@@ -42,6 +41,9 @@ public class FruitTree extends Crop {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public char getStage(int currentDay) {
         switch (currentDay - this.plantDay) {

@@ -8,6 +8,7 @@ import Gui.GuiTile;
 public class Potato extends RootCrop{
     /** 
     * Potato class constructor.
+    * @param plantDay the day the crop was planted.
     */
     public Potato(int plantDay){
         super(plantDay);
@@ -34,6 +35,9 @@ public class Potato extends RootCrop{
         this.cropName = "Potato";
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void loadImages() {
         try {
@@ -53,6 +57,9 @@ public class Potato extends RootCrop{
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public BufferedImage setImage(int currentDay) {
         if(getStage(currentDay) == 'h') {
@@ -69,6 +76,9 @@ public class Potato extends RootCrop{
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public char getStage(int currentDay){
         switch(currentDay-this.plantDay){

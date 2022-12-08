@@ -7,7 +7,8 @@ import javax.imageio.ImageIO;
 
 public class Apple extends FruitTree {
     /** 
-    * Mango class constructor.
+    * Apple class constructor.
+    * @param plantDay the day the crop was planted.
     */
     public Apple(int plantDay){
         super(plantDay);
@@ -34,6 +35,9 @@ public class Apple extends FruitTree {
         this.cropName = "Apple";
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void loadImages() {
         try {
@@ -53,6 +57,9 @@ public class Apple extends FruitTree {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public BufferedImage setImage(int currentDay) {
         if(getStage(currentDay) == 'h') {
