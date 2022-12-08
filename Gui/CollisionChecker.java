@@ -6,10 +6,18 @@ public class CollisionChecker {
     
     GamePanel gamePanel;
 
+    /*
+     * Constructor for CollisionChecker class.
+     */
     public CollisionChecker(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
     }
 
+    /*
+     * Checks the player collisions with solid tiles. It gets the player's X and Y
+     * while drawing the small box inside the player, the small box is then used for the collision
+     * computations.
+     */
     public void checkTile(Entity entity) {
 
         int entityLeftPlayerX = entity.playerX + entity.solidArea.x;

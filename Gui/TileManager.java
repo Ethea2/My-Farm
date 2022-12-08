@@ -11,6 +11,11 @@ public class TileManager {
     GuiTile[] tile;
     public int mapTileNumber[][];
 
+    /*
+     * The constructor for the TileManager class.
+     * 
+     * @param gamePanel the GamePanel class for the accessing of screen values.
+     */
     public TileManager(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
 
@@ -21,6 +26,10 @@ public class TileManager {
         loadMap();
     }
 
+    /*
+     * Loads all the images/tiles in the tile attribute. It also decides
+     * whether the tile is collision true or false.
+     */
     public void getTileImage() {
         try {
             //SOIL TILES
@@ -67,6 +76,10 @@ public class TileManager {
         }
     }
 
+    /*
+     * Takes a file input and reads it line by line, it uses the array
+     * index for the tile map and loads the corresponding image.
+     */
     public void loadMap() {
         try {
             InputStream is = getClass().getResourceAsStream("../resources/maps/farmMap.txt");
@@ -110,6 +123,10 @@ public class TileManager {
         }
     }
 
+    /*
+     * This function draws the tiles based on the assigned tile map 2d array indices
+     * and puts them in the screen.
+     */
     public void draw(Graphics2D g2) {
 
         int col = 0;
