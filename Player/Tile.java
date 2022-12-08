@@ -171,7 +171,7 @@ public class Tile {
     /**
      * This function plows the tile. It also checks if the tile is already plowed or
      * has a plant in it.
-     * It will return false if plowed or has a plant; true if it's not
+     * It will return false if plowed or has a plant; true if it's not.
      * 
      * @return true if not plowed or planted. False otherwise.
      */
@@ -193,6 +193,12 @@ public class Tile {
         }
     }
 
+    
+    /**
+     * Checks if the tile has a withered crop.
+     * 
+     * @return true if tile has a withered crop, false if it doesn't.
+     */
     public boolean getWithered() {
         return this.withered;
     }
