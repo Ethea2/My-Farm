@@ -16,7 +16,7 @@
  */
 
 import Gui.Window;
-/*
+/**
  * This is the driver class for the whole game. This driver class contains the main loop for the 
  * whole game.
  */
