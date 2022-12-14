@@ -47,5 +47,5 @@ public class Window extends JFrame {
 
         gamePanel.playMusic();
         gamePanel.startGameThread();
-    }
+    }//test
 }
