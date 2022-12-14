@@ -307,6 +307,7 @@ public class Crop {
 	 * planted and the current day as well as it's harvest time.
 	 * This affects how the plant looks in the game panel.
 	 * 
+     * @param currentDay the current day in my farm.
 	 * @return '0' if the plant is a seed, a number if it's still
 	 * 			growing, and 'h' if it is ready to be harvested.
 	 */

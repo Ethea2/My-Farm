@@ -31,11 +31,13 @@ public class GamePanel extends JPanel implements Runnable {
     Sound sound = new Sound();
     public CollisionChecker collisionChecker = new CollisionChecker(this);
     public GuiPlayer player = new GuiPlayer(this, keyHandler);
+    Window window;
 
     /**
      * Constructor for the GamePanel class.
      */
-    public GamePanel() {
+    public GamePanel(Window window) {
+        this.window = window;
         this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
         this.setBackground(Color.pink);
         this.setDoubleBuffered(true);
@@ -130,10 +132,7 @@ public class GamePanel extends JPanel implements Runnable {
      * Restarts the game and reopens the frame. Resets the stats and stops the music.
      */
     public void restartGame() {
-        java.awt.Window win = SwingUtilities.getWindowAncestor(this);
         farm.gameReset();
-        win.dispose();
-        stopMusic();
-        new Window();
+        window.restartGame();
     }
 }

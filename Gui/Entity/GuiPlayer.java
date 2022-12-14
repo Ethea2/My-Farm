@@ -2,6 +2,7 @@ package Gui.Entity;
 
 import Gui.GamePanel;
 import Gui.KeyHandler;
+import Gui.Entity.Entity;
 import java.awt.*;
 import java.awt.image.*;
 import java.io.IOException;

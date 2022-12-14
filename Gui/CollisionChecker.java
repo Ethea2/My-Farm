@@ -1,6 +1,6 @@
 package Gui;
 
-import Gui.Entity.Entity;
+import Gui.Entity.*;
 
 public class CollisionChecker {
     

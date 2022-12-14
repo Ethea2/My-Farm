@@ -92,8 +92,7 @@ public class TileManager {
             while(col < gamePanel.MAX_SCREEN_COLUMN && row < gamePanel.MAX_SCREEN_ROW) {
 
                 String line = br.readLine();
-                //System.out.println(line);
-
+                
                 while(col < gamePanel.MAX_SCREEN_COLUMN) {
                     String numbers[] = line.split(" ");
 
